@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>5913BF82-873C-4818-B529-A7C84A4CF198</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Layer-Parse-iOS-Swift-Example</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D84957916FDE9D36989F92ABA0BE834DF8A816C0</key>
+		<string>https://github.com/jinseokpark6/u-team.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Layer-Parse-iOS-Swift-Example.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D84957916FDE9D36989F92ABA0BE834DF8A816C0</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/jinseokpark6/u-team.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D84957916FDE9D36989F92ABA0BE834DF8A816C0</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D84957916FDE9D36989F92ABA0BE834DF8A816C0</string>
+			<key>IDESourceControlWCCName</key>
+			<string>U-Team</string>
+		</dict>
+	</array>
+</dict>
+</plist>

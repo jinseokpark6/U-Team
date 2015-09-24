@@ -50,8 +50,6 @@ class ConversationListViewController: ATLConversationListViewController, ATLConv
 		tabFrame.origin.y = CGRectGetMaxY(window!.bounds) - CGRectGetHeight(tabBar!.frame)
 		tabBar!.frame = tabFrame
 		
-//		var contentFrame = content.frame
-//		contentFrame.size.height -= tabFrame.size.height
 	}
 
 	
@@ -63,6 +61,7 @@ class ConversationListViewController: ATLConversationListViewController, ATLConv
 			
 			participantArray.removeAll(keepCapacity: false)
 
+			println("selected")
 			
             let controller = ConversationViewController(layerClient: self.layerClient)
             controller.conversation = conversation
