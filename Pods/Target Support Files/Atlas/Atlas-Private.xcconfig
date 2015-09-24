@@ -1,0 +1,6 @@
+#include "Atlas.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/Atlas" "${PODS_ROOT}/Headers/Private/Atlas/Controllers" "${PODS_ROOT}/Headers/Private/Atlas/Models" "${PODS_ROOT}/Headers/Private/Atlas/Protocols" "${PODS_ROOT}/Headers/Private/Atlas/Utilities" "${PODS_ROOT}/Headers/Private/Atlas/Views" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Atlas" "${PODS_ROOT}/Headers/Public/Atlas/Controllers" "${PODS_ROOT}/Headers/Public/Atlas/Models" "${PODS_ROOT}/Headers/Public/Atlas/Protocols" "${PODS_ROOT}/Headers/Public/Atlas/Utilities" "${PODS_ROOT}/Headers/Public/Atlas/Views" "${PODS_ROOT}/Headers/Public/Bolts" "${PODS_ROOT}/Headers/Public/LayerKit" "${PODS_ROOT}/Headers/Public/LayerKit/LayerKit" "${PODS_ROOT}/Headers/Public/Parse" "${PODS_ROOT}/Headers/Public/ParseUI" "${PODS_ROOT}/Headers/Public/SVProgressHUD"
+OTHER_LDFLAGS = ${ATLAS_OTHER_LDFLAGS}
+PODS_ROOT = ${SRCROOT}
+SKIP_INSTALL = YES
