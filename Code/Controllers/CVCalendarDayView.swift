@@ -279,7 +279,7 @@ extension CVCalendarDayView {
                 var transform: CGAffineTransform!
                 if let circleView = circleView {
                     let point = pointAtAngle(CGFloat(-90).toRadians(), withinCircleView: circleView)
-                    let spaceBetweenDotAndCircle = CGFloat(1)
+                    let spaceBetweenDotAndCircle = CGFloat(0.5)
                     let offset = point.y - dotMarker.frame.origin.y - dotMarker.bounds.height/2 + spaceBetweenDotAndCircle
                     transform = unwinded ? CGAffineTransformIdentity : CGAffineTransformMakeTranslation(0, offset)
                     
