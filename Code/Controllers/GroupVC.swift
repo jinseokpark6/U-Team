@@ -30,6 +30,8 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     
 	var layerClient: LYRClient!
 	
+	var passwordCheck = false
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -143,7 +145,7 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 		selectedTeamObject.append(resultsTeamObject[indexPath.row])
 
 		
-		alertTeamJoin()
+		teamJoin()
 	}
 	
 	func alertPasswordMatchFail() {
@@ -159,13 +161,14 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 
 	}
 	
-	func alertTeamPassword() {
+	func alertTeamPassword(newTeamArray: [String]) {
+		
 		
 		var infoAlert = UIAlertController(title: "Notification", message: "Please Type Password", preferredStyle: UIAlertControllerStyle.Alert)
 		
 		infoAlert.addTextFieldWithConfigurationHandler { (textField:UITextField!) -> Void in
 			
-			textField.placeholder = "Notes"
+			textField.placeholder = "Type here"
 		}
 		
 		infoAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action:UIAlertAction!) -> Void in
@@ -175,11 +178,12 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 			
 			if selectedTeamObject[0].objectForKey("password") as! String == text {
 				
-				self.alertTeamJoin()
+				println("checked")
+				self.alertTeamJoin(newTeamArray)
 				
 			} else {
 				
-				self.alertPasswordMatchFail()
+//				self.alertPasswordMatchFail()
 			}
 		}))
 		
@@ -191,14 +195,44 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 		self.presentViewController(infoAlert, animated: true, completion: nil)
 	}
 	
-	func alertTeamJoin() {
+	func alertTeamJoin(newTeamArray: [String]){
+		
+		var infoAlert = UIAlertController(title: "Join Team", message: "Do you want to join \(selectedTeamName)?", preferredStyle: UIAlertControllerStyle.Alert)
+		
+		
+		infoAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action:UIAlertAction!) -> Void in
+			
+			var currentUser = PFUser.currentUser()
+			currentUser?.setObject(newTeamArray, forKey: "team_id_array")
+			currentUser?.save()
+			
+			self.createStatus()
+			
+		}))
+		
+		infoAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action:UIAlertAction!) -> Void in
+			
+		}))
+		
+		self.presentViewController(infoAlert, animated: true, completion: nil)
+	}
+	
+	func teamJoin() {
 		
 		var newTeamArray: [String] = [String]()
+		println(PFUser.currentUser())
+		println(PFUser.currentUser()!.objectForKey("team_id_array"))
 		
-		if let teamArray = PFUser.currentUser()?.objectForKey("team_id_array") as? [String] {
+		var query = PFUser.query()
+		var object = query?.getObjectWithId((PFUser.currentUser()?.objectId!)!)
+		
+		
+		if let teamArray = object?.objectForKey("team_id_array") as? [String] {
 			
-			println("teamarray \(teamArray)")
 			newTeamArray = teamArray
+			
+			println("teamarray \(newTeamArray)")
+
 			
 			// check if the user is already part of the team
 			var isFound = false
@@ -213,40 +247,33 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 			
 			if !isFound {
 				
+				newTeamArray.append(selectedTeamId)
+
 				// check for password
 				if let password = selectedTeamObject[0].objectForKey("password") as? String {
 					
-					alertTeamPassword()
+					alertTeamPassword(newTeamArray)
+					
+				} else {
+					
+					alertTeamJoin(newTeamArray)
 				}
-				
-				newTeamArray.append(selectedTeamId)
 			}
 			
 		} else {
 			
 			newTeamArray.append(selectedTeamId)
+
+			// check for password
+			if let password = selectedTeamObject[0].objectForKey("password") as? String {
+				
+				alertTeamPassword(newTeamArray)
+				
+			} else {
+				
+				alertTeamJoin(newTeamArray)
+			}
 		}
-
-		
-		var infoAlert = UIAlertController(title: "Join Team", message: "Do you want to join \(selectedTeamName)?", preferredStyle: UIAlertControllerStyle.Alert)
-		
-		
-		infoAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action:UIAlertAction!) -> Void in
-			
-			var currentUser = PFUser.currentUser()
-			currentUser?.setObject(newTeamArray, forKey: "team_id_array")
-			currentUser?.save()
-			
-			self.createStatus()
-
-		}))
-		
-		infoAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action:UIAlertAction!) -> Void in
-			
-		}))
-		
-		self.presentViewController(infoAlert, animated: true, completion: nil)
-
 	}
 	
 	func checkStatus() {

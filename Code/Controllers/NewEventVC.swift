@@ -415,7 +415,15 @@ class NewEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 	func datePickerChanged(datePicker:UIDatePicker) {
 		
 		if self.selectedDate == "start" {
+			
 			startDate = datePicker.date
+
+			var components = NSCalendar.currentCalendar().components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay | .CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitSecond, fromDate: datePicker.date)
+
+			components.hour += 1
+			
+			endDate = NSCalendar.currentCalendar().dateFromComponents(components)!
+			
 		} else {
 //			datePicker.date.
 			endDate = datePicker.date

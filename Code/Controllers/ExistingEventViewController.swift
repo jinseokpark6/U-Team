@@ -21,14 +21,12 @@ class ExistingEventViewController: UIViewController, UITableViewDelegate, UITabl
 
 		self.resultsTable.tableFooterView = UIView(frame: CGRectZero)
 		
-		if status == "Coach" {
-			println("asdf")
+//		if status == "Coach" {
 			let title = NSLocalizedString("Edit", comment: "")
 			let detailsItem = UIBarButtonItem(title: title, style: UIBarButtonItemStyle.Plain, target: self, action: Selector("editButtonTapped"))
 			self.navigationItem.setRightBarButtonItem(detailsItem, animated: false)
-			println("HI")
 
-		}
+//		}
         // Do any additional setup after loading the view.
     }
 
@@ -48,7 +46,6 @@ class ExistingEventViewController: UIViewController, UITableViewDelegate, UITabl
 					selectedEvent.removeAll(keepCapacity: false)
 					selectedEvent.append(object!)
 					self.resultsTable.reloadData()
-					println("asdf")
 				}
 			}
 		}
@@ -91,15 +88,15 @@ class ExistingEventViewController: UIViewController, UITableViewDelegate, UITabl
 	}
 	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-		if status == "Coach" {
+//		if status == "Coach" {
 			return 6
-		}
-		if status == "Player" {
-			return 4
-		}
-		else {
-			return 1
-		}
+//		}
+//		if status == "Player" {
+//			return 4
+//		}
+//		else {
+//			return 1
+//		}
 	}
 	
 	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -114,8 +111,6 @@ class ExistingEventViewController: UIViewController, UITableViewDelegate, UITabl
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		
 		var cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! existingEventCell
-		
-		println("HERE0?")
 
 		if indexPath.section == 0 {
 			cell.titleLabel.text = selectedEvent[0].objectForKey("Title") as? String

@@ -14,6 +14,8 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 	@IBOutlet weak var teamName: UILabel!
 	@IBOutlet weak var resultsTable: UITableView!
 	
+	var announcements: [PFObject] = [PFObject]()
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -36,6 +38,8 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 		
 		self.resultsTable.tableFooterView = UIView(frame: CGRectZero)
 		
+		
+		self.fetchInfo()
 		
 		var query = PFQuery(className:"Team")
 		var pfObject = query.getObjectWithId(selectedTeamId)
@@ -67,19 +71,52 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 		
 		if indexPath.section == 0 {
 			if indexPath.row == 0 {
-				cell.textLabel!.text = "List of Players"
+				cell.textLabel!.text = "Coach"
 			}
+			if indexPath.row == 1 {
+				cell.textLabel!.text = "Player"
+			}
+			
+			var detailButton = UITableViewCellAccessoryType.DisclosureIndicator
+			cell.accessoryType = detailButton
+
 		}
 		if indexPath.section == 1 {
-			cell.textLabel!.text = "View Recent Notifications"
+			
+			if self.announcements.count != 0 {
+				
+				var notiString = ""
+				
+				for var i=0; i<announcements.count; i++ {
+					var name = self.announcements[i].objectForKey("name") as! String
+					var title = self.announcements[i].objectForKey("title") as! String
+					
+					if self.announcements[i].objectForKey("type") as! String == "Add Event" {
+						notiString += "\(name) added '\(title)'" + "\n"
+					}
+					if self.announcements[i].objectForKey("type") as! String == "Update Event" {
+						notiString += "\(name) updated '\(title)'" + "\n"
+					}
+					if self.announcements[i].objectForKey("type") as! String == "Add Note" {
+						notiString += "\(name) added a note to '\(title)'" + "\n"
+					}
+				}
+				notiString += "more..."
+
+				cell.textLabel!.numberOfLines = 0
+				cell.textLabel!.text = notiString
+				var detailButton = UITableViewCellAccessoryType.DisclosureIndicator
+				cell.accessoryType = detailButton
+
+			}
+			
+
 		}
 		
 		if indexPath.section == 2 {
 			cell.textLabel!.text = "View Team Details"
 		}
 		
-		var detailButton = UITableViewCellAccessoryType.DisclosureIndicator
-		cell.accessoryType = detailButton
 
 		
 		return cell
@@ -91,7 +128,20 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 		
 		if indexPath.section == 0 {
 			if indexPath.row == 0 {
-				UserManager.sharedManager.queryForTeamUsersWithCompletion(selectedTeamId, includeCurrUser: true) { (users: NSArray?, error: NSError?) in
+				UserManager.sharedManager.queryForTeamCoachWithCompletion(selectedTeamId, includeCurrUser: true) { (users: NSArray?, error: NSError?) in
+					if error == nil {
+						let participants = NSSet(array: users as! [PFUser]) as Set<NSObject>
+						let controller = ParticipantTableViewController(participants: participants, sortType: ATLParticipantPickerSortType.FirstName)
+						controller.delegate = self
+						isModal = false
+						self.navigationController!.pushViewController(controller, animated: true)
+					} else {
+						println("Error querying for All Users: \(error)")
+					}
+				}
+			}
+			if indexPath.row == 1 {
+				UserManager.sharedManager.queryForTeamPlayersWithCompletion(selectedTeamId, includeCurrUser: true) { (users: NSArray?, error: NSError?) in
 					if error == nil {
 						let participants = NSSet(array: users as! [PFUser]) as Set<NSObject>
 						let controller = ParticipantTableViewController(participants: participants, sortType: ATLParticipantPickerSortType.FirstName)
@@ -120,7 +170,15 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		
-		return 1
+		if section == 0 {
+			return 2
+		}
+		if section == 1 {
+			return 1
+		}
+		else {
+			return 0
+		}
 	}
 
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -128,10 +186,33 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 		return 2
 	}
 	
+	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		if section == 0 {
+			return "Roster"
+		}
+		if section == 1 {
+			return "Notification"
+		}
+		else {
+			return ""
+		}
+	}
+	
+	func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+		return 35
+	}
 	
 	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 		
-		return 50
+		if indexPath.section == 0 {
+			return 45
+		}
+		if indexPath.section == 1 {
+			return 110
+		}
+		else {
+			return 30
+		}
 	}
 	
 	
@@ -214,6 +295,27 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 			}
 		})
 	}
+	
+	
+	func fetchInfo() {
+		
+		var query = PFQuery(className:"Team_Announcement")
+		query.whereKey("teamId", equalTo:selectedTeamId)
+		query.addDescendingOrder("createdAt")
+		query.limit = 3
+		query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+			
+			if error == nil {
+				for object in objects! {
+					
+					self.announcements.append(object as! PFObject)
+				}
+				
+				self.resultsTable.reloadData()
+			}
+		}
+	}
+
 
 	override func supportedInterfaceOrientations() -> Int {
 		return Int(UIInterfaceOrientationMask.Portrait.rawValue)

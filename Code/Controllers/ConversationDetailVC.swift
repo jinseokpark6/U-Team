@@ -36,12 +36,10 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 
 			if isAllUsers {
 				
-				if isEditing {
-//					let title = NSLocalizedString("Save",  comment: "")
-//					var saveItem = UIBarButtonItem(title: title, style: UIBarButtonItemStyle.Plain, target: self, action: Selector("handleSaveTap"))
-//					saveItem.tintColor = UIColor.whiteColor()
-//					self.navigationItem.rightBarButtonItem = saveItem
-				}
+				let title = NSLocalizedString("Select All",  comment: "")
+				var saveItem = UIBarButtonItem(title: title, style: UIBarButtonItemStyle.Plain, target: self, action: Selector("handleSelectTap"))
+				saveItem.tintColor = UIColor.whiteColor()
+				self.navigationItem.rightBarButtonItem = saveItem
 			}
 		} else {
 			self.title = "Chat Room"
@@ -65,17 +63,20 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 		self.fetchInfo()
 	}
 	
-	func handleSaveTap() {
+	func handleSelectTap() {
 		
-		var query = PFQuery(className:"Schedule")
-		var pfObject = query.getObjectWithId(selectedEvent[0].objectId!)
-		pfObject?.setObject(eventParticipantIdArray, forKey: "Participants")
-		pfObject?.saveInBackgroundWithBlock({ (success, error) -> Void in
+		var numRows = self.resultsTable.numberOfRowsInSection(0)
+		
+		for var i=0; i<numRows; i++ {
+			var indexPath = NSIndexPath(forRow: i, inSection: 0)
+			var cell = self.resultsTable.cellForRowAtIndexPath(indexPath) as! conversationCell
 			
-			if error == nil {
-				println("success")
+			if cell.accessoryType != UITableViewCellAccessoryType.Checkmark {
+				cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+				self.addToList(cell.profileIdLabel.text!)
 			}
-		})
+
+		}
 	}
 	
 	func fetchInfo() {
@@ -90,7 +91,6 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 					for participant in participants {
 						allTeamMemberArray.append(participant)
 					}
-					println("14")
 					
 					self.resultsTable.reloadData()
 					println(allTeamMemberArray)
@@ -114,7 +114,6 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 				} else {
 					eventParticipantIdArray = []
 				}
-				println("2")
 				
 				var query = PFUser.query()
 				query?.whereKey("objectId", containedIn: eventParticipantIdArray)
@@ -129,7 +128,6 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 						println(eventParticipantArray)
 					}
 				})
-				println("3")
 				
 			}
 		}
@@ -145,6 +143,108 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		
 		var cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! conversationCell
+		
+		if indexPath.section == 0 {
+			
+			self.populateTable(cell, indexPath: indexPath)
+
+		}
+		
+		if indexPath.section == 1 {
+			
+			cell.profileImg.hidden = true
+			cell.textLabel!.text = "Title"
+			
+			
+		}
+		
+		return cell
+	}
+	
+	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		
+		tableView.deselectRowAtIndexPath(indexPath, animated: true)
+
+		var cell = tableView.cellForRowAtIndexPath(indexPath) as! conversationCell
+
+		
+		if indexPath.section == 0 {
+
+			if isEvent {
+				if isAllUsers {
+					if cell.accessoryType == UITableViewCellAccessoryType.Checkmark {
+						cell.accessoryType = UITableViewCellAccessoryType.None
+						self.removeFromList(cell.profileIdLabel.text!)
+					} else {
+						
+						cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+						self.addToList(cell.profileIdLabel.text!)
+					}
+				}
+				else {
+					
+					selectedPlayersUsername.removeAllObjects()
+					
+					selectedPlayersUsername.addObject(cell.profileIdLabel.text!)
+					selectedPlayersUsername.addObject(cell.profileIdLabel.text!)
+					println(selectedPlayersUsername)
+					otherProfileName = cell.nameLabel.text!
+					
+					
+					var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+					
+					let controller = storyboard.instantiateViewControllerWithIdentifier("UserDetailVC") as! UserDetailVC
+					
+					//			controller.modalPresentationStyle = UIModalPresentationStyle.Popover
+					
+					
+					
+					self.presentViewController(controller, animated: true, completion: nil)
+					
+				}
+			}
+			
+			if !isEvent {
+				selectedPlayersUsername.removeAllObjects()
+				
+				selectedPlayersUsername.addObject(cell.profileIdLabel.text!)
+				selectedPlayersUsername.addObject(cell.profileIdLabel.text!)
+				println(selectedPlayersUsername)
+				otherProfileName = cell.nameLabel.text!
+				
+				
+				var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+				
+				let controller = storyboard.instantiateViewControllerWithIdentifier("UserDetailVC") as! UserDetailVC
+				
+				//			controller.modalPresentationStyle = UIModalPresentationStyle.Popover
+				
+				
+				
+				self.presentViewController(controller, animated: true, completion: nil)
+			}
+
+//			UserManager.sharedManager.queryForTeamUsersWithCompletion(selectedTeamId) { (users: NSArray?, error: NSError?) in
+//				if error == nil {
+//					let participants = NSSet(array: users as! [PFUser]) as Set<NSObject>
+//					let controller = ParticipantTableViewController(participants: participants, sortType: ATLParticipantPickerSortType.FirstName)
+//					controller.delegate = self
+//					isModal = false
+//					self.navigationController!.pushViewController(controller, animated: true)
+//				} else {
+//					println("Error querying for All Users: \(error)")
+//				}
+//			}
+		
+		}
+		
+		if indexPath.section == 1 {
+		
+			
+		}
+	}
+	
+	func populateTable(cell: conversationCell, indexPath: NSIndexPath){
 		
 		if cell.nameLabel.text == "" {
 			
@@ -188,13 +288,10 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 						var image = UIImage(data: data!)
 						cell.profileImg.image = image
 					}
-					println("1 \(eventParticipantArray)")
 					for var i=0; i<eventParticipantArray.count; i++ {
-						println("2 \(cell.profileIdLabel.text)")
-
+						
 						if cell.profileIdLabel.text == eventParticipantArray[i]?.objectId {
-							println("3")
-
+							
 							cell.accessoryType = UITableViewCellAccessoryType.Checkmark
 						}
 					}
@@ -216,109 +313,54 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 				}
 			}
 		}
-		
-		return cell
-	}
-	
-	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		
-		tableView.deselectRowAtIndexPath(indexPath, animated: true)
-
-		
-//		if indexPath.row == 0 {
-//
-//		
-//			UserManager.sharedManager.queryForTeamUsersWithCompletion(selectedTeamId) { (users: NSArray?, error: NSError?) in
-//				if error == nil {
-//					let participants = NSSet(array: users as! [PFUser]) as Set<NSObject>
-//					let controller = ParticipantTableViewController(participants: participants, sortType: ATLParticipantPickerSortType.FirstName)
-//					controller.delegate = self
-//					isModal = false
-//					self.navigationController!.pushViewController(controller, animated: true)
-//				} else {
-//					println("Error querying for All Users: \(error)")
-//				}
-//			}
-//		
-//		} else {
-		
-			var cell = tableView.cellForRowAtIndexPath(indexPath) as! conversationCell
-		
-		if isEvent {
-			if isAllUsers {
-				if cell.accessoryType == UITableViewCellAccessoryType.Checkmark {
-					cell.accessoryType = UITableViewCellAccessoryType.None
-					self.removeFromList(cell.profileIdLabel.text!)
-				} else {
-					
-					cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-					self.addToList(cell.profileIdLabel.text!)
-				}
-			}
-			else {
-				
-				selectedPlayersUsername.removeAllObjects()
-				
-				selectedPlayersUsername.addObject(cell.profileIdLabel.text!)
-				selectedPlayersUsername.addObject(cell.profileIdLabel.text!)
-				println(selectedPlayersUsername)
-				otherProfileName = cell.nameLabel.text!
-				
-				
-				var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-				
-				let controller = storyboard.instantiateViewControllerWithIdentifier("UserDetailVC") as! UserDetailVC
-				
-				//			controller.modalPresentationStyle = UIModalPresentationStyle.Popover
-				
-				
-				println("STORYBOARD: \(controller.description)")
-				
-				self.presentViewController(controller, animated: true, completion: nil)
-
-			}
-		}
-		
-		if !isEvent {
-			selectedPlayersUsername.removeAllObjects()
-			
-			selectedPlayersUsername.addObject(cell.profileIdLabel.text!)
-			selectedPlayersUsername.addObject(cell.profileIdLabel.text!)
-			println(selectedPlayersUsername)
-			otherProfileName = cell.nameLabel.text!
-			
-			
-			var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-			
-			let controller = storyboard.instantiateViewControllerWithIdentifier("UserDetailVC") as! UserDetailVC
-			
-			//			controller.modalPresentationStyle = UIModalPresentationStyle.Popover
-			
-			
-			println("STORYBOARD: \(controller.description)")
-			
-			self.presentViewController(controller, animated: true, completion: nil)
-		}
-
-//		}
 	}
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		println("5")
 
-		if !isEvent {
-			return participantArray.count
-		} else {
-			if isAllUsers {
-				return allTeamMemberArray.count
+		if section == 0 {
+			if !isEvent {
+				return participantArray.count
 			} else {
-				return eventParticipantArray.count
+				if isAllUsers {
+					return allTeamMemberArray.count
+				} else {
+					return eventParticipantArray.count
+				}
 			}
 		}
-
-//		return roomPlayerNames[index].count + 1
+		if section == 1 {
+			return 1
+		}
+		else {
+			return 0
+		}
 	}
-
+	
+	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+//		if isEvent {
+			return 1
+//		}
+//		else {
+//			return 2
+//		}
+	}
+	
+	func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+		return 30
+	}
+	
+	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		if section == 0 {
+			return "Participants"
+		}
+		if section == 1 {
+			return "Conversation Title"
+		}
+		else {
+			return ""
+		}
+	}
+	
 	func removeFromList(id:String) {
 		for var i=0; i<eventParticipantIdArray.count; i++ {
 			if id == eventParticipantIdArray[i] {
@@ -341,7 +383,7 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 	
 	func conversationListViewController(conversationListViewController: ATLConversationListViewController, titleForConversation conversation: LYRConversation) -> String {
 		if conversation.metadata["title"] != nil {
-			println("asdf")
+			println("title?")
 			return conversation.metadata["title"] as! String
 		} else {
 			let listOfParticipant = Array(conversation.participants)

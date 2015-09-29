@@ -228,7 +228,7 @@ class CalendarPortraitViewController: UIViewController, UITableViewDataSource, U
 	@IBAction func addBtn_click(sender: AnyObject) {
 		
 		
-		if status == "Coach" {
+//		if status == "Coach" {
 
 			isEditing = false
 			
@@ -244,18 +244,18 @@ class CalendarPortraitViewController: UIViewController, UITableViewDataSource, U
 			
 			self.presentViewController(nav, animated: true, completion: nil)
 		
-		} else {
-			var infoAlert = UIAlertController(title: "Notification", message: "Players cannot add an event", preferredStyle: UIAlertControllerStyle.Alert)
-			
-			
-			infoAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action:UIAlertAction!) -> Void in
-				
-			}))
-			
-			
-			self.presentViewController(infoAlert, animated: true, completion: nil)
-
-		}
+//		} else {
+//			var infoAlert = UIAlertController(title: "Notification", message: "Players cannot add an event", preferredStyle: UIAlertControllerStyle.Alert)
+//			
+//			
+//			infoAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action:UIAlertAction!) -> Void in
+//				
+//			}))
+//			
+//			
+//			self.presentViewController(infoAlert, animated: true, completion: nil)
+//
+//		}
 		
 		//		self.navigationController!.pushViewController(controller, animated: true)
 		
@@ -324,10 +324,6 @@ extension CalendarPortraitViewController: CVCalendarViewDelegate
 			}
 		}
 		
-//		let randomDay = Int(arc4random_uniform(31))
-//		if day == randomDay {
-//			return true
-//		}
 		
 		return false
 	}
@@ -339,17 +335,6 @@ extension CalendarPortraitViewController: CVCalendarViewDelegate
 
 		return UIColor.redColor()
 		
-//		let red = CGFloat(arc4random_uniform(600) / 255)
-//		let green = CGFloat(arc4random_uniform(600) / 255)
-//		let blue = CGFloat(arc4random_uniform(600) / 255)
-//		
-//		let color = UIColor(red: red, green: green, blue: blue, alpha: 1)
-//		
-//		let numberOfDots = Int(arc4random_uniform(3) + 1)
-//		switch(numberOfDots) {
-//		default:
-//			return color // return 1 dot
-//		}
 	}
 	
 	func dotMarker(shouldMoveOnHighlightingOnDayView dayView: CVCalendarDayView) -> Bool {

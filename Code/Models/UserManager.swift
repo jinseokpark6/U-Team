@@ -102,6 +102,65 @@ class UserManager {
 			}
 		}
 	}
+	
+	func queryForTeamCoachWithCompletion(teamId: String, includeCurrUser: Bool, completion: ((NSArray?, NSError?) -> Void)?) {
+		let teamQuery: PFQuery! = PFQuery(className:"Team")
+		teamQuery.whereKey("objectId", equalTo: teamId)
+		let pfObject = teamQuery.getFirstObject()
+		
+		var teamIDs = [String]()
+		
+		if let teamCoachIDs = pfObject?.valueForKey("coach") as? [String] {
+			teamIDs = teamCoachIDs
+		}
+		
+		
+		println(teamIDs)
+		
+		let query: PFQuery! = PFUser.query()
+		query.whereKey("objectId", containedIn: teamIDs)
+		
+		if !includeCurrUser {
+			query.whereKey("objectId", notEqualTo: (PFUser.currentUser()?.objectId)!)
+		}
+		
+		query.addAscendingOrder("firstName")
+		query.findObjectsInBackgroundWithBlock { objects, error in
+			if let callback = completion {
+				callback(objects, error)
+			}
+		}
+	}
+	
+	func queryForTeamPlayersWithCompletion(teamId: String, includeCurrUser: Bool, completion: ((NSArray?, NSError?) -> Void)?) {
+		let teamQuery: PFQuery! = PFQuery(className:"Team")
+		teamQuery.whereKey("objectId", equalTo: teamId)
+		let pfObject = teamQuery.getFirstObject()
+		
+		var teamIDs = [String]()
+		
+		if let teamPlayerIDs = pfObject?.valueForKey("players") as? [String] {
+			teamIDs = teamPlayerIDs
+		}
+		
+		
+		println(teamIDs)
+		
+		let query: PFQuery! = PFUser.query()
+		query.whereKey("objectId", containedIn: teamIDs)
+		
+		if !includeCurrUser {
+			query.whereKey("objectId", notEqualTo: (PFUser.currentUser()?.objectId)!)
+		}
+		
+		query.addAscendingOrder("firstName")
+		query.findObjectsInBackgroundWithBlock { objects, error in
+			if let callback = completion {
+				callback(objects, error)
+			}
+		}
+	}
+
 
 
     func queryAndCacheUsersWithIDs(userIDs: [String], completion: ((NSArray?, NSError?) -> Void)?) {

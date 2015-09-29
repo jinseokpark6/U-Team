@@ -234,67 +234,70 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         if (indexPath.section == 1) {
             if (indexPath.row == 0) {
 				
-				var query = PFQuery(className:"Team")
-				query.whereKey("objectId", equalTo:selectedTeamId)
-				query.getFirstObjectInBackgroundWithBlock({ (object, error) -> Void in
-					
-					if error == nil {
-						
-						if let object = object {
-							if status == "Coach" {
-								
-								var coachArray = object.objectForKey("coach") as! [String]
-								
-								for var i=0; i<coachArray.count; i++ {
-									if coachArray[i] == PFUser.currentUser()!.objectId! {
-										
-										coachArray.removeAtIndex(i)
-										break
-									}
-								}
-								
-								object["coach"] = coachArray
-								object.saveInBackgroundWithBlock { (success, error) -> Void in
+				self.dismissViewControllerAnimated(true, completion: nil)
 
-									if error == nil {
-										
-										self.dismissViewControllerAnimated(true, completion: { () -> Void in
-											
-											println("HI")
-											self.navigationController?.popToRootViewControllerAnimated(true)
-										})
-									}
-								}
-							}
-							
-							if status == "Player" {
-								
-								var playerArray = object.objectForKey("players") as! [String]
-								
-								for var i=0; i<playerArray.count; i++ {
-									if playerArray[i] == PFUser.currentUser()!.objectId! {
-										
-										playerArray.removeAtIndex(i)
-										break
-									}
-								}
-								
-								object["players"] = playerArray
-								object.saveInBackgroundWithBlock { (success, error) -> Void in
-									
-									if error == nil {
-										
-										self.dismissViewControllerAnimated(true, completion: { () -> Void in
-											
-											println("HI")
-											self.navigationController?.popToRootViewControllerAnimated(true)
-										})
-									}
-								}
-							}
-						}
-					}
-				})
+				
+//				var query = PFQuery(className:"Team")
+//				query.whereKey("objectId", equalTo:selectedTeamId)
+//				query.getFirstObjectInBackgroundWithBlock({ (object, error) -> Void in
+//					
+//					if error == nil {
+//						
+//						if let object = object {
+//							if status == "Coach" {
+//								
+//								var coachArray = object.objectForKey("coach") as! [String]
+//								
+//								for var i=0; i<coachArray.count; i++ {
+//									if coachArray[i] == PFUser.currentUser()!.objectId! {
+//										
+//										coachArray.removeAtIndex(i)
+//										break
+//									}
+//								}
+//								
+//								object["coach"] = coachArray
+//								object.saveInBackgroundWithBlock { (success, error) -> Void in
+//
+//									if error == nil {
+//										
+//										self.dismissViewControllerAnimated(true, completion: { () -> Void in
+//											
+//											println("HI")
+//											self.navigationController?.popToRootViewControllerAnimated(true)
+//										})
+//									}
+//								}
+//							}
+//							
+//							if status == "Player" {
+//								
+//								var playerArray = object.objectForKey("players") as! [String]
+//								
+//								for var i=0; i<playerArray.count; i++ {
+//									if playerArray[i] == PFUser.currentUser()!.objectId! {
+//										
+//										playerArray.removeAtIndex(i)
+//										break
+//									}
+//								}
+//								
+//								object["players"] = playerArray
+//								object.saveInBackgroundWithBlock { (success, error) -> Void in
+//									
+//									if error == nil {
+//										
+//										self.dismissViewControllerAnimated(true, completion: { () -> Void in
+//											
+//											println("HI")
+//											self.navigationController?.popToRootViewControllerAnimated(true)
+//										})
+//									}
+//								}
+//							}
+//						}
+//					}
+//				})
 			}
 		}
     }
@@ -313,18 +316,19 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 				cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             }
             if (indexPath.row == 2) {
-                cell.textLabel!.text = "Change Team"
-				cell.textLabel?.textColor = UIColor.blueColor()
-				cell.textLabel?.textAlignment = NSTextAlignment.Center
             }
         }
         
         if (indexPath.section == 1) {
             if (indexPath.row == 0) {
 				
-				cell.textLabel!.text = "Leave Team"
-				cell.textLabel!.textAlignment = NSTextAlignment.Center
-				cell.textLabel!.textColor = UIColor.redColor()
+				cell.textLabel!.text = "Change Team"
+				cell.textLabel?.textColor = UIColor.blueColor()
+				cell.textLabel?.textAlignment = NSTextAlignment.Center
+
+//				cell.textLabel!.text = "Leave Team"
+//				cell.textLabel!.textAlignment = NSTextAlignment.Center
+//				cell.textLabel!.textColor = UIColor.redColor()
 //                cell.selectionStyle = UITableViewCellSelectionStyle.None;
 //                
 //                cell.textLabel!.text = "Notifications"
@@ -378,8 +382,8 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-		if indexPath.section == 0 && indexPath.row == 2 {
-			return 55
+		if indexPath.section == 1 && indexPath.row == 0 {
+			return 50
 		} else {
 			return 45
 		}
@@ -387,7 +391,7 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section==0 {
-            return 3
+            return 2
         } else {
             return 1
         }
@@ -395,7 +399,7 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
-        return 1
+        return 2
     }
 	
 	func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

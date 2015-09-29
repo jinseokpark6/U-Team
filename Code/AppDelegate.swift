@@ -32,12 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		
 		var controller = storyboard.instantiateInitialViewController() as! ViewController
-		println("a")
         controller.layerClient = layerClient
-		println("b")
 
         self.window!.rootViewController = UINavigationController(rootViewController: controller)
-		println("c")
 
         self.window!.backgroundColor = UIColor.whiteColor()
         self.window!.makeKeyAndVisible()

@@ -879,15 +879,18 @@
                                             <outlet property="menuViewDelegate" destination="npv-rE-LhS" id="l3s-QQ-o0S"/>
                                         </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DCn-CG-QAC" customClass="CVCalendarView" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="145" width="556" height="456"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DCn-CG-QAC" customClass="CVCalendarView" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="145" width="600" height="352"/>
                                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="DCn-CG-QAC" secondAttribute="height" multiplier="25:19" id="75j-b0-DG8"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="calendarDelegate" destination="npv-rE-LhS" id="8FZ-ov-Hs8"/>
                                         </connections>
                                     </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="xoX-X8-YzU">
-                                        <rect key="frame" x="0.0" y="600" width="600" height="0.0"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="xoX-X8-YzU">
+                                        <rect key="frame" x="0.0" y="500" width="600" height="100"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="159" id="6Of-1o-3M6"/>
@@ -958,6 +961,7 @@
                                             <mask key="constraints">
                                                 <exclude reference="6Of-1o-3M6"/>
                                                 <exclude reference="Jc3-4c-DrD"/>
+                                                <exclude reference="lkG-fY-0La"/>
                                             </mask>
                                         </variation>
                                         <connections>
@@ -970,18 +974,28 @@
                                 <constraints>
                                     <constraint firstItem="DCn-CG-QAC" firstAttribute="top" secondItem="TdD-JT-EGg" secondAttribute="bottom" id="5Ag-xv-kT2"/>
                                     <constraint firstItem="TdD-JT-EGg" firstAttribute="top" secondItem="InH-f2-TJv" secondAttribute="bottom" constant="12" id="A6U-VS-nkB"/>
+                                    <constraint firstItem="xoX-X8-YzU" firstAttribute="top" secondItem="DCn-CG-QAC" secondAttribute="bottom" id="BHx-kS-ivp"/>
                                     <constraint firstItem="DCn-CG-QAC" firstAttribute="top" secondItem="uWf-TR-6Qk" secondAttribute="top" constant="145" id="H0u-It-g4v"/>
                                     <constraint firstAttribute="trailing" secondItem="xoX-X8-YzU" secondAttribute="trailing" id="Hqu-VP-9Sd"/>
                                     <constraint firstItem="xoX-X8-YzU" firstAttribute="leading" secondItem="TdD-JT-EGg" secondAttribute="leading" id="KXw-l1-uKE"/>
                                     <constraint firstItem="xoX-X8-YzU" firstAttribute="trailing" secondItem="TdD-JT-EGg" secondAttribute="trailing" id="ROz-bn-WoF"/>
-                                    <constraint firstItem="InH-f2-TJv" firstAttribute="leading" secondItem="uWf-TR-6Qk" secondAttribute="leading" constant="277" id="Sgu-KB-8BU"/>
+                                    <constraint firstAttribute="centerX" secondItem="InH-f2-TJv" secondAttribute="centerX" constant="2" id="aDL-Bn-Hzp"/>
                                     <constraint firstItem="InH-f2-TJv" firstAttribute="top" secondItem="uWf-TR-6Qk" secondAttribute="top" constant="77" id="bRq-Sy-WPG"/>
                                     <constraint firstAttribute="bottom" secondItem="xoX-X8-YzU" secondAttribute="bottom" id="fmg-nw-xTD"/>
                                     <constraint firstItem="xoX-X8-YzU" firstAttribute="leading" secondItem="uWf-TR-6Qk" secondAttribute="leading" id="jaG-hX-fqH"/>
                                     <constraint firstAttribute="bottom" secondItem="DCn-CG-QAC" secondAttribute="bottom" constant="-1" id="lYu-r0-eXy"/>
-                                    <constraint firstAttribute="trailing" secondItem="DCn-CG-QAC" secondAttribute="trailing" constant="44" id="n2T-sj-tvQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="DCn-CG-QAC" secondAttribute="trailing" id="n2T-sj-tvQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="TdD-JT-EGg" secondAttribute="trailing" id="uUJ-lr-bLP"/>
+                                    <constraint firstItem="TdD-JT-EGg" firstAttribute="leading" secondItem="uWf-TR-6Qk" secondAttribute="leading" id="xH3-TY-rbl"/>
                                     <constraint firstItem="xoX-X8-YzU" firstAttribute="leading" secondItem="DCn-CG-QAC" secondAttribute="leading" id="xNt-Xt-fxZ"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="lYu-r0-eXy"/>
+                                        <exclude reference="KXw-l1-uKE"/>
+                                        <exclude reference="ROz-bn-WoF"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -1577,7 +1591,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Event" id="OAV-gA-xvg">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Pmz-xw-6If">
+                        <barButtonItem key="leftBarButtonItem" title="Done" id="Pmz-xw-6If">
                             <connections>
                                 <action selector="cancelBtn_click:" destination="jfn-Pg-vuI" id="c18-ez-vMe"/>
                             </connections>

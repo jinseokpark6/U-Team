@@ -213,7 +213,6 @@ class ConversationViewController: ATLConversationViewController, ATLConversation
 	
 	
 	func detailsButtonTapped(sender: AnyObject) {
-		println("HI")
 
 		
 		isEvent = false

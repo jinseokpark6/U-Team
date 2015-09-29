@@ -184,7 +184,8 @@ extension CVCalendarDayView {
                 layer.borderColor = UIColor.grayColor().CGColor
                 layer.borderWidth = height
                 layer.frame = CGRectMake(0, 1, CGRectGetWidth(self.frame), height)
-                
+				println("asdfasdf")
+
                 self.topMarker = layer
                 self.layer.addSublayer(self.topMarker!)
             }
@@ -220,7 +221,6 @@ extension CVCalendarDayView {
             if let shouldShow = delegate.dotMarker?(shouldShowOnDayView: self) where shouldShow {
                 let color = isOut ? .grayColor() : delegate.dotMarker?(colorOnDayView: self)
                 let (width: CGFloat, height: CGFloat) = (13, 13)
-                
                 var yOffset = bounds.height / 5
                 if let y = delegate.dotMarker?(moveOffsetOnDayView: self) {
                     yOffset = y
