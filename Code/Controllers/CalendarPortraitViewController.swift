@@ -47,7 +47,17 @@ class CalendarPortraitViewController: UIViewController, UITableViewDataSource, U
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		self.title = "Calendar"
+		self.navigationController?.title = "Calendar"
+		
+		
+		var tabBar = self.tabBarController?.tabBar
+		
+		for var i=0; i<tabBar!.items?.count; i++ {
+			let tabBarItem = tabBar!.items?[i] as! UITabBarItem
+			tabBarItem.title = nil
+			//tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
+		}
+
 		
 		updateDate()
 

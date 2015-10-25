@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupParse()
         setupLayer()
 		
+		UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir Next", size: 25) as! AnyObject]
+
 		
 		UINavigationBar.appearance().barTintColor = UIColor(red: 69.0/255, green: 175.0/255, blue: 220.0/255, alpha: 1)
 		UINavigationBar.appearance().tintColor = UIColor.whiteColor()

@@ -138,24 +138,28 @@ class UserDetailVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         
         // Do any additional setup after loading the view.
     
-    
+	
+	//swiping function
     func draggedView(sender:UIPanGestureRecognizer){
+		
         self.view.bringSubviewToFront(sender.view!)
         var translation = sender.translationInView(self.view)
         
         let newCenter = CGPointMake(0, sender.view!.center.y + translation.y)
         
         let totalHeight = self.view.frame.height
-        
+		
+		//if center of the bar is between the two end points
         if newCenter.y >= totalHeight - 180 - 135 && newCenter.y <= totalHeight - 135 {
-            
+			
             sender.view!.center = CGPointMake(sender.view!.center.x, sender.view!.center.y + translation.y)
             println("TRANSLATION: \(translation.y)")
             self.collectionView2.center = CGPointMake(self.collectionView2.center.x, self.collectionView2.center.y + translation.y)
 
-            self.resultsTable.alpha = (540 - newCenter.y) / 180
+//            self.resultsTable.alpha = (540 - newCenter.y) / 180
             sender.setTranslation(CGPointZero, inView: self.view)
-            
+			
+			
         }
         
         if sender.state == UIGestureRecognizerState.Ended {
@@ -168,7 +172,7 @@ class UserDetailVC: UIViewController, UITableViewDataSource, UITableViewDelegate
 
 //                self.collectionView.frame.origin = CGPointMake(0,0)
                 self.collectionView2.frame.origin = CGPointMake(0,totalHeight-120)
-                self.resultsTable.alpha = 0
+//                self.resultsTable.alpha = 0
                 sender.view!.frame.origin = CGPointMake(0,totalHeight-120-40)
 				
 				self.swipeLabel.text = "swipe up for more info"
@@ -182,7 +186,7 @@ class UserDetailVC: UIViewController, UITableViewDataSource, UITableViewDelegate
 
 //                self.collectionView.frame.origin = CGPointMake(0,-90)
                 self.collectionView2.frame.origin = CGPointMake(0,totalHeight-120-180)
-                self.resultsTable.alpha = 1
+//                self.resultsTable.alpha = 1
                 sender.view!.frame.origin = CGPointMake(0,totalHeight-120-180-40)
 
 				self.swipeLabel.text = "swipe down for less info"

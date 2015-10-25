@@ -16,10 +16,25 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 	
 	var announcements: [PFObject] = [PFObject]()
 	
+	
     override func viewDidLoad() {
-        super.viewDidLoad()
 		
-		self.title = "Dashboard"
+		super.viewDidLoad()
+
+		var tabBar = self.tabBarController?.tabBar
+		
+		for var i=0; i<tabBar!.items?.count; i++ {
+			let tabBarItem = tabBar!.items?[i] as! UITabBarItem
+
+			tabBarItem.title = nil
+			tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
+		}
+		
+
+
+		//			self.title = "Dashboard"
+
+		
 		
 		teamPhoto.layer.cornerRadius = teamPhoto.bounds.height / 2
 		teamPhoto.clipsToBounds = true
@@ -314,6 +329,17 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 				self.resultsTable.reloadData()
 			}
 		}
+	}
+
+	override func viewWillLayoutSubviews() {
+//		
+//		var tabFrame = self.tabBar.frame; //self.TabBar is IBOutlet of your TabBar
+//		println("TABFRMAE: \(tabFrame.size.height)")
+//		tabFrame.size.height = 59;
+//		println("TABFRMAE: \(tabFrame.size.height)")
+////		tabFrame.origin.y = self.view.frame.size.height - 80;
+//		self.tabBar.frame = tabFrame;
+
 	}
 
 

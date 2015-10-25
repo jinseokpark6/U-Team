@@ -11,6 +11,14 @@ class ConversationListViewController: ATLConversationListViewController, ATLConv
         self.dataSource = self
         self.delegate = self
 		
+		var tabBar = self.tabBarController?.tabBar
+		
+		for var i=0; i<tabBar!.items?.count; i++ {
+			let tabBarItem = tabBar!.items?[i] as! UITabBarItem
+			tabBarItem.title = nil
+			//tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
+		}
+
 		
         self.navigationController!.navigationBar.tintColor = ATLBlueColor()
         

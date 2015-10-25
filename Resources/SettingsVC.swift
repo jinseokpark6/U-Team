@@ -35,6 +35,15 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 		
 		self.title = "Profile"
 		
+		var tabBar = self.tabBarController?.tabBar
+		
+		for var i=0; i<tabBar!.items?.count; i++ {
+			let tabBarItem = tabBar!.items?[i] as! UITabBarItem
+			tabBarItem.title = nil
+			//tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
+		}
+
+		
 		
 		self.profileImageView.layer.cornerRadius = self.profileImageView.bounds.height / 2
 		self.profileImageView.clipsToBounds = true

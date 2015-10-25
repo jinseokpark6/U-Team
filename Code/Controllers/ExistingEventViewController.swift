@@ -241,11 +241,11 @@ class ExistingEventViewController: UIViewController, UITableViewDelegate, UITabl
 		if indexPath.section == 2 {
 
 			
-			if status == "Coach" {
-				
-			}
-			
-			if status == "Player" {
+//			if status == "Coach" {
+//				
+//			}
+//			
+//			if status == "Player" {
 				var infoAlert = UIAlertController(title: "Add Notes", message: "Please Type Notes", preferredStyle: UIAlertControllerStyle.Alert)
 				
 				infoAlert.addTextFieldWithConfigurationHandler { (textField:UITextField!) -> Void in
@@ -333,7 +333,7 @@ class ExistingEventViewController: UIViewController, UITableViewDelegate, UITabl
 				}))
 				
 				self.presentViewController(infoAlert, animated: true, completion: nil)
-			}
+//			}
 
 		}
 		if indexPath.section == 3 {
