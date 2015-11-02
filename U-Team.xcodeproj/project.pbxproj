@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		74A7E4F01BE723200067FB5A /* AppIcon.appiconset in Resources */ = {isa = PBXBuildFile; fileRef = 74A7E4EF1BE723200067FB5A /* AppIcon.appiconset */; };
+		74E222A31BE7301300BD355E /* AppIcon.appiconset in Resources */ = {isa = PBXBuildFile; fileRef = 74E222A21BE7301300BD355E /* AppIcon.appiconset */; };
+		74E222A51BE7308200BD355E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74E222A41BE7308200BD355E /* Images.xcassets */; };
 		99121F041B8FDB9100DD4C82 /* ExistingEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99121F031B8FDB9100DD4C82 /* ExistingEventViewController.swift */; };
 		991EFB181B9123690037A9F2 /* TeamDashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991EFB171B9123690037A9F2 /* TeamDashboardVC.swift */; };
 		992AE8351B88E4C300843FC7 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992AE8341B88E4C300843FC7 /* LogInViewController.swift */; };
@@ -75,7 +76,6 @@
 		99F09E591B8D111000A70064 /* conversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F09E581B8D111000A70064 /* conversationCell.swift */; };
 		C8919A9A1B219C8500DC4EED /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8919A8C1B219C8500DC4EED /* LaunchScreen.xib */; };
 		C8919A9B1B219C8500DC4EED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8919A8E1B219C8500DC4EED /* Main.storyboard */; };
-		C8919A9C1B219C8500DC4EED /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8919A901B219C8500DC4EED /* Images.xcassets */; };
 		C8919A9E1B219C8500DC4EED /* LayerParseAppIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8919A921B219C8500DC4EED /* LayerParseAppIcon@2x.png */; };
 		C8919A9F1B219C8500DC4EED /* LayerParseLogin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8919A931B219C8500DC4EED /* LayerParseLogin@2x.png */; };
 		C8919AA01B219C8500DC4EED /* LayerParseSplash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8919A941B219C8500DC4EED /* LayerParseSplash@2x.png */; };
@@ -102,7 +102,8 @@
 
 /* Begin PBXFileReference section */
 		19AEEE726D7D94ECBA301B2F /* Pods-Layer-Parse-iOS-Swift-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Layer-Parse-iOS-Swift-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Layer-Parse-iOS-Swift-Example/Pods-Layer-Parse-iOS-Swift-Example.release.xcconfig"; sourceTree = "<group>"; };
-		74A7E4EF1BE723200067FB5A /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AppIcon.appiconset; sourceTree = "<group>"; };
+		74E222A21BE7301300BD355E /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AppIcon.appiconset; sourceTree = "<group>"; };
+		74E222A41BE7308200BD355E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		99121F031B8FDB9100DD4C82 /* ExistingEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExistingEventViewController.swift; sourceTree = "<group>"; };
 		991EFB171B9123690037A9F2 /* TeamDashboardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamDashboardVC.swift; sourceTree = "<group>"; };
 		992AE8341B88E4C300843FC7 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -174,7 +175,6 @@
 		C8919A5F1B2198C900DC4EED /* Layer-Parse-iOS-Swift-ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Layer-Parse-iOS-Swift-ExampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8919A8D1B219C8500DC4EED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		C8919A8F1B219C8500DC4EED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		C8919A901B219C8500DC4EED /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C8919A911B219C8500DC4EED /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C8919A921B219C8500DC4EED /* LayerParseAppIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LayerParseAppIcon@2x.png"; sourceTree = "<group>"; };
 		C8919A931B219C8500DC4EED /* LayerParseLogin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LayerParseLogin@2x.png"; sourceTree = "<group>"; };
@@ -277,10 +277,10 @@
 		C8919A8B1B219C8500DC4EED /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				74A7E4EF1BE723200067FB5A /* AppIcon.appiconset */,
+				74E222A41BE7308200BD355E /* Images.xcassets */,
+				74E222A21BE7301300BD355E /* AppIcon.appiconset */,
 				C8919A8C1B219C8500DC4EED /* LaunchScreen.xib */,
 				C8919A8E1B219C8500DC4EED /* Main.storyboard */,
-				C8919A901B219C8500DC4EED /* Images.xcassets */,
 				C8919A911B219C8500DC4EED /* Info.plist */,
 				997F938B1B99F2BA00C450F4 /* activity_feed_2.png */,
 				997F938C1B99F2BA00C450F4 /* chat.png */,
@@ -451,7 +451,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C8919A451B2198C900DC4EED /* Build configuration list for PBXProject "Layer-Parse-iOS-Swift-Example" */;
+			buildConfigurationList = C8919A451B2198C900DC4EED /* Build configuration list for PBXProject "U-Team" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -475,16 +475,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C8919A9C1B219C8500DC4EED /* Images.xcassets in Resources */,
 				997F93921B99F2BA00C450F4 /* planner.png in Resources */,
 				99E526501B93CB6500A11DCC /* phone.png in Resources */,
 				C8919A9A1B219C8500DC4EED /* LaunchScreen.xib in Resources */,
-				74A7E4F01BE723200067FB5A /* AppIcon.appiconset in Resources */,
 				997F938F1B99F2BA00C450F4 /* activity_feed_2.png in Resources */,
+				74E222A31BE7301300BD355E /* AppIcon.appiconset in Resources */,
 				997F93911B99F2BA00C450F4 /* guest.png in Resources */,
 				99E5264F1B93CB6500A11DCC /* good_decision.png in Resources */,
 				C8919A9B1B219C8500DC4EED /* Main.storyboard in Resources */,
 				C8919A9F1B219C8500DC4EED /* LayerParseLogin@2x.png in Resources */,
+				74E222A51BE7308200BD355E /* Images.xcassets in Resources */,
 				992AE8371B88F39200843FC7 /* UTeamLogo.png in Resources */,
 				C8919A9E1B219C8500DC4EED /* LayerParseAppIcon@2x.png in Resources */,
 				C8919AA01B219C8500DC4EED /* LayerParseSplash@2x.png in Resources */,
@@ -721,6 +721,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -733,13 +734,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "65755f8b-3f99-4b54-b74c-06ddb2dd669e";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Code/Layer-Parse-iOS-Swift-Example-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -752,13 +753,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "65755f8b-3f99-4b54-b74c-06ddb2dd669e";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Code/Layer-Parse-iOS-Swift-Example-Bridging-Header.h";
 			};
 			name = Release;
@@ -800,7 +801,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C8919A451B2198C900DC4EED /* Build configuration list for PBXProject "Layer-Parse-iOS-Swift-Example" */ = {
+		C8919A451B2198C900DC4EED /* Build configuration list for PBXProject "U-Team" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C8919A671B2198C900DC4EED /* Debug */,
