@@ -30,8 +30,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		
 		UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-			
 		
+		
+		
+		// Badge Count
+		var badgeCount = application.applicationIconBadgeNumber
+		
+		println("BADGE COUNT: \(badgeCount)")
+		
+		application.applicationIconBadgeNumber = 0
+		
+		println("BADGE COUNT: \(application.applicationIconBadgeNumber)")
+		
+		
+		//
 		
 		var controller = storyboard.instantiateInitialViewController() as! ViewController
         controller.layerClient = layerClient
@@ -40,9 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.window!.backgroundColor = UIColor.whiteColor()
         self.window!.makeKeyAndVisible()
-		
-		
-		//push notification
 		
 		
 		// Register for Push Notitications
