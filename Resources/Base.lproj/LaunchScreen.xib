@@ -16,7 +16,7 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="UTeamLogoBlank.png" translatesAutoresizingMaskIntoConstraints="NO" id="Qso-YR-vYw">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" image="UTeamLogoBlank.png" translatesAutoresizingMaskIntoConstraints="NO" id="Qso-YR-vYw">
                     <rect key="frame" x="126" y="198" width="228" height="83"/>
                 </imageView>
             </subviews>

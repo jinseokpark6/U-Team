@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		74A7E4F01BE723200067FB5A /* AppIcon.appiconset in Resources */ = {isa = PBXBuildFile; fileRef = 74A7E4EF1BE723200067FB5A /* AppIcon.appiconset */; };
 		99121F041B8FDB9100DD4C82 /* ExistingEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99121F031B8FDB9100DD4C82 /* ExistingEventViewController.swift */; };
 		991EFB181B9123690037A9F2 /* TeamDashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991EFB171B9123690037A9F2 /* TeamDashboardVC.swift */; };
 		992AE8351B88E4C300843FC7 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992AE8341B88E4C300843FC7 /* LogInViewController.swift */; };
@@ -101,6 +102,7 @@
 
 /* Begin PBXFileReference section */
 		19AEEE726D7D94ECBA301B2F /* Pods-Layer-Parse-iOS-Swift-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Layer-Parse-iOS-Swift-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Layer-Parse-iOS-Swift-Example/Pods-Layer-Parse-iOS-Swift-Example.release.xcconfig"; sourceTree = "<group>"; };
+		74A7E4EF1BE723200067FB5A /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AppIcon.appiconset; sourceTree = "<group>"; };
 		99121F031B8FDB9100DD4C82 /* ExistingEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExistingEventViewController.swift; sourceTree = "<group>"; };
 		991EFB171B9123690037A9F2 /* TeamDashboardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamDashboardVC.swift; sourceTree = "<group>"; };
 		992AE8341B88E4C300843FC7 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 		C8919A8B1B219C8500DC4EED /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				74A7E4EF1BE723200067FB5A /* AppIcon.appiconset */,
 				C8919A8C1B219C8500DC4EED /* LaunchScreen.xib */,
 				C8919A8E1B219C8500DC4EED /* Main.storyboard */,
 				C8919A901B219C8500DC4EED /* Images.xcassets */,
@@ -476,6 +479,7 @@
 				997F93921B99F2BA00C450F4 /* planner.png in Resources */,
 				99E526501B93CB6500A11DCC /* phone.png in Resources */,
 				C8919A9A1B219C8500DC4EED /* LaunchScreen.xib in Resources */,
+				74A7E4F01BE723200067FB5A /* AppIcon.appiconset in Resources */,
 				997F938F1B99F2BA00C450F4 /* activity_feed_2.png in Resources */,
 				997F93911B99F2BA00C450F4 /* guest.png in Resources */,
 				99E5264F1B93CB6500A11DCC /* good_decision.png in Resources */,
