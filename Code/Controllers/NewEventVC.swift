@@ -98,12 +98,11 @@ class NewEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 		components.day = day
 		
 		
-		println("COMPONENTS: \(components)")
 		
 		if !isEditing {
 			components.minute = components.minute - (components.minute % 5)
 			
-			var date = NSCalendar.currentCalendar().dateFromComponents(components)
+			let date = NSCalendar.currentCalendar().dateFromComponents(components)
 			
 			startDate = (NSCalendar.currentCalendar().dateFromComponents(components))!
 			components.hour += 1
@@ -147,7 +146,6 @@ class NewEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 		self.repeatLabel = pickerData[row]
 		
 		self.resultsTable.reloadData()
-		println("YESSS")
 	}
 	
 	func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
@@ -168,12 +166,12 @@ class NewEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell:newEventCell = resultsTable.dequeueReusableCellWithIdentifier("Cell") as! newEventCell
+        let cell:newEventCell = resultsTable.dequeueReusableCellWithIdentifier("Cell") as! newEventCell
         
         
         resultsTable.cellForRowAtIndexPath(indexPath)
         
-        println(indexPath)
+        print(indexPath)
         
         if (indexPath.section == 0) {
             if (indexPath.row == 0) {
@@ -191,7 +189,7 @@ class NewEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 					cell.textField.placeholder = "Title"
 				}
 
-                eventDescription = cell.placeholder.text
+                eventDescription = cell.placeholder.text!
                 firstIndexPath = indexPath
             }
             if (indexPath.row == 1) {
@@ -214,7 +212,7 @@ class NewEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         }
 		
 		//start and end DATES
-		var dateFormatter = NSDateFormatter()
+		let dateFormatter = NSDateFormatter()
 		
 		dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
 		dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
@@ -258,7 +256,7 @@ class NewEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
                 cell.placeholder.placeholder = nameLabel
 
 				
-				var detailButton = UITableViewCellAccessoryType.DisclosureIndicator
+				let detailButton = UITableViewCellAccessoryType.DisclosureIndicator
 				cell.accessoryType = detailButton
 				
             }
@@ -267,7 +265,7 @@ class NewEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 		
 		if indexPath.section == 3 {
 
-			var detailButton = UITableViewCellAccessoryType.DisclosureIndicator
+			let detailButton = UITableViewCellAccessoryType.DisclosureIndicator
 			cell.accessoryType = detailButton
 
 			
@@ -328,9 +326,11 @@ class NewEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath newIndexPath: NSIndexPath) {
         
-        tableView.deselectRowAtIndexPath(tableView.indexPathForSelectedRow()!, animated: false)
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        }
 		
-		var cell = tableView.cellForRowAtIndexPath(newIndexPath) as! newEventCell
+		let cell = tableView.cellForRowAtIndexPath(newIndexPath) as! newEventCell
 		
 		
 		if newIndexPath.section == 0 {
@@ -381,7 +381,7 @@ class NewEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 			isAllUsers = true
 			allTeamMemberArray.removeAll(keepCapacity: false)
 			
-			var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+			let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
 			
 			let controller = storyboard.instantiateViewControllerWithIdentifier("ConversationDetailVC") as! ConversationDetailVC
 
@@ -391,12 +391,12 @@ class NewEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 		
 		if newIndexPath.section == 3 {
 
-			var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+			let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
 			
-			var controller = storyboard.instantiateViewControllerWithIdentifier("NoteVC") as! NoteVC
+			let controller = storyboard.instantiateViewControllerWithIdentifier("NoteVC") as! NoteVC
 			
 			
-			noteText = cell.placeholder.text
+			noteText = cell.placeholder.text!
 			
 			self.navigationController!.pushViewController(controller, animated: true)
 
@@ -418,7 +418,7 @@ class NewEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 			
 			startDate = datePicker.date
 
-			var components = NSCalendar.currentCalendar().components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay | .CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitSecond, fromDate: datePicker.date)
+			let components = NSCalendar.currentCalendar().components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate: datePicker.date)
 
 			components.hour += 1
 			
@@ -478,7 +478,7 @@ class NewEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 		
 		
 		
-		var infoAlert = UIAlertController(title: "Notification", message: "Do you want to notify players of this event?", preferredStyle: UIAlertControllerStyle.Alert)
+		let infoAlert = UIAlertController(title: "Notification", message: "Do you want to notify players of this event?", preferredStyle: UIAlertControllerStyle.Alert)
 		
 		
 		infoAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action:UIAlertAction!) -> Void in
@@ -489,26 +489,26 @@ class NewEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 			
 			for var i=0; i<eventParticipantIdArray.count; i++ {
 				
-				var uQuery:PFQuery = PFUser.query()!
+				let uQuery:PFQuery = PFUser.query()!
 				
 				uQuery.whereKey("objectId", equalTo: eventParticipantIdArray[i])
 				
 				
-				var pushQuery:PFQuery = PFInstallation.query()!
+				let pushQuery:PFQuery = PFInstallation.query()!
 				pushQuery.whereKey("user", matchesQuery: uQuery)
 				
-				var startDate = selectedEvent[0].objectForKey("startTime") as! NSDate
+				let startDate = selectedEvent[0].objectForKey("startTime") as! NSDate
 				
-				var dateFormatter = NSDateFormatter()
+				let dateFormatter = NSDateFormatter()
 				
 				dateFormatter.dateFormat = "EEE, MMM d, h:mm a"
 				
-				var date = dateFormatter.stringFromDate(startDate)
+				let date = dateFormatter.stringFromDate(startDate)
 				
 				
-				var data = ["alert" : "\(selectedTeamName) Schedule Notification for \(date)" ,"sound" : "notification_sound.caf"]
+				let data = ["alert" : "\(selectedTeamName) Schedule Notification for \(date)" ,"sound" : "notification_sound.caf"]
 				
-				var push:PFPush = PFPush()
+				let push:PFPush = PFPush()
 				push.setQuery(pushQuery)
 				push.setData(data)
 				
@@ -516,11 +516,11 @@ class NewEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 					(success: Bool, error: NSError?) -> Void in
 					
 					if (error == nil) {
-						println("push sent")
+						print("push sent")
 						
 					} else {
 						
-						println("Error sending push: \(error!.description).");
+						print("Error sending push: \(error!.description).");
 						
 					}
 				})
@@ -543,7 +543,7 @@ class NewEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 		if !isEditing {
 			
 			
-			var calendarDBTable = PFObject(className: "Schedule")
+			let calendarDBTable = PFObject(className: "Schedule")
 			calendarDBTable["Year"] = year
 			calendarDBTable["Month"] = month
 			calendarDBTable["Day"] = day
@@ -557,7 +557,7 @@ class NewEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 			calendarDBTable["Repeat"] = repeatLabel
 			calendarDBTable["teamId"] = selectedTeamId
 			
-			var postACL = PFACL()
+			let postACL = PFACL()
 			postACL.setPublicReadAccess(true)
 			postACL.setPublicWriteAccess(true)
 			calendarDBTable.ACL = postACL
@@ -565,31 +565,25 @@ class NewEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 			
 			
 			
-			println("START DATE: \(startDate)")
-			println("END DATE: \(endDate)")
-			
-			
-			println(eventDescription)
 			
 			calendarDBTable.saveInBackgroundWithBlock {
 				(success:Bool, error:NSError?) -> Void in
 				
 				if success == true {
 					
-					println("event saved")
 					
-					var currentUser = PFUser.currentUser()
+					let currentUser = PFUser.currentUser()
 					
-					var firstName = currentUser?.objectForKey("firstName") as! String
-					var lastName = currentUser?.objectForKey("lastName") as! String
+					let firstName = currentUser?.objectForKey("firstName") as! String
+					let lastName = currentUser?.objectForKey("lastName") as! String
 
 					
-					var dateFormatter = NSDateFormatter()
+					let dateFormatter = NSDateFormatter()
 					dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
 					dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
 					var date = dateFormatter.stringFromDate(self.startDate)
 					
-					var announcement = PFObject(className: "Team_Announcement")
+					let announcement = PFObject(className: "Team_Announcement")
 					announcement["name"] = "\(firstName) \(lastName)"
 					announcement["userId"] = PFUser.currentUser()!.objectId
 					announcement["type"] = "Add Event"
@@ -621,8 +615,7 @@ class NewEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 
 			
 			
-			var query = PFQuery(className:"Schedule")
-			println("EVENT: \(selectedEvent)")
+			let query = PFQuery(className:"Schedule")
 			query.whereKey("objectId", equalTo: selectedEvent[0].objectId!)
 				query.getFirstObjectInBackgroundWithBlock({ (pfObject, error) -> Void in
 				
@@ -649,18 +642,18 @@ class NewEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 					pfObject!.saveInBackgroundWithBlock {
 						(success:Bool, error:NSError?) -> Void in
 
-						var currentUser = PFUser.currentUser()
+						let currentUser = PFUser.currentUser()
 						
-						var firstName = currentUser?.objectForKey("firstName") as! String
-						var lastName = currentUser?.objectForKey("lastName") as! String
+						let firstName = currentUser?.objectForKey("firstName") as! String
+						let lastName = currentUser?.objectForKey("lastName") as! String
 						
 						
-						var dateFormatter = NSDateFormatter()
+						let dateFormatter = NSDateFormatter()
 						dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
 						dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
 						var date = dateFormatter.stringFromDate(self.startDate)
 						
-						var announcement = PFObject(className: "Team_Announcement")
+						let announcement = PFObject(className: "Team_Announcement")
 						announcement["name"] = "\(firstName) \(lastName)"
 						announcement["userId"] = PFUser.currentUser()!.objectId
 						announcement["type"] = "Update Event"
@@ -722,7 +715,6 @@ class NewEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 	// MARK - ATLParticipantTableViewController Delegate Methods
 	
 	func participantTableViewController(participantTableViewController: ATLParticipantTableViewController, didSelectParticipant participant: ATLParticipant) {
-		println("participant: \(participant)")
 //		self.addressBarController.selectParticipant(participant)
 //		println("selectedParticipants: \(self.addressBarController.selectedParticipants)")
 		//        self.navigationController!.dismissViewControllerAnimated(true, completion: nil)
@@ -735,7 +727,7 @@ class NewEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 					callback(NSSet(array: participants as! [AnyObject]) as Set<NSObject>)
 				}
 			} else {
-				println("Error search for participants: \(error)")
+				print("Error search for participants: \(error)")
 			}
 		}
 	}
@@ -744,57 +736,52 @@ class NewEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 	func updateInfo() {
 		
 		
-		let startComponents = NSCalendar.currentCalendar().components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay, fromDate: startDate)
+		let startComponents = NSCalendar.currentCalendar().components([.Year, .Month, .Day], fromDate: startDate)
 
-		let endComponents = NSCalendar.currentCalendar().components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay, fromDate: endDate)
+		let endComponents = NSCalendar.currentCalendar().components([.Year, .Month, .Day], fromDate: endDate)
 
 		year = startComponents.year
 		month = startComponents.month
 		day = startComponents.day
 		
-		var titleCell = self.resultsTable.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! newEventCell
+		let titleCell = self.resultsTable.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! newEventCell
 		
 		if titleCell.textField.text != "" {
-			eventTitle = titleCell.textField.text
+			eventTitle = titleCell.textField.text!
 		} else {
 			eventTitle = ""
 		}
 		
-		var locationCell = self.resultsTable.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0)) as! newEventCell
+		let locationCell = self.resultsTable.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0)) as! newEventCell
 		
-		println("LOCATION: \(locationCell.textField.text)")
 		if locationCell.textField.text != "" {
-			eventLocation = locationCell.textField.text
+			eventLocation = locationCell.textField.text!
 		} else {
 			eventLocation = ""
 		}
-		println("asdf")
 		
-		var noteCell = self.resultsTable.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 3)) as! newEventCell
+		let noteCell = self.resultsTable.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 3)) as! newEventCell
 		
 		if noteCell.textField.text != "" {
-			eventDescription = noteCell.textField.text
+			eventDescription = noteCell.textField.text!
 		} else {
 			eventDescription = ""
 		}
-		println("asdf1")
 
-		var repeatCell = self.resultsTable.cellForRowAtIndexPath(NSIndexPath(forRow: 2, inSection: 1)) as! newEventCell
+		let repeatCell = self.resultsTable.cellForRowAtIndexPath(NSIndexPath(forRow: 2, inSection: 1)) as! newEventCell
 		
 		if repeatCell.textField.text != "" {
-			repeatLabel = repeatCell.placeholder.text
+			repeatLabel = repeatCell.placeholder.text!
 		} else {
 			repeatLabel = ""
 		}
-		println("asdf2")
 
 	}
 	
 	func comingSoon() {
 		
-		var infoAlert = UIAlertController(title: "Notification", message: "Coming Soon", preferredStyle: UIAlertControllerStyle.Alert)
+		let infoAlert = UIAlertController(title: "Notification", message: "Coming Soon", preferredStyle: UIAlertControllerStyle.Alert)
 		
-		println("INTERFACE: \(infoAlert.supportedInterfaceOrientations())")
 		
 		infoAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action:UIAlertAction!) -> Void in
 			
@@ -809,9 +796,9 @@ class NewEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 
 	
 
-	internal override func supportedInterfaceOrientations() -> Int {
-		return UIInterfaceOrientation.Portrait.rawValue
-	}
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
+    }
 	
 	internal override func shouldAutorotate() -> Bool {
 		return false

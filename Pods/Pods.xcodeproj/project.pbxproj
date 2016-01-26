@@ -145,8 +145,6 @@
 		99983CEB1B730825005386C6 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99983CEA1B730825005386C6 /* EventKit.framework */; };
 		99983CED1B730836005386C6 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99983CEC1B730836005386C6 /* Social.framework */; };
 		99983CEF1B73083B005386C6 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99983CEE1B73083B005386C6 /* Accounts.framework */; };
-		99983CF11B730845005386C6 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 99983CF01B730845005386C6 /* libsqlite3.dylib */; };
-		99983CF31B73084B005386C6 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 99983CF21B73084B005386C6 /* libz.dylib */; };
 		99983CF51B730854005386C6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99983CF41B730854005386C6 /* SystemConfiguration.framework */; };
 		99983CF71B73085A005386C6 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99983CF61B73085A005386C6 /* StoreKit.framework */; };
 		99983CF91B730860005386C6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99983CF81B730860005386C6 /* Security.framework */; };
@@ -654,8 +652,6 @@
 				99983CF91B730860005386C6 /* Security.framework in Frameworks */,
 				99983CF71B73085A005386C6 /* StoreKit.framework in Frameworks */,
 				99983CF51B730854005386C6 /* SystemConfiguration.framework in Frameworks */,
-				99983CF31B73084B005386C6 /* libz.dylib in Frameworks */,
-				99983CF11B730845005386C6 /* libsqlite3.dylib in Frameworks */,
 				99983CEF1B73083B005386C6 /* Accounts.framework in Frameworks */,
 				99983CED1B730836005386C6 /* Social.framework in Frameworks */,
 				99983CEB1B730825005386C6 /* EventKit.framework in Frameworks */,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CalendarLandscapeViewController: UIViewController, CVCalendarViewDelegate {
+class CalendarLandscapeViewController: UIViewController {
     
     @IBOutlet var monthLabel1: UILabel!
     @IBOutlet var menuViewL: CVCalendarMenuView!
@@ -18,7 +18,6 @@ class CalendarLandscapeViewController: UIViewController, CVCalendarViewDelegate 
     var animationFinished = true
     
     override func viewDidLoad() {
-		println("HELLO")
 
         super.viewDidLoad()
 		
@@ -35,7 +34,7 @@ class CalendarLandscapeViewController: UIViewController, CVCalendarViewDelegate 
     }
     
     func orientationChangedHoriz(notification: NSNotification){
-        println("turned")
+        print("turned")
     }
 }
 

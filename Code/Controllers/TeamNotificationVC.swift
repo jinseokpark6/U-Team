@@ -35,17 +35,17 @@ class TeamNotificationVC: UIViewController, UITableViewDelegate, UITableViewData
     
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		
-		var cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! teamNotificationCell
+		let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! teamNotificationCell
 		
-		var name = self.announcements[indexPath.row].objectForKey("name") as! String
+		let name = self.announcements[indexPath.row].objectForKey("name") as! String
 		
-		var title = self.announcements[indexPath.row].objectForKey("title") as! String
+		let title = self.announcements[indexPath.row].objectForKey("title") as! String
 		
-		var date = self.announcements[indexPath.row].objectForKey("date") as! NSDate
+		let date = self.announcements[indexPath.row].objectForKey("date") as! NSDate
 		
-		var dateFormatter = NSDateFormatter()
+		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "EEE, MMM d, h:mm a"
-		var selectedDate = dateFormatter.stringFromDate(date)
+		let selectedDate = dateFormatter.stringFromDate(date)
 
 		
 		if self.announcements[indexPath.row].objectForKey("type") as! String == "Add Event" {
@@ -71,10 +71,10 @@ class TeamNotificationVC: UIViewController, UITableViewDelegate, UITableViewData
 		
 		
 		
-		var dateFormatter1 = NSDateFormatter()
+		let dateFormatter1 = NSDateFormatter()
 		dateFormatter1.dateStyle = NSDateFormatterStyle.ShortStyle
 		dateFormatter1.timeStyle = NSDateFormatterStyle.ShortStyle
-		var date1 = dateFormatter1.stringFromDate(self.announcements[indexPath.row].createdAt!)
+		let date1 = dateFormatter1.stringFromDate(self.announcements[indexPath.row].createdAt!)
 
 		cell.timeLabel.text = date1
 		
@@ -86,7 +86,7 @@ class TeamNotificationVC: UIViewController, UITableViewDelegate, UITableViewData
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 		
 		
-		var query = PFQuery(className:"Schedule")
+		let query = PFQuery(className:"Schedule")
 		query.whereKey("objectId", equalTo: self.announcements[indexPath.row].objectForKey("eventId")!)
 		query.getFirstObjectInBackgroundWithBlock { (object, error) -> Void in
 			
@@ -95,17 +95,17 @@ class TeamNotificationVC: UIViewController, UITableViewDelegate, UITableViewData
 				selectedEvent.removeAll(keepCapacity: false)
 				selectedEvent.append(object!)
 				
-				var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+				let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
 				
-				var controller = storyboard.instantiateViewControllerWithIdentifier("ExistingEventViewController") as! ExistingEventViewController
+				let controller = storyboard.instantiateViewControllerWithIdentifier("ExistingEventViewController") as! ExistingEventViewController
 				
-				var nav = UINavigationController(rootViewController: controller)
+				let nav = UINavigationController(rootViewController: controller)
 
 				self.presentViewController(nav, animated: true, completion: nil)
 
 			} else {
 				
-				var infoAlert = UIAlertController(title: "Notification", message: "The selected event does not exist anymore", preferredStyle: UIAlertControllerStyle.Alert)
+				let infoAlert = UIAlertController(title: "Notification", message: "The selected event does not exist anymore", preferredStyle: UIAlertControllerStyle.Alert)
 				
 				
 				infoAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action:UIAlertAction!) -> Void in
@@ -130,7 +130,7 @@ class TeamNotificationVC: UIViewController, UITableViewDelegate, UITableViewData
 	
 	func fetchInfo() {
 		
-		var query = PFQuery(className:"Team_Announcement")
+		let query = PFQuery(className:"Team_Announcement")
 		query.whereKey("teamId", equalTo:selectedTeamId)
 		query.addDescendingOrder("createdAt")
 		query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in

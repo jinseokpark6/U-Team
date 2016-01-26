@@ -88,7 +88,7 @@ extension CVCalendarMonthView {
         let renderer = calendarView.renderer
         
         safeExecuteBlock({
-            for (index, weekView) in enumerate(self.weekViews) {
+            for (index, weekView) in self.weekViews.enumerate() {
                 let frame = renderer.renderWeekFrameForMonthView(self, weekIndex: index)
                 weekView.frame = frame
                 weekView.reloadDayViews()

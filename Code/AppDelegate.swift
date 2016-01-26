@@ -34,18 +34,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		
 		// Badge Count
-		var badgeCount = application.applicationIconBadgeNumber
-		
-		println("BADGE COUNT: \(badgeCount)")
-		
+		let badgeCount = application.applicationIconBadgeNumber
+        
 		application.applicationIconBadgeNumber = 0
-		
-		println("BADGE COUNT: \(application.applicationIconBadgeNumber)")
-		
+				
 		
 		//
 		
-		var controller = storyboard.instantiateInitialViewController() as! ViewController
+		let controller = storyboard.instantiateInitialViewController() as! ViewController
         controller.layerClient = layerClient
 
         self.window!.rootViewController = UINavigationController(rootViewController: controller)
@@ -74,14 +70,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			}
 		}
 		if application.respondsToSelector("registerUserNotificationSettings:") {
-			let userNotificationTypes = UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound
+            let userNotificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]
 			let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
 			application.registerUserNotificationSettings(settings)
 			application.registerForRemoteNotifications()
 			
 			
 		} else {
-			let types = UIRemoteNotificationType.Badge | UIRemoteNotificationType.Alert | UIRemoteNotificationType.Sound
+            let types: UIRemoteNotificationType = [.Badge, .Alert, .Sound]
 			application.registerForRemoteNotificationTypes(types)
 		}
 
@@ -95,30 +91,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	
 	func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
 		
-		let error: NSErrorPointer = NSErrorPointer()
-		let success = self.layerClient.updateRemoteNotificationDeviceToken(deviceToken,error:error)
 		
-		if (success) {
-			println("Application did register for remote notifications")
-		} else {
-			println("Error updating Layer device token for push: \(error)")
-		}
-		
-		let installation = PFInstallation.currentInstallation()
-		installation.setDeviceTokenFromData(deviceToken)
-		installation.saveInBackgroundWithBlock { (success, error) -> Void in
-			if success {
-				println("Successfully added installation")
-			}
-		}
+        // Store the deviceToken in the current installation and save it to Parse.
+        let currentInstallation: PFInstallation = PFInstallation.currentInstallation()
+        currentInstallation.setDeviceTokenFromData(deviceToken)
+        currentInstallation.saveInBackgroundWithBlock { (success, error) -> Void in
+            if success {
+                print("Successfully added installation")
+            }
+        }
+        
+        // Send device token to Layer so Layer can send pushes to this device.
+        // For more information about Push, check out:
+        // https://developer.layer.com/docs/ios/guides#push-notification
+        assert(self.layerClient != nil, "The Layer client has not been initialized!")
+        do {
+            try self.layerClient.updateRemoteNotificationDeviceToken(deviceToken)
+            print("Application did register for remote notifications: \(deviceToken)")
+        } catch let error as NSError {
+            print("Failed updating device token with error: \(error)")
+        }
+
 	}
 	
 	
 	func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
 		
-		var error: NSError
 		
-		var success = self.layerClient.synchronizeWithRemoteNotification(userInfo, completion: { (changes, error) -> Void in
+		let success = self.layerClient.synchronizeWithRemoteNotification(userInfo, completion: { (changes, error) -> Void in
 			
 			if (changes != nil) {
 				if [changes.count] != nil {
@@ -142,22 +142,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let LQSPushMessageIdentifierKeyPath:NSString = "layer.message_identifier"
 		
 		// Retrieve message URL from Push Notification
-		var messageURL = NSURL(string: "", relativeToURL: remoteNotification.valueForKeyPath(LQSPushMessageIdentifierKeyPath as String) as? NSURL)
+		let messageURL = NSURL(string: "", relativeToURL: remoteNotification.valueForKeyPath(LQSPushMessageIdentifierKeyPath as String) as? NSURL)
 		
 		// Retrieve LYRMessage from Message URL
-		var query = LYRQuery(queryableClass: LYRMessage.self)
+		let query = LYRQuery(queryableClass: LYRMessage.self)
 		query.predicate = LYRPredicate(property: "identifier", predicateOperator: LYRPredicateOperator.IsIn, value: NSSet(object: messageURL!))
 		
-		var error:NSErrorPointer = nil
-		var messages:NSOrderedSet = self.layerClient.executeQuery(query, error: error)
-		if messages.count != 0 {
-			println("Query contains \(messages.count) messages")
-			var message = messages.firstObject as! LYRMessage
-			var messagePart = message.parts[0] as! LYRMessagePart
-			println("Pushed Message Contents: \(NSString(data: messagePart.data, encoding: NSUTF8StringEncoding)))")
-		} else {
-			println("Query failed with error \(error)")
-		}
+		var messages: NSOrderedSet = NSOrderedSet()
+        
+        do {
+            try messages = self.layerClient.executeQuery(query)
+            
+            if messages.count != 0 {
+                print("Query contains \(messages.count) messages")
+                let message = messages.firstObject as! LYRMessage
+                let messagePart = message.parts[0] as! LYRMessagePart
+                print("Pushed Message Contents: \(NSString(data: messagePart.data, encoding: NSUTF8StringEncoding)))")
+            }
+
+        } catch let error as NSError {
+            print("Failed receiving message with error: \(error)")
+        }
+
 		
 		return messages.firstObject as! LYRMessage
 	}
@@ -166,9 +172,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	
 	func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
 		if error.code == 3010 {
-			println("Push notifications are not supported in the iOS Simulator.")
+			print("Push notifications are not supported in the iOS Simulator.")
 		} else {
-			println("application:didFailToRegisterForRemoteNotificationsWithError: %@", error)
+			print("application:didFailToRegisterForRemoteNotificationsWithError: %@", error)
 		}
 	}
 	
@@ -177,7 +183,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		NSNotificationCenter.defaultCenter().postNotificationName("getMessage", object: nil)
 		
 		PFPush.handlePush(userInfo)
-		println("userinfo : \(userInfo)")
+		print("userinfo : \(userInfo)")
 		if application.applicationState == UIApplicationState.Inactive {
 			PFAnalytics.trackAppOpenedWithRemoteNotificationPayloadInBackground([NSObject : AnyObject]?(), block: { (Bool, NSError) -> Void in
 				
@@ -222,7 +228,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func setupLayer() {
         layerClient = LYRClient(appID: LayerAppIDString)
-        layerClient.autodownloadMIMETypes = NSSet(objects: ATLMIMETypeImagePNG, ATLMIMETypeImageJPEG, ATLMIMETypeImageJPEGPreview, ATLMIMETypeImageGIF, ATLMIMETypeImageGIFPreview, ATLMIMETypeLocation) as Set<NSObject>
+        layerClient.autodownloadMIMETypes = NSSet(objects: ATLMIMETypeImagePNG, ATLMIMETypeImageJPEG, ATLMIMETypeImageJPEGPreview, ATLMIMETypeImageGIF, ATLMIMETypeImageGIFPreview, ATLMIMETypeLocation) as! Set<NSObject>
     }
 	
 }

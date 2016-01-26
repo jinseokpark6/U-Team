@@ -71,7 +71,7 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 
-        var cell:groupCell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! groupCell
+        let cell:groupCell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! groupCell
 		
 		
         if resultsTeamName.count == indexPath.row  {
@@ -95,8 +95,8 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 				
 				cell.imageView.hidden = true
 				cell.teamLabel.hidden = false
-				var name = resultsTeamName[indexPath.row] as String
-				var firstChar = Array(name)[0]
+				let name = resultsTeamName[indexPath.row] as String
+				let firstChar = Array(arrayLiteral: name)[0]
 				cell.teamLabel.text = String(firstChar)
 			}
 			
@@ -115,10 +115,10 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        var theWidth = self.view.frame.width
+        let theWidth = self.view.frame.width
 		
-		var width = (theWidth-75)/2
-		var height = width+30
+		let width = (theWidth-75)/2
+		let height = width+30
 		
         return CGSize(width: width, height: height)
     }
@@ -150,7 +150,7 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 	
 	func alertPasswordMatchFail() {
 		
-		var infoAlert = UIAlertController(title: "Notification", message: "Password does not match", preferredStyle: UIAlertControllerStyle.Alert)
+		let infoAlert = UIAlertController(title: "Notification", message: "Password does not match", preferredStyle: UIAlertControllerStyle.Alert)
 		
 		
 		infoAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action:UIAlertAction!) -> Void in
@@ -164,7 +164,7 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 	func alertTeamPassword(newTeamArray: [String]) {
 		
 		
-		var infoAlert = UIAlertController(title: "Notification", message: "Please Type Password", preferredStyle: UIAlertControllerStyle.Alert)
+		let infoAlert = UIAlertController(title: "Notification", message: "Please Type Password", preferredStyle: UIAlertControllerStyle.Alert)
 		
 		infoAlert.addTextFieldWithConfigurationHandler { (textField:UITextField!) -> Void in
 			
@@ -173,12 +173,12 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 		
 		infoAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action:UIAlertAction!) -> Void in
 			
-			var tf = infoAlert.textFields?.first as? UITextField
-			var text = tf!.text
+			let tf = (infoAlert.textFields?.first)! as UITextField
+			let text = tf.text
 			
-			if selectedTeamObject[0].objectForKey("password") as! String == text {
+			if selectedTeamObject[0].objectForKey("password") as? String == text {
 				
-				println("checked")
+				print("checked")
 				self.alertTeamJoin(newTeamArray)
 				
 			} else {
@@ -197,12 +197,12 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 	
 	func alertTeamJoin(newTeamArray: [String]){
 		
-		var infoAlert = UIAlertController(title: "Join Team", message: "Do you want to join \(selectedTeamName)?", preferredStyle: UIAlertControllerStyle.Alert)
+		let infoAlert = UIAlertController(title: "Join Team", message: "Do you want to join \(selectedTeamName)?", preferredStyle: UIAlertControllerStyle.Alert)
 		
 		
 		infoAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action:UIAlertAction!) -> Void in
 			
-			var currentUser = PFUser.currentUser()
+			let currentUser = PFUser.currentUser()
 			currentUser?.setObject(newTeamArray, forKey: "team_id_array")
 			currentUser?.save()
 			
@@ -220,18 +220,18 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 	func teamJoin() {
 		
 		var newTeamArray: [String] = [String]()
-		println(PFUser.currentUser())
-		println(PFUser.currentUser()!.objectForKey("team_id_array"))
+		print(PFUser.currentUser())
+		print(PFUser.currentUser()!.objectForKey("team_id_array"))
 		
-		var query = PFUser.query()
-		var object = query?.getObjectWithId((PFUser.currentUser()?.objectId!)!)
+		let query = PFUser.query()
+		let object = query?.getObjectWithId((PFUser.currentUser()?.objectId!)!)
 		
 		
 		if let teamArray = object?.objectForKey("team_id_array") as? [String] {
 			
 			newTeamArray = teamArray
 			
-			println("teamarray \(newTeamArray)")
+			print("teamarray \(newTeamArray)")
 
 			
 			// check if the user is already part of the team
@@ -239,7 +239,7 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 			for var i=0; i<teamArray.count; i++ {
 				if teamArray[i] == selectedTeamId {
 					isFound = true
-					println("asdf \(teamArray[i])")
+					print("asdf \(teamArray[i])")
 					self.checkStatus()
 					break
 				}
@@ -250,7 +250,7 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 				newTeamArray.append(selectedTeamId)
 
 				// check for password
-				if let password = selectedTeamObject[0].objectForKey("password") as? String {
+				if let _ = selectedTeamObject[0].objectForKey("password") as? String {
 					
 					alertTeamPassword(newTeamArray)
 					
@@ -265,7 +265,7 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 			newTeamArray.append(selectedTeamId)
 
 			// check for password
-			if let password = selectedTeamObject[0].objectForKey("password") as? String {
+			if let _ = selectedTeamObject[0].objectForKey("password") as? String {
 				
 				alertTeamPassword(newTeamArray)
 				
@@ -278,8 +278,8 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 	
 	func checkStatus() {
 		
-		var query = PFQuery(className:"Team")
-		var pfObject = query.getObjectWithId(selectedTeamId)
+		let query = PFQuery(className:"Team")
+		let pfObject = query.getObjectWithId(selectedTeamId)
 		if let array = pfObject?.objectForKey("coach") as? [String] {
 			
 			var isFound = false
@@ -305,14 +305,14 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 		
 		
 		
-		var infoAlert = UIAlertController(title: "Check Status", message: "Are you a coach or a player?", preferredStyle: UIAlertControllerStyle.Alert)
+		let infoAlert = UIAlertController(title: "Check Status", message: "Are you a coach or a player?", preferredStyle: UIAlertControllerStyle.Alert)
 		
 		
 		infoAlert.addAction(UIAlertAction(title: "Coach", style: .Default, handler: { (action:UIAlertAction!) -> Void in
 
 
-			var query = PFQuery(className:"Team")
-			var pfObject = query.getObjectWithId(selectedTeamId)
+			let query = PFQuery(className:"Team")
+			let pfObject = query.getObjectWithId(selectedTeamId)
 			
 			var newArray:[String] = [String]()
 			if let array = pfObject?.objectForKey("coach") as? [String] {
@@ -333,8 +333,8 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 		
 		infoAlert.addAction(UIAlertAction(title: "Player", style: .Default, handler: { (action:UIAlertAction!) -> Void in
 			
-			var query = PFQuery(className:"Team")
-			var pfObject = query.getObjectWithId(selectedTeamId)
+			let query = PFQuery(className:"Team")
+			let pfObject = query.getObjectWithId(selectedTeamId)
 			
 			var newArray:[String] = [String]()
 			if let array = pfObject?.objectForKey("players") as? [String] {
@@ -376,14 +376,14 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 		
 		
 		let navigationController2: UINavigationController = UINavigationController()
-		var controller2 = self.storyboard!.instantiateViewControllerWithIdentifier("TeamDashboardVC") as! TeamDashboardVC
+		let controller2 = self.storyboard!.instantiateViewControllerWithIdentifier("TeamDashboardVC") as! TeamDashboardVC
 		
 		
 		let navigationController3: UINavigationController = UINavigationController()
-		var controller3 = self.storyboard!.instantiateViewControllerWithIdentifier("CalendarPortraitViewController") as! CalendarPortraitViewController
+		let controller3 = self.storyboard!.instantiateViewControllerWithIdentifier("CalendarPortraitViewController") as! CalendarPortraitViewController
 		
 		let navigationController4: UINavigationController = UINavigationController()
-		var controller4 = self.storyboard!.instantiateViewControllerWithIdentifier("SettingsVC") as! SettingsVC
+		let controller4 = self.storyboard!.instantiateViewControllerWithIdentifier("SettingsVC") as! SettingsVC
 		controller4.layerClient = self.layerClient
 
 		
@@ -421,15 +421,15 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 		navigationController4.addChildViewController(controller4)
 		tabBarController.addChildViewController(navigationController4)
 
-		println("interfaces: \(navigationController2.supportedInterfaceOrientations())")
-		println("interfacessssss: \(tabBarController.supportedInterfaceOrientations())")
+		print("interfaces: \(navigationController2.supportedInterfaceOrientations())")
+		print("interfacessssss: \(tabBarController.supportedInterfaceOrientations())")
 
 //		tabBarController.supportedInterfaceOrientations()
 		
-		var tabBar = tabBarController.tabBar
+		let tabBar = tabBarController.tabBar
 		
 		for var i=0; i<tabBar.items?.count; i++ {
-			let tabBarItem = tabBar.items?[i] as! UITabBarItem
+			let tabBarItem = (tabBar.items?[i])! as UITabBarItem
 			tabBarItem.title = nil
 			//tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
 		}
@@ -448,19 +448,19 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 		resultsTeamId.removeAll(keepCapacity: false)
 		resultsTeamPhoto.removeAll(keepCapacity: false)
 		
-		var teamQuery = PFQuery(className: "Team")
+		let teamQuery = PFQuery(className: "Team")
 		teamQuery.findObjectsInBackgroundWithBlock { (objects:[AnyObject]?, error:NSError?) -> Void in
 			
 			for object in objects! {
 				resultsTeamObject.append(object as! PFObject)
 				
-				var teamName = object.objectForKey("name") as! String
+				let teamName = object.objectForKey("name") as! String
 				resultsTeamName.append(teamName)
 				resultsTeamId.append((object.objectId!)!)
 				
 				if let photo = object.objectForKey("photo") as? PFFile {
-					var imageData = photo.getData()
-					var image = UIImage(data: imageData!)
+					let imageData = photo.getData()
+					let image = UIImage(data: imageData!)
 					resultsTeamPhoto.append(image!)
 				} else {
 					resultsTeamPhoto.append("")
@@ -474,35 +474,12 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 	}
 
 	
-	
-	override func supportedInterfaceOrientations() -> Int {
-		return Int(UIInterfaceOrientationMask.Portrait.rawValue)
-	}
-	
-	override func shouldAutorotate() -> Bool {
-		return false
-	}
-
-	
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
-
-	
+		
 
 }
 
 
 extension ATLAddressBarViewController {
-	public override func supportedInterfaceOrientations() -> Int {
-		return Int(UIInterfaceOrientationMask.Portrait.rawValue)
-	}
 	
 	public override func shouldAutorotate() -> Bool {
 		return false
@@ -511,19 +488,12 @@ extension ATLAddressBarViewController {
 
 
 extension ATLTypingIndicatorViewController {
-	public override func supportedInterfaceOrientations() -> Int {
-		return Int(UIInterfaceOrientationMask.Portrait.rawValue)
-	}
-	
 	public override func shouldAutorotate() -> Bool {
 		return false
 	}
 }
 
 extension UITabBarController {
-	public override func supportedInterfaceOrientations() -> Int {
-		return Int(UIInterfaceOrientationMask.Portrait.rawValue)
-	}
 	
 	public override func shouldAutorotate() -> Bool {
 		return false
@@ -531,19 +501,12 @@ extension UITabBarController {
 }
 
 extension UIAlertController {
-	public override func supportedInterfaceOrientations() -> Int {
-		return Int(UIInterfaceOrientationMask.Portrait.rawValue)
-	}
 	public override func shouldAutorotate() -> Bool {
 		return false
 	}
 }
 
 extension UINavigationController {
-	public override func supportedInterfaceOrientations() -> Int {
-		return UIInterfaceOrientation.Portrait.rawValue
-	}
-	
 	public override func shouldAutorotate() -> Bool {
 		return false
 	}

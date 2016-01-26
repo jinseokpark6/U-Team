@@ -36,7 +36,7 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
 	
 	func queryEvents() {
 		
-		var query = PFQuery(className:"Schedule")
+		let query = PFQuery(className:"Schedule")
 		query.whereKey("teamId", equalTo: selectedTeamId)
 		query.addAscendingOrder("startTime")
 		query.findObjectsInBackgroundWithBlock { (objects:[AnyObject]?, error:NSError?) -> Void in
@@ -59,7 +59,7 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
 			
 			
 			if i == 0 {
-				var date = self.eventObjectArray[i].objectForKey("startTime") as! NSDate
+				let date = self.eventObjectArray[i].objectForKey("startTime") as! NSDate
 				self.sortedEventSectionArray.append(date)
 				
 				var array = [PFObject]()
@@ -70,13 +70,13 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
 				
 
 				
-				var date1 = self.eventObjectArray[i-1].objectForKey("startTime") as! NSDate
-				var date2 = self.eventObjectArray[i].objectForKey("startTime") as! NSDate
+				let date1 = self.eventObjectArray[i-1].objectForKey("startTime") as! NSDate
+				let date2 = self.eventObjectArray[i].objectForKey("startTime") as! NSDate
 				
-				var calendar = NSCalendar.currentCalendar()
-				var currentComponents = calendar.components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay, fromDate: date1)
-				var previousComponents = calendar.components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay, fromDate: date2)
-				
+				let calendar = NSCalendar.currentCalendar()
+				let currentComponents = calendar.components([.Year, .Month, .Day], fromDate: date1)
+				let previousComponents = calendar.components([.Year, .Month, .Day], fromDate: date2)
+
 				
 				if !currentComponents.isEqual(previousComponents) {
 					self.sortedEventSectionArray.append(date2)
@@ -108,8 +108,8 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
 	
 	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		
-		var date = self.sortedEventSectionArray[section]
-		var dateFormatter = NSDateFormatter()
+		let date = self.sortedEventSectionArray[section]
+		let dateFormatter = NSDateFormatter()
 		
 		dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
 		dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
@@ -122,11 +122,11 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
 		selectedEvent.removeAll(keepCapacity: false)
 		selectedEvent.append(self.sortedEventObjectArray[indexPath.section][indexPath.row])
 		
-		var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+		let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
 		
-		var controller = storyboard.instantiateViewControllerWithIdentifier("ExistingEventViewController") as! ExistingEventViewController
+		let controller = storyboard.instantiateViewControllerWithIdentifier("ExistingEventViewController") as! ExistingEventViewController
 		
-		var nav = UINavigationController(rootViewController: controller)
+		let nav = UINavigationController(rootViewController: controller)
 		
 		self.presentViewController(nav, animated: true, completion: nil)
 
@@ -135,7 +135,7 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		
-		var cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! eventListCell
+		let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! eventListCell
 		
 		if self.eventObjectArray.count != 0 {
 			
@@ -143,10 +143,10 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
 			
 			cell.eventLabel.text = self.sortedEventObjectArray[indexPath.section][indexPath.row].objectForKey("Title") as? String
 			
-			var startDate = self.sortedEventObjectArray[indexPath.section][indexPath.row].objectForKey("startTime") as? NSDate
-			var endDate = self.sortedEventObjectArray[indexPath.section][indexPath.row].objectForKey("endTime") as? NSDate
+			let startDate = self.sortedEventObjectArray[indexPath.section][indexPath.row].objectForKey("startTime") as? NSDate
+			let endDate = self.sortedEventObjectArray[indexPath.section][indexPath.row].objectForKey("endTime") as? NSDate
 			
-			var dateFormatter = NSDateFormatter()
+			let dateFormatter = NSDateFormatter()
 			
 			dateFormatter.dateStyle = NSDateFormatterStyle.NoStyle
 			dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
@@ -176,11 +176,11 @@ class EventListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
 
-	public override func supportedInterfaceOrientations() -> Int {
-		return UIInterfaceOrientation.Portrait.rawValue
+	internal override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+		return UIInterfaceOrientationMask.Portrait
 	}
 	
-	public override func shouldAutorotate() -> Bool {
+	internal override func shouldAutorotate() -> Bool {
 		return false
 	}
 

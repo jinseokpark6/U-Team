@@ -57,7 +57,7 @@ class NoteVC: UIViewController, UITextViewDelegate {
 		
 		if isEditing {
 			
-			var query = PFQuery(className:"Schedule")
+			let query = PFQuery(className:"Schedule")
 			query.whereKey("objectId", equalTo: selectedEvent[0].objectId!)
 			query.getFirstObjectInBackgroundWithBlock({ (object:PFObject?, error:NSError?) -> Void in
 				
@@ -66,7 +66,7 @@ class NoteVC: UIViewController, UITextViewDelegate {
 					object!["Description"] = self.textView.text
 					object!.saveInBackgroundWithBlock({ (success, error) -> Void in
 						if error == nil {
-							println("success")
+							print("success")
 						}
 					})
 				}
@@ -74,11 +74,11 @@ class NoteVC: UIViewController, UITextViewDelegate {
 		}
 	}
 	
-	public override func supportedInterfaceOrientations() -> Int {
-		return UIInterfaceOrientation.Portrait.rawValue
+	internal override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+		return UIInterfaceOrientationMask.Portrait
 	}
 	
-	public override func shouldAutorotate() -> Bool {
+	internal override func shouldAutorotate() -> Bool {
 		return false
 	}
 

@@ -75,10 +75,10 @@ class UserDetailVC: UIViewController, UITableViewDataSource, UITableViewDelegate
 		
         
         
-        var query = PFQuery(className: "_User")
+        let query = PFQuery(className: "_User")
         query.whereKey("objectId", equalTo: selectedPlayersUsername[1])
         
-        var objects = query.findObjects()
+        let objects = query.findObjects()
         
         
         for object in objects! {
@@ -88,7 +88,7 @@ class UserDetailVC: UIViewController, UITableViewDataSource, UITableViewDelegate
             if let photo = object["photoLine1"] as? PFFile {
 
                 self.resultsImageFile = photo
-                var imageData:NSData? = self.resultsImageFile!.getData()
+                let imageData:NSData? = self.resultsImageFile!.getData()
 
                 selectedPlayersImages.append(UIImage(data: imageData!))
 				
@@ -99,8 +99,8 @@ class UserDetailVC: UIViewController, UITableViewDataSource, UITableViewDelegate
 			
 			if let file = object["photo"] as? PFFile {
 				
-				var data = file.getData()
-				var photo = UIImage(data: data!)
+				let data = file.getData()
+				let photo = UIImage(data: data!)
 				self.profileImageView.image = photo
 			}
             
@@ -143,7 +143,7 @@ class UserDetailVC: UIViewController, UITableViewDataSource, UITableViewDelegate
     func draggedView(sender:UIPanGestureRecognizer){
 		
         self.view.bringSubviewToFront(sender.view!)
-        var translation = sender.translationInView(self.view)
+        let translation = sender.translationInView(self.view)
         
         let newCenter = CGPointMake(0, sender.view!.center.y + translation.y)
         
@@ -153,7 +153,7 @@ class UserDetailVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         if newCenter.y >= totalHeight - 180 - 135 && newCenter.y <= totalHeight - 135 {
 			
             sender.view!.center = CGPointMake(sender.view!.center.x, sender.view!.center.y + translation.y)
-            println("TRANSLATION: \(translation.y)")
+            print("TRANSLATION: \(translation.y)")
             self.collectionView2.center = CGPointMake(self.collectionView2.center.x, self.collectionView2.center.y + translation.y)
 
 //            self.resultsTable.alpha = (540 - newCenter.y) / 180
@@ -164,11 +164,11 @@ class UserDetailVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         
         if sender.state == UIGestureRecognizerState.Ended {
             let velocity = sender.velocityInView(self.view)
-			println("newCenter0:\(velocity.y):\(newCenter.y):\(totalHeight)")
+			print("newCenter0:\(velocity.y):\(newCenter.y):\(totalHeight)")
 
             if velocity.y > 0 || (velocity.y == 0 && newCenter.y > totalHeight-120-40-90) {
 
-				println("newCenter:\(velocity.y):\(sender.view!.frame.origin.y)")
+				print("newCenter:\(velocity.y):\(sender.view!.frame.origin.y)")
 
 //                self.collectionView.frame.origin = CGPointMake(0,0)
                 self.collectionView2.frame.origin = CGPointMake(0,totalHeight-120)
@@ -182,7 +182,7 @@ class UserDetailVC: UIViewController, UITableViewDataSource, UITableViewDelegate
 				
             } else {
 				
-				println("newCenter2:\(sender.view!.frame.origin.y)")
+				print("newCenter2:\(sender.view!.frame.origin.y)")
 
 //                self.collectionView.frame.origin = CGPointMake(0,-90)
                 self.collectionView2.frame.origin = CGPointMake(0,totalHeight-120-180)
@@ -267,7 +267,7 @@ class UserDetailVC: UIViewController, UITableViewDataSource, UITableViewDelegate
 		collectionView.deselectItemAtIndexPath(indexPath, animated: true)
 		
 		if indexPath.item == 0 {
-			println("HI \(self.phoneLabel)")
+			print("HI \(self.phoneLabel)")
 			
 			self.makeCall()
 			
@@ -288,7 +288,7 @@ class UserDetailVC: UIViewController, UITableViewDataSource, UITableViewDelegate
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         if collectionView == self.collectionView {
-            var cell:detailCell2 = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! detailCell2
+            let cell:detailCell2 = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! detailCell2
             
             
             
@@ -300,7 +300,7 @@ class UserDetailVC: UIViewController, UITableViewDataSource, UITableViewDelegate
             //        cell.backgroundColor = UIColor.blueColor()
             return cell
         } else {
-            var cell:detailCell3 = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! detailCell3
+            let cell:detailCell3 = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! detailCell3
             
             if indexPath.row == 0 {
 				cell.imageView.image = UIImage(named:"phone.png")
@@ -336,7 +336,7 @@ class UserDetailVC: UIViewController, UITableViewDataSource, UITableViewDelegate
             return UIEdgeInsetsMake(0,0,0,0)
 
         } else {
-            var left = (self.collectionView2.frame.size.width - 144)/4
+            let left = (self.collectionView2.frame.size.width - 144)/4
                 return UIEdgeInsetsMake(24,left,24,left)
         }
     }
@@ -351,7 +351,9 @@ class UserDetailVC: UIViewController, UITableViewDataSource, UITableViewDelegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        tableView.deselectRowAtIndexPath(tableView.indexPathForSelectedRow()!, animated: true)
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }
         
         if (indexPath.section == 0) {
             if (indexPath.row == 0) {
@@ -371,7 +373,7 @@ class UserDetailVC: UIViewController, UITableViewDataSource, UITableViewDelegate
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell: detailCell = tableView.dequeueReusableCellWithIdentifier("Cell") as! detailCell
+        let cell: detailCell = tableView.dequeueReusableCellWithIdentifier("Cell") as! detailCell
         
         if (indexPath.section == 0) {
             if (indexPath.row == 0) {
@@ -457,12 +459,12 @@ class UserDetailVC: UIViewController, UITableViewDataSource, UITableViewDelegate
 		if self.phoneLabel == "" {
 			
 		}
-		var infoAlert = UIAlertController(title: "Contact", message: "\(self.phoneLabel!)", preferredStyle: UIAlertControllerStyle.Alert)
+		let infoAlert = UIAlertController(title: "Contact", message: "\(self.phoneLabel!)", preferredStyle: UIAlertControllerStyle.Alert)
 		
 		
 		infoAlert.addAction(UIAlertAction(title: "Call", style: .Default, handler: { (action:UIAlertAction!) -> Void in
 			
-			var url = NSURL(string: "tel://\(self.phoneLabel!)")
+			let url = NSURL(string: "tel://\(self.phoneLabel!)")
 			UIApplication.sharedApplication().openURL(url!)
 
 			
@@ -478,7 +480,7 @@ class UserDetailVC: UIViewController, UITableViewDataSource, UITableViewDelegate
 	
 	func comingSoon() {
 		
-		var infoAlert = UIAlertController(title: "Notification", message: "Coming Soon", preferredStyle: UIAlertControllerStyle.Alert)
+		let infoAlert = UIAlertController(title: "Notification", message: "Coming Soon", preferredStyle: UIAlertControllerStyle.Alert)
 		
 		
 		infoAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action:UIAlertAction!) -> Void in

@@ -38,15 +38,17 @@ class ConversationViewController: ATLConversationViewController, ATLConversation
 	// MARK - hides Bottom Bar
 	
 	func hideBottomBar() {
-		var tabBar = self.tabBarController?.tabBar
-		var parent = tabBar?.superview
-		var content = parent?.subviews[0] as! UIView
-		var window = parent?.superview
+		let tabBar = self.tabBarController?.tabBar
+		let parent = tabBar?.superview
+		let content = parent?.subviews[0]
+		let window = parent?.superview
 		
 		var tabFrame = tabBar!.frame
 		tabFrame.origin.y = CGRectGetMaxY(window!.bounds)
 		tabBar!.frame = tabFrame
-		content.frame = window!.bounds
+        if let content = content {
+            content.frame = window!.bounds
+        }
 	}
 
     // MARK - UI Configuration methods
@@ -58,15 +60,15 @@ class ConversationViewController: ATLConversationViewController, ATLConversation
     // MARK - ATLConversationViewControllerDelegate methods
 
     func conversationViewController(viewController: ATLConversationViewController, didSendMessage message: LYRMessage) {
-        println("Message sent!")
+        print("Message sent!")
     }
 
     func conversationViewController(viewController: ATLConversationViewController, didFailSendingMessage message: LYRMessage, error: NSError?) {
-        println("Message failed to sent with error: \(error)")
+        print("Message failed to sent with error: \(error)")
     }
 
     func conversationViewController(viewController: ATLConversationViewController, didSelectMessage message: LYRMessage) {
-        println("Message selected")
+        print("Message selected")
     }
 
     // MARK - ATLConversationViewControllerDataSource methods
@@ -98,7 +100,7 @@ class ConversationViewController: ATLConversationViewController, ATLConversation
                     // TODO: Need a good way to refresh all the messages for the refreshed participants...
                     self.reloadCellsForMessagesSentByParticipantWithIdentifier(participantIdentifier)
                 } else {
-                    println("Error querying for users: \(error)")
+                    print("Error querying for users: \(error)")
                 }
             }
         }
@@ -126,7 +128,8 @@ class ConversationViewController: ATLConversationViewController, ATLConversation
 
             let checkmark: String = "✔︎"
             var textColor: UIColor = UIColor.lightGrayColor()
-            let status: LYRRecipientStatus! = LYRRecipientStatus(rawValue: recipientStatusDict[participantAsString]!.unsignedIntegerValue)
+            let status: LYRRecipientStatus! = LYRRecipientStatus(rawValue: Int(recipientStatusDict[participantAsString]!.unsignedIntegerValue))
+
             switch status! {
             case .Sent:
                 textColor = UIColor.lightGrayColor()
@@ -153,14 +156,14 @@ class ConversationViewController: ATLConversationViewController, ATLConversation
 				let controller = ParticipantTableViewController(participants: participants, sortType: ATLParticipantPickerSortType.FirstName)
 				controller.delegate = self
 				isModal = true
-				println(controller)
+				print(controller)
 				
-				var nav = UINavigationController(rootViewController: controller)
+				let nav = UINavigationController(rootViewController: controller)
 
 				self.presentViewController(nav, animated: true, completion: nil)
-				println("HI")
+				print("HI")
 			} else {
-				println("Error querying for All Users: \(error)")
+				print("Error querying for All Users: \(error)")
 			}
 		}
     }
@@ -168,7 +171,7 @@ class ConversationViewController: ATLConversationViewController, ATLConversation
 
 	override func addressBarViewControllerDidSelectWhileDisabled(addressBarViewController: ATLAddressBarViewController!, didTapBarWhileDisabled addContactsButton: UIButton!) {
 		
-		println("hi")
+		print("hi")
 		self.detailsButtonTapped(self)
 	}
 	
@@ -179,7 +182,7 @@ class ConversationViewController: ATLConversationViewController, ATLConversation
                     callback(participants! as [AnyObject])
                 }
             } else {
-                println("Error search for participants: \(error)")
+                print("Error search for participants: \(error)")
             }
         }
     }
@@ -187,9 +190,9 @@ class ConversationViewController: ATLConversationViewController, ATLConversation
     // MARK - ATLParticipantTableViewController Delegate Methods
 
     func participantTableViewController(participantTableViewController: ATLParticipantTableViewController, didSelectParticipant participant: ATLParticipant) {
-        println("participant: \(participant)")
+        print("participant: \(participant)")
         self.addressBarController.selectParticipant(participant)
-        println("selectedParticipants: \(self.addressBarController.selectedParticipants)")
+        print("selectedParticipants: \(self.addressBarController.selectedParticipants)")
 //        self.navigationController!.dismissViewControllerAnimated(true, completion: nil)
     }
 	
@@ -205,7 +208,7 @@ class ConversationViewController: ATLConversationViewController, ATLConversation
                     callback(NSSet(array: participants as! [AnyObject]) as Set<NSObject>)
                 }
             } else {
-                println("Error search for participants: \(error)")
+                print("Error search for participants: \(error)")
             }
         }
     }
@@ -217,10 +220,10 @@ class ConversationViewController: ATLConversationViewController, ATLConversation
 		
 		isEvent = false
 		
-		println("APRSDF ARRAY: \(participantArray)")
-		var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+		print("APRSDF ARRAY: \(participantArray)")
+		let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
 		
-		var controller = storyboard.instantiateViewControllerWithIdentifier("ConversationDetailVC") as! ConversationDetailVC
+		let controller = storyboard.instantiateViewControllerWithIdentifier("ConversationDetailVC") as! ConversationDetailVC
 		
 		self.navigationController!.pushViewController(controller, animated: true)
 
@@ -228,11 +231,11 @@ class ConversationViewController: ATLConversationViewController, ATLConversation
 		
 	}
 	
-	public override func supportedInterfaceOrientations() -> Int {
-		return UIInterfaceOrientation.Portrait.rawValue
-	}
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
+    }
 	
-	public override func shouldAutorotate() -> Bool {
+	internal override func shouldAutorotate() -> Bool {
 		return false
 	}
 

@@ -35,17 +35,17 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
 		
 		self.logInViewController.view.backgroundColor = UIColor(red: 69.0/255, green: 175.0/255, blue: 220.0/255, alpha: 1)
 
-		self.logInViewController.fields = (PFLogInFields.UsernameAndPassword |
-                                           PFLogInFields.LogInButton |
-                                           PFLogInFields.SignUpButton |
-                                           PFLogInFields.PasswordForgotten)
+		self.logInViewController.fields = ([.UsernameAndPassword,
+                                            .LogInButton,
+                                            .SignUpButton,
+                                            .PasswordForgotten])
         self.logInViewController.delegate = self
         let logoImageView: UIImageView = UIImageView(image: UIImage(named:"UTeamLogoBlank"))
         logoImageView.contentMode = UIViewContentMode.ScaleAspectFit
         self.logInViewController.logInView!.logo = logoImageView;
 		
         // Create the sign up view controller
-        var signUpViewController: PFSignUpViewController = PFSignUpViewController()
+        let signUpViewController: PFSignUpViewController = PFSignUpViewController()
 		signUpViewController.view.backgroundColor = UIColor(red: 69.0/255, green: 175.0/255, blue: 220.0/255, alpha: 1)
         signUpViewController.signUpView!.signUpButton!.setBackgroundImage(signupButtonBackgroundImage, forState: UIControlState.Normal)
         self.logInViewController.signUpController = signUpViewController
@@ -79,7 +79,7 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
 		isSignUp = false
 		
         self.dismissViewControllerAnimated(true, completion: nil)
-		println("HI")
+		print("HI")
         self.loginLayer()
     }
 
@@ -88,7 +88,7 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
             let cancelButtonTitle = NSLocalizedString("OK", comment: "")
             UIAlertView(title: description, message: nil, delegate: nil, cancelButtonTitle: cancelButtonTitle).show()
         }
-        println("Failed to log in...")
+        print("Failed to log in...")
     }
 
     // MARK: - PFSignUpViewControllerDelegate
@@ -98,7 +98,7 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
         var informationComplete: Bool = true
         
         // loop through all of the submitted data
-        for (key, val) in info {
+        for (key, _) in info {
             if let field = info[key] as? String {
                 if field.isEmpty {
                     informationComplete = false
@@ -128,7 +128,7 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
     }
 
     func signUpViewController(signUpController: PFSignUpViewController, didFailToSignUpWithError error: NSError?) {
-        println("Failed to sign up...")
+        print("Failed to sign up...")
     }
 
     // MARK - IBActions
@@ -137,9 +137,9 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
         PFUser.logOut()
         self.layerClient.deauthenticateWithCompletion { success, error in
             if (!success) {
-                println("Failed to deauthenticate: \(error)")
+                print("Failed to deauthenticate: \(error)")
             } else {
-                println("Previous user deauthenticated")
+                print("Previous user deauthenticated")
             }
         }
         
@@ -155,7 +155,7 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
 		installation["user"] = PFUser.currentUser()
 		installation.saveInBackgroundWithBlock { (success, error) -> Void in
 			if error == nil {
-				println("saved user")
+				print("saved user")
 			}
 		}
 
@@ -165,17 +165,17 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
         // https://developer.layer.com/docs/quick-start/ios#connect
         self.layerClient.connectWithCompletion { success, error in
             if (!success) {
-                println("Failed to connect to Layer: \(error)")
+                print("Failed to connect to Layer: \(error)")
             } else {
                 let userID: String = PFUser.currentUser()!.objectId!
                 // Once connected, authenticate user.
                 // Check Authenticate step for authenticateLayerWithUserID source
-				println(userID)
+				print(userID)
                 self.authenticateLayerWithUserID(userID, completion: { success, error in
                     if (!success) {
-                        println("Failed Authenticating Layer Client with error:\(error)")
+                        print("Failed Authenticating Layer Client with error:\(error)")
                     } else {
-                        println("Authenticated")
+                        print("Authenticated")
                         self.presentConversationListViewController()
                     }
                 })
@@ -184,13 +184,13 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
     }
 
     func authenticateLayerWithUserID(userID: NSString, completion: ((success: Bool , error: NSError!) -> Void)!) {
-		println(self.layerClient.authenticatedUserID)
+//		print(self.layerClient.authenticatedUserID)
 
         // Check to see if the layerClient is already authenticated.
         if self.layerClient.authenticatedUserID != nil {
             // If the layerClient is authenticated with the requested userID, complete the authentication process.
             if self.layerClient.authenticatedUserID == userID {
-                println("Layer Authenticated as User \(self.layerClient.authenticatedUserID)")
+                print("Layer Authenticated as User \(self.layerClient.authenticatedUserID)")
                 if completion != nil {
                     completion(success: true, error: nil)
                 }
@@ -247,13 +247,13 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
                             if (completion != nil) {
                                 completion(success: true, error: nil)
                             }
-                            println("Layer Authenticated as User: \(authenticatedUserID)")
+                            print("Layer Authenticated as User: \(authenticatedUserID)")
                         } else {
                             completion(success: false, error: error)
                         }
                     }
                 } else {
-                    println("Parse Cloud function failed to be called to generate token with error: \(error)")
+                  print("Parse Cloud function failed to be called to generate token with error: \(error)")
                 }
             }
         }
@@ -265,11 +265,11 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
         SVProgressHUD.dismiss()
 		
 		if isSignUp == true {
-			var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+			let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
 			
-			var controller = storyboard.instantiateViewControllerWithIdentifier("ProfileDetailVC") as! ProfileDetailVC
+			let controller = storyboard.instantiateViewControllerWithIdentifier("ProfileDetailVC") as! ProfileDetailVC
 			controller.layerClient = self.layerClient
-			var nav: UINavigationController = UINavigationController()
+			let nav: UINavigationController = UINavigationController()
 			nav.addChildViewController(controller)
 			
 			//		self.navigationController?.pushViewController(nav, animated: true)
@@ -277,11 +277,11 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
 		}
 		
 		else {
-			var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+			let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
 			
-			var controller = storyboard.instantiateViewControllerWithIdentifier("GroupVC") as! GroupVC
+			let controller = storyboard.instantiateViewControllerWithIdentifier("GroupVC") as! GroupVC
 			controller.layerClient = self.layerClient
-			var nav: UINavigationController = UINavigationController()
+			let nav: UINavigationController = UINavigationController()
 			nav.addChildViewController(controller)
 			
 			self.presentViewController(nav, animated: true, completion: nil)
@@ -295,11 +295,11 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
     
     // MARK - Helper function
     func getImageWithColor(color: UIColor, size: CGSize) -> UIImage {
-        var rect = CGRectMake(0, 0, size.width, size.height)
+        let rect = CGRectMake(0, 0, size.width, size.height)
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         color.setFill()
         UIRectFill(rect)
-        var image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image
     }

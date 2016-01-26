@@ -13,7 +13,16 @@ var month = 0
 var day = 0
 var startHour = 0
 var nowDate = NSDate()
-var components = NSCalendar.currentCalendar().components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay | .CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitSecond, fromDate: nowDate)
+private let YearUnit = NSCalendarUnit.Year
+private let MonthUnit = NSCalendarUnit.Month
+private let WeekUnit = NSCalendarUnit.WeekOfMonth
+private let WeekdayUnit = NSCalendarUnit.Weekday
+private let DayUnit = NSCalendarUnit.Day
+private let HourUnit = NSCalendarUnit.Hour
+private let MinuteUnit = NSCalendarUnit.Minute
+private let SecondUnit = NSCalendarUnit.Second
+
+var components = NSCalendar.currentCalendar().components(YearUnit.union(MonthUnit).union(DayUnit).union(HourUnit).union(MinuteUnit).union(SecondUnit), fromDate: nowDate)
 
 var selectedEvent = [PFObject]()
 
@@ -50,10 +59,10 @@ class CalendarPortraitViewController: UIViewController, UITableViewDataSource, U
 		self.navigationController?.title = "Calendar"
 		
 		
-		var tabBar = self.tabBarController?.tabBar
+		let tabBar = self.tabBarController?.tabBar
 		
 		for var i=0; i<tabBar!.items?.count; i++ {
-			let tabBarItem = tabBar!.items?[i] as! UITabBarItem
+			let tabBarItem = (tabBar!.items?[i])! as UITabBarItem
 			tabBarItem.title = nil
 			//tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
 		}
@@ -95,15 +104,15 @@ class CalendarPortraitViewController: UIViewController, UITableViewDataSource, U
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		
-		var cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! calendarCell
+		let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! calendarCell
 		
 		if self.objectsList.count != 0 {
 			cell.eventLabel.text = self.objectsList[indexPath.row].objectForKey("Title") as? String
 						
-			var startDate = self.objectsList[indexPath.row].objectForKey("startTime") as? NSDate
-			var endDate = self.objectsList[indexPath.row].objectForKey("endTime") as? NSDate
+			let startDate = self.objectsList[indexPath.row].objectForKey("startTime") as? NSDate
+			let endDate = self.objectsList[indexPath.row].objectForKey("endTime") as? NSDate
 			
-			var dateFormatter = NSDateFormatter()
+			let dateFormatter = NSDateFormatter()
 			
 			dateFormatter.dateStyle = NSDateFormatterStyle.NoStyle
 			dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
@@ -141,13 +150,13 @@ class CalendarPortraitViewController: UIViewController, UITableViewDataSource, U
 		selectedEvent.removeAll(keepCapacity: false)
 		selectedEvent.append(self.objectsList[indexPath.row])
 		
-		println("selected: \(selectedEvent)")
+		print("selected: \(selectedEvent)")
 		
-		var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+		let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
 		
-		var controller = storyboard.instantiateViewControllerWithIdentifier("ExistingEventViewController") as! ExistingEventViewController
+		let controller = storyboard.instantiateViewControllerWithIdentifier("ExistingEventViewController") as! ExistingEventViewController
 		
-		var nav = UINavigationController(rootViewController: controller)
+		let nav = UINavigationController(rootViewController: controller)
 		
 		self.presentViewController(nav, animated: true, completion: nil)
 		
@@ -176,23 +185,21 @@ class CalendarPortraitViewController: UIViewController, UITableViewDataSource, U
 		
 		monthEvent.removeAll(keepCapacity: false)
 		
-		var query = PFQuery(className:"Schedule")
+		let query = PFQuery(className:"Schedule")
 		query.whereKey("teamId", equalTo: selectedTeamId)
 		query.whereKey("Year", equalTo: year)
 		query.whereKey("Month", equalTo: month)
-		var objects = query.findObjects()
+		let objects = query.findObjects()
 		for object in objects! {
-			println("HI")
 
 			var array = [String]()
 			array.append("\(year)")
 			array.append("\(month)")
-			var dayNum = object.objectForKey("Day") as! Int
+			let dayNum = object.objectForKey("Day") as! Int
 			array.append("\(dayNum)")
 			monthEvent.append(array)
 			
 		}
-		println("asdf\(monthEvent)")
 		
 		isRun = true
 	}
@@ -200,13 +207,12 @@ class CalendarPortraitViewController: UIViewController, UITableViewDataSource, U
 	
 	func refreshResults() {
 		
-		println("\(year) \(month) \(day)")
 
 		
 		selectedEvent.removeAll(keepCapacity: false)
 		objectsList.removeAll(keepCapacity: false)
 		
-		var query:PFQuery = PFQuery(className: "Schedule")
+		let query:PFQuery = PFQuery(className: "Schedule")
 		query.whereKey("teamId", equalTo: selectedTeamId)
 		query.whereKey("Year", equalTo: year)
 		query.whereKey("Month", equalTo: month)
@@ -218,7 +224,7 @@ class CalendarPortraitViewController: UIViewController, UITableViewDataSource, U
 				
 				for object in objects! {
 					
-					var pfObject = object as! PFObject
+					let pfObject = object as! PFObject
 					
 					self.objectsList.append(pfObject)
 					
@@ -246,10 +252,10 @@ class CalendarPortraitViewController: UIViewController, UITableViewDataSource, U
 			eventParticipantArray.removeAll(keepCapacity: false)
 			eventParticipantIdArray.removeAll(keepCapacity: false)
 			
-			var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+			let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
 			
-			var controller = storyboard.instantiateViewControllerWithIdentifier("NewEventVC") as! NewEventVC
-			var nav: UINavigationController = UINavigationController()
+			let controller = storyboard.instantiateViewControllerWithIdentifier("NewEventVC") as! NewEventVC
+			let nav: UINavigationController = UINavigationController()
 			nav.addChildViewController(controller)
 			
 			self.presentViewController(nav, animated: true, completion: nil)
@@ -273,27 +279,18 @@ class CalendarPortraitViewController: UIViewController, UITableViewDataSource, U
 	
 	@IBAction func listBtn_click(sender: AnyObject) {
 		
-		var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+		let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
 		
-		var controller = storyboard.instantiateViewControllerWithIdentifier("EventListViewController") as! EventListViewController
-		var nav: UINavigationController = UINavigationController()
+		let controller = storyboard.instantiateViewControllerWithIdentifier("EventListViewController") as! EventListViewController
+		let nav: UINavigationController = UINavigationController()
 		nav.addChildViewController(controller)
 		
 		self.presentViewController(nav, animated: true, completion: nil)
 
 		
 		
-	}
-	
-	public override func supportedInterfaceOrientations() -> Int {
-		return UIInterfaceOrientation.Portrait.rawValue
-	}
-	
-	public override func shouldAutorotate() -> Bool {
-		return false
-	}
+    }
 }
-
 
 extension CalendarPortraitViewController: CVCalendarViewDelegate
 {
@@ -316,7 +313,6 @@ extension CalendarPortraitViewController: CVCalendarViewDelegate
 		let month = dayView.date.month
 		let year = dayView.date.year
 		
-		println("\(dayView.date.week)")
 		
 		if !isRun {
 			self.updateDate()
@@ -324,7 +320,6 @@ extension CalendarPortraitViewController: CVCalendarViewDelegate
 		
 		if monthEvent.count != 0 {
 			
-			println("come in")
 			for var i=0; i<monthEvent.count; i++ {
 				if "\(month)" == monthEvent[i][1] {
 					if "\(day)" == monthEvent[i][2] {
@@ -341,7 +336,6 @@ extension CalendarPortraitViewController: CVCalendarViewDelegate
 	
 	func dotMarker(colorOnDayView dayView: CVCalendarDayView) -> UIColor {
 		let day = dayView.date.day
-		println("Day2 \(day)")
 
 		return UIColor.redColor()
 		
@@ -353,9 +347,9 @@ extension CalendarPortraitViewController: CVCalendarViewDelegate
 	
 	func didSelectDayView(dayView: CVCalendarDayView) {
 		let date = dayView.date
-		println("\(date.year) is selected!")
-		println("\(date.day) is selected!")
-		println("\(date.month) is selected!")
+		print("\(date.year) is selected!")
+		print("\(date.day) is selected!")
+		print("\(date.month) is selected!")
 		
 		
 		year = date.year

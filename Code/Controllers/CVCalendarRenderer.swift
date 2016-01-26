@@ -26,7 +26,7 @@ class CVCalendarRenderer {
     func renderWeekFrameForRect(rect: CGRect) -> CGRect {
         let width = rect.width
         let space = self.appearance.spaceBetweenWeekViews!
-        var height = CGFloat((rect.height / CGFloat(4)) - space) + space / 0.5
+        let height = CGFloat((rect.height / CGFloat(4)) - space) + space / 0.5
         
         let y: CGFloat = (height + space)
         let x: CGFloat = 0
@@ -37,7 +37,7 @@ class CVCalendarRenderer {
     func renderWeekFrameForMonthView(monthView: MonthView, weekIndex: Int) -> CGRect {
         let width = monthView.frame.width
         let space = self.appearance.spaceBetweenWeekViews!
-        var height = CGFloat((monthView.frame.height / CGFloat(monthView.numberOfWeeks!)) - space) + space / 0.5
+        let height = CGFloat((monthView.frame.height / CGFloat(monthView.numberOfWeeks!)) - space) + space / 0.5
         
         let y: CGFloat = CGFloat(weekIndex) * (height + space)
         let x: CGFloat = 0

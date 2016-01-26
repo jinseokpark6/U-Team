@@ -38,7 +38,7 @@ class ExistingEventViewController: UIViewController, UITableViewDelegate, UITabl
 	override func viewDidAppear(animated: Bool) {
 		
 		if needReload {
-			var query = PFQuery(className:"Schedule")
+			let query = PFQuery(className:"Schedule")
 			query.whereKey("objectId", equalTo:selectedEvent[0].objectId!)
 			query.getFirstObjectInBackgroundWithBlock { (object, error) -> Void in
 				
@@ -55,10 +55,10 @@ class ExistingEventViewController: UIViewController, UITableViewDelegate, UITabl
 		
 		isEditing = true
 		
-		var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+		let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
 		
-		var controller = storyboard.instantiateViewControllerWithIdentifier("NewEventVC") as! NewEventVC
-		var nav: UINavigationController = UINavigationController()
+		let controller = storyboard.instantiateViewControllerWithIdentifier("NewEventVC") as! NewEventVC
+		let nav: UINavigationController = UINavigationController()
 		nav.addChildViewController(controller)
 		
 		self.presentViewController(nav, animated: true, completion: nil)
@@ -110,24 +110,24 @@ class ExistingEventViewController: UIViewController, UITableViewDelegate, UITabl
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		
-		var cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! existingEventCell
+		let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! existingEventCell
 
 		if indexPath.section == 0 {
 			cell.titleLabel.text = selectedEvent[0].objectForKey("Title") as? String
 			
-			var startDate = selectedEvent[0].objectForKey("startTime") as! NSDate
-			var endDate = selectedEvent[0].objectForKey("endTime") as! NSDate
+			let startDate = selectedEvent[0].objectForKey("startTime") as! NSDate
+			let endDate = selectedEvent[0].objectForKey("endTime") as! NSDate
 			
-			var dateFormatter1 = NSDateFormatter()
-			var dateFormatter2 = NSDateFormatter()
+			let dateFormatter1 = NSDateFormatter()
+			let dateFormatter2 = NSDateFormatter()
 			
 			dateFormatter1.dateStyle = NSDateFormatterStyle.MediumStyle
 			dateFormatter2.timeStyle = NSDateFormatterStyle.ShortStyle
 
-			var date1 = dateFormatter1.stringFromDate(startDate)
-			var date2 = dateFormatter1.stringFromDate(endDate)
-			var startTime = dateFormatter2.stringFromDate(startDate)
-			var endTime = dateFormatter2.stringFromDate(endDate)
+			let date1 = dateFormatter1.stringFromDate(startDate)
+			let date2 = dateFormatter1.stringFromDate(endDate)
+			let startTime = dateFormatter2.stringFromDate(startDate)
+			let endTime = dateFormatter2.stringFromDate(endDate)
 			
 			if date1 == date2 {
 				cell.dateLabel.text = "\(date1)"
@@ -186,8 +186,8 @@ class ExistingEventViewController: UIViewController, UITableViewDelegate, UITabl
 
 				for var i=0; i<eventParticipantIdArray.count; i++ {
 					
-					var query = PFUser.query()
-					var object = query?.getObjectWithId(eventParticipantIdArray[i]) as? PFUser
+					let query = PFUser.query()
+					let object = query?.getObjectWithId(eventParticipantIdArray[i]) as? PFUser
 					eventParticipantArray.append(object)
 					
 				}
@@ -246,7 +246,7 @@ class ExistingEventViewController: UIViewController, UITableViewDelegate, UITabl
 //			}
 //			
 //			if status == "Player" {
-				var infoAlert = UIAlertController(title: "Add Notes", message: "Please Type Notes", preferredStyle: UIAlertControllerStyle.Alert)
+				let infoAlert = UIAlertController(title: "Add Notes", message: "Please Type Notes", preferredStyle: UIAlertControllerStyle.Alert)
 				
 				infoAlert.addTextFieldWithConfigurationHandler { (textField:UITextField!) -> Void in
 					
@@ -256,75 +256,75 @@ class ExistingEventViewController: UIViewController, UITableViewDelegate, UITabl
 				infoAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action:UIAlertAction!) -> Void in
 					
 
-					var noteTF = infoAlert.textFields?.first as? UITextField
-					var note = noteTF!.text
-					
-					if note != "" {
-						var query = PFQuery(className:"Schedule")
-						
-						println(selectedEvent[0].objectId!)
-						query.getObjectInBackgroundWithId(selectedEvent[0].objectId!, block: { (pfObject, error) -> Void in
-							
-							println("object: \(pfObject)")
-							if error == nil {
-								
-								var currentUser = PFUser.currentUser()
-								var first = currentUser?.objectForKey("firstName") as! String
-								var last = currentUser?.objectForKey("lastName") as! String
+					let noteTF = infoAlert.textFields?.first
+                    if let noteTF = noteTF {
+                        let note = noteTF.text
 
-								
-								if let oldNote = pfObject!.objectForKey("Description") as? String {
-									
-									println("OLD: \(oldNote)")
-									
-									var newNote = "\(oldNote)" + "\r\n" + "\(first) \(last) - \(note)"
-									
-									println("NEW: \(newNote)")
-									pfObject!["Description"] = newNote
-									
-								} else {
-									
-									pfObject!["Description"] = note
-								}
-								
-								pfObject!.saveInBackgroundWithBlock {
-									(success:Bool, error:NSError?) -> Void in
-									
-									if error == nil {
-										
-										var currentUser = PFUser.currentUser()
-										
-										var firstName = currentUser?.objectForKey("firstName") as! String
-										var lastName = currentUser?.objectForKey("lastName") as! String
-
-										var title = selectedEvent[0].objectForKey("Title") as! String
-										
-										var date = selectedEvent[0].createdAt!
-										
-										
-										var announcement = PFObject(className: "Team_Announcement")
-										announcement["name"] = "\(firstName) \(lastName)"
-										announcement["type"] = "Add Note"
-										announcement["title"] = title
-										announcement["date"] = date
-										announcement["eventId"] = selectedEvent[0].objectId!
-										announcement["teamId"] = selectedTeamId
-
-										
-										
-										announcement.saveInBackgroundWithBlock({ (success, error) -> Void in
-											
-											if error == nil {
-												self.resultsTable.reloadData()
-											}
-										})
-										
-									}
-								}
-							}
-						})
-					}
-
+                        
+                        if note != "" {
+                            let query = PFQuery(className:"Schedule")
+                            
+                            print(selectedEvent[0].objectId!)
+                            query.getObjectInBackgroundWithId(selectedEvent[0].objectId!, block: { (pfObject, error) -> Void in
+                                
+                                print("object: \(pfObject)")
+                                if error == nil {
+                                    
+                                    let currentUser = PFUser.currentUser()
+                                    let first = currentUser?.objectForKey("firstName") as! String
+                                    let last = currentUser?.objectForKey("lastName") as! String
+                                    
+                                    
+                                    if let oldNote = pfObject!.objectForKey("Description") as? String {
+                                        
+                                        
+                                        let newNote = "\(oldNote)" + "\r\n" + "\(first) \(last) - \(note)"
+                                        
+                                        pfObject!["Description"] = newNote
+                                        
+                                    } else {
+                                        
+                                        pfObject!["Description"] = note
+                                    }
+                                    
+                                    pfObject!.saveInBackgroundWithBlock {
+                                        (success:Bool, error:NSError?) -> Void in
+                                        
+                                        if error == nil {
+                                            
+                                            let currentUser = PFUser.currentUser()
+                                            
+                                            let firstName = currentUser?.objectForKey("firstName") as! String
+                                            let lastName = currentUser?.objectForKey("lastName") as! String
+                                            
+                                            let title = selectedEvent[0].objectForKey("Title") as! String
+                                            
+                                            let date = selectedEvent[0].createdAt!
+                                            
+                                            
+                                            let announcement = PFObject(className: "Team_Announcement")
+                                            announcement["name"] = "\(firstName) \(lastName)"
+                                            announcement["type"] = "Add Note"
+                                            announcement["title"] = title
+                                            announcement["date"] = date
+                                            announcement["eventId"] = selectedEvent[0].objectId!
+                                            announcement["teamId"] = selectedTeamId
+                                            
+                                            
+                                            
+                                            announcement.saveInBackgroundWithBlock({ (success, error) -> Void in
+                                                
+                                                if error == nil {
+                                                    self.resultsTable.reloadData()
+                                                }
+                                            })
+                                            
+                                        }
+                                    }
+                                }
+                            })
+                        }
+                    }
 				}))
 				
 				infoAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action:UIAlertAction!) -> Void in
@@ -343,7 +343,7 @@ class ExistingEventViewController: UIViewController, UITableViewDelegate, UITabl
 			eventParticipantArray.removeAll(keepCapacity: false)
 			
 			
-			var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+			let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
 			
 			let controller = storyboard.instantiateViewControllerWithIdentifier("ConversationDetailVC") as! ConversationDetailVC
 			
@@ -355,39 +355,39 @@ class ExistingEventViewController: UIViewController, UITableViewDelegate, UITabl
 		
 		if indexPath.section == 4 {
 			
-				var infoAlert = UIAlertController(title: "Notification", message: "Do you want to notify players of this event?", preferredStyle: UIAlertControllerStyle.Alert)
+				let infoAlert = UIAlertController(title: "Notification", message: "Do you want to notify players of this event?", preferredStyle: UIAlertControllerStyle.Alert)
 				
 				
 				infoAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action:UIAlertAction!) -> Void in
 					
 					
-					var teamName = selectedTeamObject[0].objectForKey("name") as! String
+					let teamName = selectedTeamObject[0].objectForKey("name") as! String
 					
-					println("PARTICIPANTS: \(eventParticipantIdArray)")
+					print("PARTICIPANTS: \(eventParticipantIdArray)")
 					
 					for var i=0; i<eventParticipantIdArray.count; i++ {
 						
-						var uQuery:PFQuery = PFUser.query()!
+						let uQuery:PFQuery = PFUser.query()!
 						
 						uQuery.whereKey("objectId", equalTo: eventParticipantIdArray[i])
 						
 						
-						var pushQuery:PFQuery = PFInstallation.query()!
+						let pushQuery:PFQuery = PFInstallation.query()!
 						pushQuery.whereKey("user", matchesQuery: uQuery)
 						
 						
-						var startDate = selectedEvent[0].objectForKey("startTime") as! NSDate
+						let startDate = selectedEvent[0].objectForKey("startTime") as! NSDate
 						
-						var dateFormatter = NSDateFormatter()
+						let dateFormatter = NSDateFormatter()
 						
 						dateFormatter.dateFormat = "EEE, MMM d, h:mm a"
 						
-						var date = dateFormatter.stringFromDate(startDate)
+						let date = dateFormatter.stringFromDate(startDate)
 
 						
-						var data = ["alert" : "\(selectedTeamName) Schedule Notification for \(date)" ,"sound" : "notification_sound.caf"]
+						let data = ["alert" : "\(selectedTeamName) Schedule Notification for \(date)" ,"sound" : "notification_sound.caf"]
 						
-						var push:PFPush = PFPush()
+						let push:PFPush = PFPush()
 						push.setQuery(pushQuery)
 						push.setData(data)
 						
@@ -395,11 +395,11 @@ class ExistingEventViewController: UIViewController, UITableViewDelegate, UITabl
 							(success: Bool, error: NSError?) -> Void in
 							
 							if (error == nil) {
-								println("push sent")
+								print("push sent")
 								
 							} else {
 								
-								println("Error sending push: \(error!.description).");
+								print("Error sending push: \(error!.description).");
 								
 							}
 						})
@@ -421,18 +421,18 @@ class ExistingEventViewController: UIViewController, UITableViewDelegate, UITabl
 		if indexPath.section == 5 {
 			
 			
-			var infoAlert = UIAlertController(title: "Delete Event", message: "Are you sure you want to delete this event?", preferredStyle: UIAlertControllerStyle.Alert)
+			let infoAlert = UIAlertController(title: "Delete Event", message: "Are you sure you want to delete this event?", preferredStyle: UIAlertControllerStyle.Alert)
 			
 			
 			infoAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action:UIAlertAction!) -> Void in
 				
-				var query = PFQuery(className:"Schedule")
+				let query = PFQuery(className:"Schedule")
 				query.whereKey("objectId", equalTo: selectedEvent[0].objectId!)
 				query.whereKey("teamId", equalTo: selectedTeamId)
 				query.getFirstObjectInBackgroundWithBlock({ (object:PFObject?, error:NSError?) -> Void in
 					
 					object!.delete()
-					println("deleted")
+					print("deleted")
 					
 					self.dismissViewControllerAnimated(true, completion: nil)
 					
@@ -460,9 +460,9 @@ class ExistingEventViewController: UIViewController, UITableViewDelegate, UITabl
 	}
 	
 	
-	internal override func supportedInterfaceOrientations() -> Int {
-		return UIInterfaceOrientation.Portrait.rawValue
-	}
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
+    }
 	
 	internal override func shouldAutorotate() -> Bool {
 		return false

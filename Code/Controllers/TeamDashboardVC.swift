@@ -21,10 +21,10 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 		
 		super.viewDidLoad()
 
-		var tabBar = self.tabBarController?.tabBar
+		let tabBar = self.tabBarController?.tabBar
 		
 		for var i=0; i<tabBar!.items?.count; i++ {
-			let tabBarItem = tabBar!.items?[i] as! UITabBarItem
+			let tabBarItem = (tabBar!.items?[i])! as UITabBarItem
 
 			tabBarItem.title = nil
 			tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
@@ -56,11 +56,11 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 		
 		self.fetchInfo()
 		
-		var query = PFQuery(className:"Team")
-		var pfObject = query.getObjectWithId(selectedTeamId)
+		let query = PFQuery(className:"Team")
+		let pfObject = query.getObjectWithId(selectedTeamId)
 		
 		if let file = pfObject?.objectForKey("photo") as? PFFile {
-			var imageData:NSData? = file.getData()
+			let imageData:NSData? = file.getData()
 			teamPhoto.image = (UIImage(data: imageData!)!)
 			
 		}
@@ -82,7 +82,7 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		
-		var cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! UITableViewCell
+		let cell = tableView.dequeueReusableCellWithIdentifier("Cell")! as UITableViewCell
 		
 		if indexPath.section == 0 {
 			if indexPath.row == 0 {
@@ -92,7 +92,7 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 				cell.textLabel!.text = "Player"
 			}
 			
-			var detailButton = UITableViewCellAccessoryType.DisclosureIndicator
+			let detailButton = UITableViewCellAccessoryType.DisclosureIndicator
 			cell.accessoryType = detailButton
 
 		}
@@ -103,8 +103,8 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 				var notiString = ""
 				
 				for var i=0; i<announcements.count; i++ {
-					var name = self.announcements[i].objectForKey("name") as! String
-					var title = self.announcements[i].objectForKey("title") as! String
+					let name = self.announcements[i].objectForKey("name") as! String
+					let title = self.announcements[i].objectForKey("title") as! String
 					
 					if self.announcements[i].objectForKey("type") as! String == "Add Event" {
 						notiString += "\(name) added '\(title)'" + "\n"
@@ -120,7 +120,7 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 
 				cell.textLabel!.numberOfLines = 0
 				cell.textLabel!.text = notiString
-				var detailButton = UITableViewCellAccessoryType.DisclosureIndicator
+				let detailButton = UITableViewCellAccessoryType.DisclosureIndicator
 				cell.accessoryType = detailButton
 
 			}
@@ -151,7 +151,7 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 						isModal = false
 						self.navigationController!.pushViewController(controller, animated: true)
 					} else {
-						println("Error querying for All Users: \(error)")
+						print("Error querying for All Users: \(error)")
 					}
 				}
 			}
@@ -164,17 +164,17 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 						isModal = false
 						self.navigationController!.pushViewController(controller, animated: true)
 					} else {
-						println("Error querying for All Users: \(error)")
+						print("Error querying for All Users: \(error)")
 					}
 				}
 			}
 		}
 		if indexPath.section == 1 {
-			var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+			let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
 			
-			var controller = storyboard.instantiateViewControllerWithIdentifier("TeamNotificationVC") as! TeamNotificationVC
+			let controller = storyboard.instantiateViewControllerWithIdentifier("TeamNotificationVC") as! TeamNotificationVC
 			
-			var nav = UINavigationController(rootViewController: controller)
+			let nav = UINavigationController(rootViewController: controller)
 			
 			self.presentViewController(nav, animated: true, completion: nil)
 			
@@ -234,26 +234,26 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 	// MARK - ATLParticipantTableViewController Delegate Methods
 	
 	func participantTableViewController(participantTableViewController: ATLParticipantTableViewController, didSelectParticipant participant: ATLParticipant) {
-		println("participant: \(participant)")
+		print("participant: \(participant)")
 
 		
 		selectedPlayersUsername.removeAllObjects()
 		
 		selectedPlayersUsername.addObject(participant.participantIdentifier)
 		selectedPlayersUsername.addObject(participant.participantIdentifier)
-		println(selectedPlayersUsername)
+		print(selectedPlayersUsername)
 		
 		
 		
 		otherProfileName = participant.fullName
 
 
-		var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+		let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
 		
 		let controller = storyboard.instantiateViewControllerWithIdentifier("UserDetailVC") as! UserDetailVC
 		
 		
-		println("STORYBOARD: \(controller.description)")
+		print("STORYBOARD: \(controller.description)")
 		
 		self.presentViewController(controller, animated: true, completion: nil)
 		
@@ -274,7 +274,7 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 					callback(NSSet(array: participants as! [AnyObject]) as Set<NSObject>)
 				}
 			} else {
-				println("Error search for participants: \(error)")
+				print("Error search for participants: \(error)")
 			}
 		}
 	}
@@ -282,7 +282,7 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 	
 	func changePhoto() {
 		
-		var image = UIImagePickerController()
+		let image = UIImagePickerController()
 		image.delegate = self
 		image.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
 		image.allowsEditing = true
@@ -295,17 +295,17 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 		self.dismissViewControllerAnimated(true, completion: nil)
 		
 		let imageData = UIImagePNGRepresentation(image)
-		let imageFile = PFFile(name: "teamPhoto.png", data: imageData)
+		let imageFile = PFFile(name: "teamPhoto.png", data: imageData!)
 		
-		var query = PFQuery(className:"Team")
-		var pfObject = query.getObjectWithId(selectedTeamId)
-		println(pfObject)
+		let query = PFQuery(className:"Team")
+		let pfObject = query.getObjectWithId(selectedTeamId)
+		print(pfObject)
 		
 		pfObject?.setObject(imageFile, forKey: "photo")
 		pfObject?.saveInBackgroundWithBlock({ (success:Bool, error:NSError?) -> Void in
 			
 			if error == nil {
-				println("success")
+				print("success")
 				self.teamPhoto.image = image
 			}
 		})
@@ -314,7 +314,7 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 	
 	func fetchInfo() {
 		
-		var query = PFQuery(className:"Team_Announcement")
+		let query = PFQuery(className:"Team_Announcement")
 		query.whereKey("teamId", equalTo:selectedTeamId)
 		query.addDescendingOrder("createdAt")
 		query.limit = 3
@@ -343,13 +343,6 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 	}
 
 
-	override func supportedInterfaceOrientations() -> Int {
-		return Int(UIInterfaceOrientationMask.Portrait.rawValue)
-	}
-
-	override func shouldAutorotate() -> Bool {
-		return false
-	}
 
 	
     /*

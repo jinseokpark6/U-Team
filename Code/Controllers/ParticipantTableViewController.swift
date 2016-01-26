@@ -8,15 +8,9 @@ class ParticipantTableViewController: ATLParticipantTableViewController {
 	
 	var cancelItem: UIBarButtonItem = UIBarButtonItem()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-		
-
-    }
 	
 	override func viewDidAppear(animated: Bool) {
 		
-		println("HI?")
 		if isModal {
 			self.navigationItem.hidesBackButton = true
 			let title = NSLocalizedString("Done",  comment: "")
@@ -39,13 +33,6 @@ class ParticipantTableViewController: ATLParticipantTableViewController {
 		
 //		self.navigationController?.popToRootViewControllerAnimated(true)
     }
-	
-	public override func supportedInterfaceOrientations() -> Int {
-		return UIInterfaceOrientation.Portrait.rawValue
-	}
-	
-	public override func shouldAutorotate() -> Bool {
-		return false
-	}
-
+    
+    
 }

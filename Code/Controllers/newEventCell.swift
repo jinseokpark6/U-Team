@@ -35,8 +35,8 @@ class newEventCell: UITableViewCell, UITextFieldDelegate {
 		textField.becomeFirstResponder()
 		
 		let touch = UITouch()
-		var location = touch.locationInView(touch.view)
-		println("asdf \(location)")
+		let location = touch.locationInView(touch.view)
+		print("asdf \(location)")
 	}
 	
 

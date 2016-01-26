@@ -35,11 +35,12 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 		
 		self.title = "Profile"
 		
-		var tabBar = self.tabBarController?.tabBar
+		let tabBar = self.tabBarController?.tabBar
 		
 		for var i=0; i<tabBar!.items?.count; i++ {
-			let tabBarItem = tabBar!.items?[i] as! UITabBarItem
-			tabBarItem.title = nil
+            if let tabBarItem = tabBar!.items?[i] {
+                tabBarItem.title = nil
+            }
 			//tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
 		}
 
@@ -59,16 +60,16 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 		self.resultsTable.tableFooterView = UIView(frame: CGRectZero)
 		
 
-		var currentUser = PFUser.currentUser()
+		let currentUser = PFUser.currentUser()
 
 		if let file = currentUser?.objectForKey("photo") as? PFFile {
 			self.resultsImageFile = file
-			var imageData:NSData? = self.resultsImageFile!.getData()
+			let imageData:NSData? = self.resultsImageFile!.getData()
 			
 			profileImageView.image = (UIImage(data: imageData!)!)
 			
 		}
-		println("2")
+		print("2")
 
 
     }
@@ -81,7 +82,7 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 	
 	func updateName() {
 		
-		var currentUser = PFUser.currentUser()
+		let currentUser = PFUser.currentUser()
 
 		if let currentUser = currentUser {
 			
@@ -93,11 +94,11 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 			if let last = currentUser.objectForKey("lastName") as? String {
 				lastName = last
 			}
-			var fullName = "\(firstName) \(lastName)"
+			let fullName = "\(firstName) \(lastName)"
 			
 			self.profileNameLabel.text = fullName
 			
-			println("3")
+			print("3")
 			
 		}
 	}
@@ -205,12 +206,12 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 				
 				self.dismissViewControllerAnimated(true, completion: { () -> Void in
 					
-					println("HI")
+					print("HI")
 					self.navigationController?.popToRootViewControllerAnimated(true)
 				})
 				
 			} else {
-				println("Failed to deauthenticate: \(error)")
+				print("Failed to deauthenticate: \(error)")
 			}
 		}
 
@@ -218,15 +219,17 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        tableView.deselectRowAtIndexPath(tableView.indexPathForSelectedRow()!, animated: false)
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        }
         
         if (indexPath.section == 0) {
             if (indexPath.row == 0) {
-				var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+				let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
 				
-				var controller = storyboard.instantiateViewControllerWithIdentifier("ProfileDetailVC") as! ProfileDetailVC
+				let controller = storyboard.instantiateViewControllerWithIdentifier("ProfileDetailVC") as! ProfileDetailVC
 			
-				var nav = UINavigationController(rootViewController: controller)
+				let nav = UINavigationController(rootViewController: controller)
 				self.presentViewController(nav, animated: true, completion: nil)
 //				self.navigationController?.pushViewController(controller, animated: true)
 
@@ -313,7 +316,7 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell: settingsCell = tableView.dequeueReusableCellWithIdentifier("Cell") as! settingsCell
+        let cell: settingsCell = tableView.dequeueReusableCellWithIdentifier("Cell") as! settingsCell
         
         if (indexPath.section == 0) {
             if (indexPath.row == 0) {
@@ -358,19 +361,19 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     
     func updateSwitch(mySwitch: UISwitch) {
 		
-		var currentUser = PFUser.currentUser()
+		let currentUser = PFUser.currentUser()
 		
 		if let currentUser = currentUser {
 			
-			println(currentUser)
+			print(currentUser)
 			if let notification = currentUser.objectForKey("notification") as? String {
-				println(notification)
+				print(notification)
 				if notification == "0" {
 					mySwitch.on = true
 				} else {
 					mySwitch.on = false
 				}
-				println("2")
+				print("2")
 			}
 		}
 		
@@ -425,7 +428,7 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 	
 	func changePhoto() {
 		
-		var image = UIImagePickerController()
+		let image = UIImagePickerController()
 		image.delegate = self
 		image.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
 		image.allowsEditing = true
@@ -438,19 +441,21 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 		self.dismissViewControllerAnimated(true, completion: nil)
 		
 		let imageData = UIImagePNGRepresentation(image)
-		let imageFile = PFFile(name: "profile1.png", data: imageData)
-		
-		var currentUser = PFUser.currentUser()
-		
-		if let user = currentUser {
-			user["photo"] = imageFile as PFFile
-			user.saveInBackgroundWithBlock({ (success:Bool, error:NSError?) -> Void in
-				if error == nil {
-					println("success")
-					self.profileImageView.image = image
-				}
-			})
-		}
+        if let imageData = imageData {
+            let imageFile = PFFile(name: "profile1.png", data: imageData)
+            
+            let currentUser = PFUser.currentUser()
+            
+            if let currentUser = currentUser {
+                currentUser["photo"] = imageFile as PFFile
+                currentUser.saveInBackgroundWithBlock({ (success:Bool, error:NSError?) -> Void in
+                    if error == nil {
+                        print("success")
+                        self.profileImageView.image = image
+                    }
+                })
+            }
+        }
 	}
 	
 	
@@ -463,11 +468,11 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 	
 	
 
-	public override func supportedInterfaceOrientations() -> Int {
-		return UIInterfaceOrientation.Portrait.rawValue
-	}
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
+    }
 	
-	public override func shouldAutorotate() -> Bool {
+	internal override func shouldAutorotate() -> Bool {
 		return false
 	}
 

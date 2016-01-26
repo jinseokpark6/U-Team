@@ -29,7 +29,7 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		println("PART: \(participantArray)")
+		print("PART: \(participantArray)")
 		if isEvent {
 			
 			self.title = "Event Participants"
@@ -37,7 +37,7 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 			if isAllUsers {
 				
 				let title = NSLocalizedString("Select All",  comment: "")
-				var saveItem = UIBarButtonItem(title: title, style: UIBarButtonItemStyle.Plain, target: self, action: Selector("handleSelectTap"))
+				let saveItem = UIBarButtonItem(title: title, style: UIBarButtonItemStyle.Plain, target: self, action: Selector("handleSelectTap"))
 				saveItem.tintColor = UIColor.whiteColor()
 				self.navigationItem.rightBarButtonItem = saveItem
 			}
@@ -52,7 +52,7 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 		
 //		self.fetchInfo()
 		
-		println("PART: \(participantArray)")
+		print("PART: \(participantArray)")
 		
 		
         // Do any additional setup after loading the view.
@@ -65,11 +65,11 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 	
 	func handleSelectTap() {
 		
-		var numRows = self.resultsTable.numberOfRowsInSection(0)
+		let numRows = self.resultsTable.numberOfRowsInSection(0)
 		
 		for var i=0; i<numRows; i++ {
-			var indexPath = NSIndexPath(forRow: i, inSection: 0)
-			var cell = self.resultsTable.cellForRowAtIndexPath(indexPath) as! conversationCell
+			let indexPath = NSIndexPath(forRow: i, inSection: 0)
+			let cell = self.resultsTable.cellForRowAtIndexPath(indexPath) as! conversationCell
 			
 			if cell.accessoryType != UITableViewCellAccessoryType.Checkmark {
 				cell.accessoryType = UITableViewCellAccessoryType.Checkmark
@@ -87,15 +87,15 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 			UserManager.sharedManager.queryForTeamUsersWithCompletion(selectedTeamId, includeCurrUser: true) { (users: NSArray?, error: NSError?) in
 				if error == nil {
 					let participants = NSSet(array: users as! [PFUser]) as! Set<PFUser>
-					println("PARTIDIFOSDINV: \(participants)")
+					print("PARTIDIFOSDINV: \(participants)")
 					for participant in participants {
 						allTeamMemberArray.append(participant)
 					}
 					
 					self.resultsTable.reloadData()
-					println(allTeamMemberArray)
+					print(allTeamMemberArray)
 				} else {
-					println("Error querying for All Users: \(error)")
+					print("Error querying for All Users: \(error)")
 				}
 			}
 			
@@ -115,7 +115,7 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 					eventParticipantIdArray = []
 				}
 				
-				var query = PFUser.query()
+				let query = PFUser.query()
 				query?.whereKey("objectId", containedIn: eventParticipantIdArray)
 				query?.addAscendingOrder("firstName")
 				query?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
@@ -125,7 +125,7 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 							eventParticipantArray.append(user)
 						}
 						self.resultsTable.reloadData()
-						println(eventParticipantArray)
+						print(eventParticipantArray)
 					}
 				})
 				
@@ -142,7 +142,7 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		
-		var cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! conversationCell
+		let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! conversationCell
 		
 		if indexPath.section == 0 {
 			
@@ -165,7 +165,7 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 		
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
-		var cell = tableView.cellForRowAtIndexPath(indexPath) as! conversationCell
+		let cell = tableView.cellForRowAtIndexPath(indexPath) as! conversationCell
 
 		
 		if indexPath.section == 0 {
@@ -187,11 +187,11 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 					
 					selectedPlayersUsername.addObject(cell.profileIdLabel.text!)
 					selectedPlayersUsername.addObject(cell.profileIdLabel.text!)
-					println(selectedPlayersUsername)
+					print(selectedPlayersUsername)
 					otherProfileName = cell.nameLabel.text!
 					
 					
-					var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+					let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
 					
 					let controller = storyboard.instantiateViewControllerWithIdentifier("UserDetailVC") as! UserDetailVC
 					
@@ -209,11 +209,11 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 				
 				selectedPlayersUsername.addObject(cell.profileIdLabel.text!)
 				selectedPlayersUsername.addObject(cell.profileIdLabel.text!)
-				println(selectedPlayersUsername)
+				print(selectedPlayersUsername)
 				otherProfileName = cell.nameLabel.text!
 				
 				
-				var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+				let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
 				
 				let controller = storyboard.instantiateViewControllerWithIdentifier("UserDetailVC") as! UserDetailVC
 				
@@ -260,15 +260,15 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 					currentUser = "(me)"
 				}
 				
-				var firstName = participantArray[indexPath.row]?.objectForKey("firstName") as! String
-				var lastName = participantArray[indexPath.row]?.objectForKey("lastName") as! String
+				let firstName = participantArray[indexPath.row]?.objectForKey("firstName") as! String
+				let lastName = participantArray[indexPath.row]?.objectForKey("lastName") as! String
 				
 				cell.nameLabel.text = "\(firstName) \(lastName) \(currentUser)"
 				cell.profileIdLabel.text = participantArray[indexPath.row]?.objectId
 				
 				if let file = participantArray[indexPath.row]?.objectForKey("photo") as? PFFile {
-					var data = file.getData()
-					var image = UIImage(data: data!)
+					let data = file.getData()
+					let image = UIImage(data: data!)
 					cell.profileImg.image = image
 				}
 				//		}
@@ -277,15 +277,15 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 			if isEvent {
 				if isAllUsers {
 					
-					var firstName = allTeamMemberArray[indexPath.row]?.objectForKey("firstName") as! String
-					var lastName = allTeamMemberArray[indexPath.row]?.objectForKey("lastName") as! String
+					let firstName = allTeamMemberArray[indexPath.row]?.objectForKey("firstName") as! String
+					let lastName = allTeamMemberArray[indexPath.row]?.objectForKey("lastName") as! String
 					
 					cell.nameLabel.text = "\(firstName) \(lastName)"
 					cell.profileIdLabel.text = allTeamMemberArray[indexPath.row]?.objectId
 					
 					if let file = allTeamMemberArray[indexPath.row]?.objectForKey("photo") as? PFFile {
-						var data = file.getData()
-						var image = UIImage(data: data!)
+						let data = file.getData()
+						let image = UIImage(data: data!)
 						cell.profileImg.image = image
 					}
 					for var i=0; i<eventParticipantArray.count; i++ {
@@ -298,15 +298,15 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 					
 				} else {
 					
-					var firstName = eventParticipantArray[indexPath.row]?.objectForKey("firstName") as! String
-					var lastName = eventParticipantArray[indexPath.row]?.objectForKey("lastName") as! String
+					let firstName = eventParticipantArray[indexPath.row]?.objectForKey("firstName") as! String
+					let lastName = eventParticipantArray[indexPath.row]?.objectForKey("lastName") as! String
 					
 					cell.nameLabel.text = "\(firstName) \(lastName)"
 					cell.profileIdLabel.text = eventParticipantArray[indexPath.row]?.objectId
 					
 					if let file = eventParticipantArray[indexPath.row]?.objectForKey("photo") as? PFFile {
-						var data = file.getData()
-						var image = UIImage(data: data!)
+						let data = file.getData()
+						let image = UIImage(data: data!)
 						cell.profileImg.image = image
 					}
 					
@@ -374,8 +374,8 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 	func addToList(id:String) {
 		eventParticipantIdArray.append(id)
 		
-		var query = PFUser.query()
-		var object = query?.getObjectWithId(id)
+		let query = PFUser.query()
+		let object = query?.getObjectWithId(id)
 		eventParticipantArray.append(object as? PFUser)
 	}
 	
@@ -383,16 +383,16 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 	
 	func conversationListViewController(conversationListViewController: ATLConversationListViewController, titleForConversation conversation: LYRConversation) -> String {
 		if conversation.metadata["title"] != nil {
-			println("title?")
+			print("title?")
 			return conversation.metadata["title"] as! String
 		} else {
 			let listOfParticipant = Array(conversation.participants)
-			println("PARTICIPANTS:\(conversation.participants)")
+			print("PARTICIPANTS:\(conversation.participants)")
 
 			let unresolvedParticipants: NSArray = UserManager.sharedManager.unCachedUserIDsFromParticipants(listOfParticipant)
-			println("UN-PARTICIPANTS:\(unresolvedParticipants)")
+			print("UN-PARTICIPANTS:\(unresolvedParticipants)")
 			let resolvedNames: NSArray = UserManager.sharedManager.resolvedNamesFromParticipants(listOfParticipant)
-			println("Re-PARTICIPANTS:\(resolvedNames)")
+			print("Re-PARTICIPANTS:\(resolvedNames)")
 
 			if (unresolvedParticipants.count > 0) {
 				UserManager.sharedManager.queryAndCacheUsersWithIDs(unresolvedParticipants as! [String]) { (participants: NSArray?, error: NSError?) in
@@ -401,7 +401,7 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 //							self.reloadCellForConversation(conversation)
 						}
 					} else {
-						println("Error querying for Users: \(error)")
+						print("Error querying for Users: \(error)")
 					}
 				}
 			}
@@ -423,7 +423,7 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 
 
 	func participantTableViewController(participantTableViewController: ATLParticipantTableViewController, didSelectParticipant participant: ATLParticipant) {
-		println("participant: \(participant)")
+		print("participant: \(participant)")
 		
 		
 //		selectedConversation.addParticipants(NSSet.setByAddingObject(participant as! AnyObject), error: nil)
@@ -446,20 +446,13 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 					callback(NSSet(array: participants as! [AnyObject]) as Set<NSObject>)
 				}
 			} else {
-				println("Error search for participants: \(error)")
+				print("Error search for participants: \(error)")
 			}
 		}
 	}
 
 	
 	
-	public override func supportedInterfaceOrientations() -> Int {
-		return UIInterfaceOrientation.Portrait.rawValue
-	}
-	
-	public override func shouldAutorotate() -> Bool {
-		return false
-	}
 
     /*
     // MARK: - Navigation

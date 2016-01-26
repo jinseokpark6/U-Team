@@ -30,17 +30,11 @@ class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		println("1")
 
         self.passwordReTextField.hidden = true
-		println("2")
-
         self.signupButton2.hidden = true
-		println("3")
         self.loginBtn2.hidden = true
-		println("4")
         self.alreadyLabel.hidden = true
-		println("5")
 		
 		
 		
@@ -49,18 +43,11 @@ class LogInViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     override func viewDidAppear(animated: Bool) {
-		println("HI")
 
 		if (PFUser.currentUser() != nil) {
-			println("HI2")
-
 			self.loginLayer()
-			println("HI3")
-
 			return
 		}
-		println("HI3")
-
 		
         self.passwordReTextField.hidden = true
         self.signupButton2.hidden = true
@@ -83,43 +70,43 @@ class LogInViewController: UIViewController {
     }
     @IBAction func signupBtn2_click(sender: AnyObject) {
         
-        var user = PFUser()
+        let user = PFUser()
         user.username = emailTextField.text
         user.password = passwordTextField.text
         user.email = emailTextField.text
         
-        var query = PFQuery(className: "_User")
-        query.whereKey("username", equalTo: emailTextField.text)
+        let query = PFQuery(className: "_User")
+        query.whereKey("username", equalTo: emailTextField.text!)
         
-        var objects = query.findObjects()
+        let objects = query.findObjects()
         
         user.signUpInBackgroundWithBlock
             { (succeeded:Bool, signUpError:NSError?) -> Void in
                 
                 if (self.passwordTextField.text != self.passwordReTextField.text) {
-                    var alert = UIAlertView(title: "Error", message: "Password does not match", delegate: self, cancelButtonTitle: "OK")
+                    let alert = UIAlertView(title: "Error", message: "Password does not match", delegate: self, cancelButtonTitle: "OK")
                     alert.show()
                 }
                 
                 if objects != nil {
-                    var alert = UIAlertView(title: "Error", message: "You already created an account", delegate: self, cancelButtonTitle: "OK")
+                    let alert = UIAlertView(title: "Error", message: "You already created an account", delegate: self, cancelButtonTitle: "OK")
                     alert.show()
                 }
                     
                     
                     if signUpError == nil {
-                        var alert = UIAlertView(title: "Congratulations!", message: "Sign Up Successful", delegate: self, cancelButtonTitle: "OK")
+                        let alert = UIAlertView(title: "Congratulations!", message: "Sign Up Successful", delegate: self, cancelButtonTitle: "OK")
                         alert.show()
                         
                         //installation
-                        var installation:PFInstallation = PFInstallation.currentInstallation()
+                        let installation:PFInstallation = PFInstallation.currentInstallation()
                         installation["user"] = PFUser.currentUser()
                         installation.saveInBackgroundWithBlock{ (succeeded:Bool, error:NSError?) -> Void in
                             
                             if succeeded == true {
-                                println("success")
+                                print("success")
                             } else {
-                                println("There is a certain \(error!.description)")
+                                print("There is a certain \(error!.description)")
                             }
                             
                         }
@@ -166,18 +153,18 @@ class LogInViewController: UIViewController {
         
 
         
-        PFUser.logInWithUsernameInBackground(emailTextField.text, password: passwordTextField.text, block: {
+        PFUser.logInWithUsernameInBackground(emailTextField.text!, password: passwordTextField.text!, block: {
             (user:PFUser?, logInError:NSError?)->Void in
             
             if logInError == nil{
-                println("Login successful")
+                print("Login successful")
                 
 
 				userName = PFUser.currentUser()!.username!
 
 				
                 //Push Notification Step 2
-                var installation:PFInstallation = PFInstallation.currentInstallation()
+                let installation:PFInstallation = PFInstallation.currentInstallation()
                 installation["user"] = PFUser.currentUser()
                 installation.saveInBackgroundWithBlock{ (succeeded:Bool, error:NSError?) -> Void in
                     
@@ -185,7 +172,7 @@ class LogInViewController: UIViewController {
 				
 				
                 
-                var currentUser = PFUser.currentUser()
+                let currentUser = PFUser.currentUser()
 
                 if let user = currentUser {
 					
@@ -218,10 +205,10 @@ class LogInViewController: UIViewController {
                 
                 
             } else{
-                var alert = UIAlertView(title: "Error", message: "Login failed", delegate: self, cancelButtonTitle: "OK")
+                let alert = UIAlertView(title: "Error", message: "Login failed", delegate: self, cancelButtonTitle: "OK")
                 alert.show()
 
-                println(logInError)
+                print(logInError)
             }
             
         })
@@ -231,37 +218,27 @@ class LogInViewController: UIViewController {
 	
 	func loginLayer() {
 		
-		println("z")
 
 		SVProgressHUD.show()
-		println("z1")
 
 		// Connect to Layer
 		// See "Quick Start - Connect" for more details
 		// https://developer.layer.com/docs/quick-start/ios#connect
 		self.layerClient.connectWithCompletion { success, error in
-			println("z2")
 
 			if (!success) {
-				println("z3")
-
-				println("Failed to connect to Layer: \(error)")
+				print("Failed to connect to Layer: \(error)")
 			} else {
-				println("z4")
-
 				let userID: String = PFUser.currentUser()!.objectId!
-				println("z5")
 
 				// Once connected, authenticate user.
 				// Check Authenticate step for authenticateLayerWithUserID source
-				println(userID)
 				self.authenticateLayerWithUserID(userID, completion: { success, error in
-					println("z6")
 
 					if (!success) {
-						println("Failed Authenticating Layer Client with error:\(error)")
+						print("Failed Authenticating Layer Client with error:\(error)")
 					} else {
-						println("Authenticated")
+						print("Authenticated")
 						self.presentConversationListViewController()
 					}
 				})
@@ -274,7 +251,7 @@ class LogInViewController: UIViewController {
 		if self.layerClient.authenticatedUserID != nil {
 			// If the layerClient is authenticated with the requested userID, complete the authentication process.
 			if self.layerClient.authenticatedUserID == userID {
-				println("Layer Authenticated as User \(self.layerClient.authenticatedUserID)")
+				print("Layer Authenticated as User \(self.layerClient.authenticatedUserID)")
 				if completion != nil {
 					completion(success: true, error: nil)
 				}
@@ -331,13 +308,13 @@ class LogInViewController: UIViewController {
 							if (completion != nil) {
 								completion(success: true, error: nil)
 							}
-							println("Layer Authenticated as User: \(authenticatedUserID)")
+							print("Layer Authenticated as User: \(authenticatedUserID)")
 						} else {
 							completion(success: false, error: error)
 						}
 					}
 				} else {
-					println("Parse Cloud function failed to be called to generate token with error: \(error)")
+					print("Parse Cloud function failed to be called to generate token with error: \(error)")
 				}
 			}
 		}
@@ -345,9 +322,6 @@ class LogInViewController: UIViewController {
 
 	
 	
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        self.view.endEditing(true)
-    }
 	
     func textFieldShouldReturn(textField: UITextField!) -> Bool {
 		
@@ -363,10 +337,10 @@ class LogInViewController: UIViewController {
     }
 
 	func presentConversationListViewController() {
-		println("HI4")
+		print("HI4")
 
 		SVProgressHUD.dismiss()
-		println("HI5")
+		print("HI5")
 		
 		let tabBarController: UITabBarController = UITabBarController()
 		let controller: ConversationListViewController = ConversationListViewController(layerClient: self.layerClient)
@@ -387,10 +361,9 @@ class LogInViewController: UIViewController {
     }
     */
 
-    override func supportedInterfaceOrientations() -> Int {
-        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
     }
-
 }
 
 

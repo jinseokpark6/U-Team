@@ -159,7 +159,7 @@ class CVCalendarView: UIView {
 
     /// IB Initialization
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
         hidden = true
     }
 }

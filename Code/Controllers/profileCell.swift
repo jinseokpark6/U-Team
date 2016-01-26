@@ -27,12 +27,12 @@ class profileCell: UITableViewCell, UITextFieldDelegate {
 	
 	func textFieldDidBeginEditing(textField: UITextField) {
 		
-		println("hiya")
+		print("hiya")
 	}
 	
 	func textFieldDidEndEditing(textField: UITextField) {
 		
-		println("hi")
+		print("hi")
 	}
 	
 	func keyboardWillHide(notification:NSNotification) {

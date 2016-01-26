@@ -54,14 +54,11 @@ class ProfileDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 	
 	
 	func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-		var pointInView:CGPoint = textField.superview!.convertPoint(textField.frame.origin, toView:self.view)
+		let pointInView:CGPoint = textField.superview!.convertPoint(textField.frame.origin, toView:self.view)
 		
-		println("Hi")
-		println("Bye \(keyboardSize):\(pointInView)")
 
 		if keyboardSize != 0.0 {
 			if keyboardSize < pointInView.y {
-				println("bye ")
 
 //				var contentOffset:CGPoint = self.resultsTable.contentOffset
 //				contentOffset.y  = pointInTable.y
@@ -69,7 +66,6 @@ class ProfileDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 //				if let accessoryView = textField.inputAccessoryView {
 //					contentOffset.y -= accessoryView.frame.size.height
 //				}
-				println("original:\(self.resultsTable.contentOffset.y)")
 				self.resultsTable.contentOffset.y += (pointInView.y - keyboardSize)
 			}
 		}
@@ -87,7 +83,6 @@ class ProfileDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 		
 
 		
-		println("bye \(keyboardSize)")
 		UIView.animateWithDuration(0.01, animations: {
 			
 			
@@ -145,7 +140,7 @@ class ProfileDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		
-		var cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! profileCell
+		let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! profileCell
 		
 		cell.selectionStyle = UITableViewCellSelectionStyle.None
 
@@ -238,7 +233,7 @@ class ProfileDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 	
 	func retrieveInfo() {
 		
-		var currentUser = PFUser.currentUser()
+		let currentUser = PFUser.currentUser()
 		
 		if let currentUser = currentUser {
 			
@@ -274,7 +269,7 @@ class ProfileDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 	
 	func addCancelBtn() {
 		let title = NSLocalizedString("Cancel",  comment: "")
-		var cancelItem = UIBarButtonItem(title: title, style: UIBarButtonItemStyle.Plain, target: self, action: Selector("handleCancelTap"))
+		let cancelItem = UIBarButtonItem(title: title, style: UIBarButtonItemStyle.Plain, target: self, action: Selector("handleCancelTap"))
 		cancelItem.tintColor = UIColor.whiteColor()
 		self.navigationItem.leftBarButtonItem = cancelItem
 	}
@@ -285,48 +280,48 @@ class ProfileDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 
 	@IBAction func saveBtn_click(sender: AnyObject) {
 		
-		var currentUser = PFUser.currentUser()
+		let currentUser = PFUser.currentUser()
 		
-		var firstNameCell = self.resultsTable.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! profileCell
+		let firstNameCell = self.resultsTable.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! profileCell
 		
 		if firstNameCell.textField.text != "" {
-			firstName = firstNameCell.textField.text
+			firstName = firstNameCell.textField.text!
 		}
 		
-		var lastNameCell = self.resultsTable.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0)) as! profileCell
+		let lastNameCell = self.resultsTable.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0)) as! profileCell
 		
 		if lastNameCell.textField.text != "" {
-			lastName = lastNameCell.textField.text
+			lastName = lastNameCell.textField.text!
 		}
 		
-		var sportsCell = self.resultsTable.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1)) as! profileCell
+		let sportsCell = self.resultsTable.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1)) as! profileCell
 		
 		if sportsCell.textField.text != "" {
-			sports = sportsCell.textField.text
+			sports = sportsCell.textField.text!
 		}
 		
-		var positionCell = self.resultsTable.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 1)) as! profileCell
+		let positionCell = self.resultsTable.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 1)) as! profileCell
 		
 		if positionCell.textField.text != "" {
-			position = positionCell.textField.text
+			position = positionCell.textField.text!
 		}
 		
-		var schoolCell = self.resultsTable.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 2)) as! profileCell
+		let schoolCell = self.resultsTable.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 2)) as! profileCell
 		
 		if schoolCell.textField.text != "" {
-			school = schoolCell.textField.text
+			school = schoolCell.textField.text!
 		}
 		
-		var regionCell = self.resultsTable.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 2)) as! profileCell
+		let regionCell = self.resultsTable.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 2)) as! profileCell
 		
 		if regionCell.textField.text != "" {
-			region = regionCell.textField.text
+			region = regionCell.textField.text!
 		}
 		
-		var phoneCell = self.resultsTable.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 3)) as! profileCell
+		let phoneCell = self.resultsTable.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 3)) as! profileCell
 		
 		if phoneCell.textField.text != "" {
-			phone = phoneCell.textField.text
+			phone = phoneCell.textField.text!
 		}
 
 		
@@ -334,7 +329,7 @@ class ProfileDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 		
 		if firstName == "" || lastName == "" {
 			
-			var infoAlert = UIAlertController(title: "Notification", message: "Please fill out the required fields", preferredStyle: UIAlertControllerStyle.Alert)
+			let infoAlert = UIAlertController(title: "Notification", message: "Please fill out the required fields", preferredStyle: UIAlertControllerStyle.Alert)
 			
 			
 			infoAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action:UIAlertAction!) -> Void in
@@ -361,16 +356,15 @@ class ProfileDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 				currentUser.saveInBackgroundWithBlock({ (success:Bool, error:NSError?) -> Void in
 					
 					if error == nil {
-						println("saved")
+						print("saved")
 						
 						if isSignUp {
 							
-							var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+							let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
 							
-							var controller = storyboard.instantiateViewControllerWithIdentifier("GroupVC") as! GroupVC
+							let controller = storyboard.instantiateViewControllerWithIdentifier("GroupVC") as! GroupVC
 							controller.layerClient = self.layerClient
 							
-							println("asdf")
 							self.navigationController?.pushViewController(controller, animated: true)
 							//						self.presentViewController(nav, animated: true, completion: nil)
 							

@@ -91,7 +91,7 @@ private extension CVCalendarViewAnimator {
     func deselectionWithFadeOutEffect() -> ((DayView, ((Bool) -> ())) -> ()) {
         return {
             dayView, completion in
-            UIView.animateWithDuration(0.6, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: nil, animations: {
+            UIView.animateWithDuration(0.6, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [], animations: {
                 dayView.setDayLabelUnhighlightedDismissingState(false) // return labels' defaults while circle view disappearing
                 if let circleView = dayView.circleView {
                     circleView.alpha = 0

@@ -17,7 +17,7 @@ class UserManager {
                         contacts.append(user)
                     }
 				}
-				println(contacts)
+				print(contacts)
             }
             completion(contacts, error)
         }
@@ -47,7 +47,7 @@ class UserManager {
 						contacts.append(user)
 					}
 				}
-				println(contacts)
+				print(contacts)
 			}
 			completion(contacts, error)
 		}
@@ -61,7 +61,7 @@ class UserManager {
 		query.addAscendingOrder("firstName")
         query.findObjectsInBackgroundWithBlock { objects, error in
             if let callback = completion {
-				println("HIYA")
+				print("HIYA")
                 callback(objects, error)
             }
         }
@@ -84,7 +84,6 @@ class UserManager {
 		}
 
 		
-		println(teamIDs)
 		
 		let query: PFQuery! = PFUser.query()
 		query.whereKey("objectId", containedIn: teamIDs)
@@ -96,8 +95,6 @@ class UserManager {
 		query.addAscendingOrder("firstName")
 		query.findObjectsInBackgroundWithBlock { objects, error in
 			if let callback = completion {
-				println("HIYA")
-				println(objects)
 				callback(objects, error)
 			}
 		}
@@ -115,7 +112,6 @@ class UserManager {
 		}
 		
 		
-		println(teamIDs)
 		
 		let query: PFQuery! = PFUser.query()
 		query.whereKey("objectId", containedIn: teamIDs)
@@ -144,7 +140,6 @@ class UserManager {
 		}
 		
 		
-		println(teamIDs)
 		
 		let query: PFQuery! = PFUser.query()
 		query.whereKey("objectId", containedIn: teamIDs)
@@ -171,8 +166,6 @@ class UserManager {
                 for user: PFUser in (objects as! [PFUser]) {
                     self.cacheUserIfNeeded(user)
 					
-					println(user)
-
                 }
             }
             if let callback = completion {

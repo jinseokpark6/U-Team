@@ -11,11 +11,12 @@ class ConversationListViewController: ATLConversationListViewController, ATLConv
         self.dataSource = self
         self.delegate = self
 		
-		var tabBar = self.tabBarController?.tabBar
+		let tabBar = self.tabBarController?.tabBar
 		
 		for var i=0; i<tabBar!.items?.count; i++ {
-			let tabBarItem = tabBar!.items?[i] as! UITabBarItem
-			tabBarItem.title = nil
+            if let tabBarItem = tabBar!.items?[i] {
+                tabBarItem.title = nil
+            }
 			//tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
 		}
 
@@ -49,10 +50,10 @@ class ConversationListViewController: ATLConversationListViewController, ATLConv
 	// MARK - shows Bottom Bar
 	
 	func showBottomBar() {
-		var tabBar = self.tabBarController?.tabBar
-		var parent = tabBar?.superview
-		var content = parent?.subviews[0] as! UIView
-		var window = parent?.superview
+		let tabBar = self.tabBarController?.tabBar
+		let parent = tabBar?.superview
+		var content = parent?.subviews[0]
+		let window = parent?.superview
 		
 		var tabFrame = tabBar!.frame
 		tabFrame.origin.y = CGRectGetMaxY(window!.bounds) - CGRectGetHeight(tabBar!.frame)
@@ -69,7 +70,7 @@ class ConversationListViewController: ATLConversationListViewController, ATLConv
 			
 			participantArray.removeAll(keepCapacity: false)
 
-			println("selected")
+			print("selected")
 			
             let controller = ConversationViewController(layerClient: self.layerClient)
             controller.conversation = conversation
@@ -86,11 +87,11 @@ class ConversationListViewController: ATLConversationListViewController, ATLConv
     }
 
     func conversationListViewController(conversationListViewController: ATLConversationListViewController, didDeleteConversation conversation: LYRConversation, deletionMode: LYRDeletionMode) {
-        println("Conversation deleted")
+        print("Conversation deleted")
     }
 
     func conversationListViewController(conversationListViewController: ATLConversationListViewController, didFailDeletingConversation conversation: LYRConversation, deletionMode: LYRDeletionMode, error: NSError?) {
-        println("Failed to delete conversation with error: \(error)")
+        print("Failed to delete conversation with error: \(error)")
     }
 
     func conversationListViewController(conversationListViewController: ATLConversationListViewController, didSearchForText searchText: String, completion: ((Set<NSObject>!) -> Void)?) {
@@ -103,7 +104,7 @@ class ConversationListViewController: ATLConversationListViewController, ATLConv
                 if let callback = completion {
                     callback(nil)
                 }
-                println("Error searching for Users by name: \(error)")
+                print("Error searching for Users by name: \(error)")
             }
         }
     }
@@ -129,7 +130,7 @@ class ConversationListViewController: ATLConversationListViewController, ATLConv
                             self.reloadCellForConversation(conversation)
                         }
                     } else {
-                        println("Error querying for Users: \(error)")
+                        print("Error querying for Users: \(error)")
                     }
                 }
             }
@@ -155,8 +156,8 @@ class ConversationListViewController: ATLConversationListViewController, ATLConv
 		isNew = true
     }
 
-	override func supportedInterfaceOrientations() -> Int {
-		return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+	override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+		return UIInterfaceOrientationMask.Portrait
 	}
 	
 	override func shouldAutorotate() -> Bool {
