@@ -8,13 +8,14 @@ Author: **Jin Seok Park**
 
 The following features **are implemented**:
 
-* [X] User can explore a visual display of all the hours and days in a week (in 30min counts)
-* [X] Read a local JSON File, parse the information, and display on the schedule view.
-* [X] Color of cells is determined by the frequency of data of each corresponding cell (the darker, the more data)
-* [X] Use pinch gesture to zoom in and out of the display
-* [X] Press on each time cell to view details
+* [X] User can create/delete message rooms (implementing Layer toolkit)
+* [X] Can create/update personal info / profile photo.
+* [X] User can create new teams or join existing teams as either coach or player.
+* [X] Coaches and Players can both create events and decide the logistics of the event (time, location, participants, notes) and send immediate notifications
+* [X] 
 
 The following features **are being implemented**:
+
 * [ ] Importing local calendar data
 * [ ] Remembering parsed data across app restarts (if <10mins)
 
