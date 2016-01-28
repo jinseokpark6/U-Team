@@ -337,10 +337,8 @@ class LogInViewController: UIViewController {
     }
 
 	func presentConversationListViewController() {
-		print("HI4")
 
 		SVProgressHUD.dismiss()
-		print("HI5")
 		
 		let tabBarController: UITabBarController = UITabBarController()
 		let controller: ConversationListViewController = ConversationListViewController(layerClient: self.layerClient)

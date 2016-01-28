@@ -42,12 +42,15 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
         self.logInViewController.delegate = self
         let logoImageView: UIImageView = UIImageView(image: UIImage(named:"UTeamLogoBlank"))
         logoImageView.contentMode = UIViewContentMode.ScaleAspectFit
-        self.logInViewController.logInView!.logo = logoImageView;
+        self.logInViewController.logInView!.logInButton?.setBackgroundImage(nil, forState: UIControlState.Normal)
+        self.logInViewController.logInView!.signUpButton?.setBackgroundImage(nil, forState: UIControlState.Normal)
+        self.logInViewController.logInView!.passwordForgottenButton?.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+        self.logInViewController.logInView!.logo = logoImageView
 		
         // Create the sign up view controller
         let signUpViewController: PFSignUpViewController = PFSignUpViewController()
 		signUpViewController.view.backgroundColor = UIColor(red: 69.0/255, green: 175.0/255, blue: 220.0/255, alpha: 1)
-        signUpViewController.signUpView!.signUpButton!.setBackgroundImage(signupButtonBackgroundImage, forState: UIControlState.Normal)
+        signUpViewController.signUpView!.signUpButton!.setBackgroundImage(nil, forState: UIControlState.Normal)
         self.logInViewController.signUpController = signUpViewController
         signUpViewController.delegate = self
         let signupImageView: UIImageView = UIImageView(image: UIImage(named:"UTeamLogoBlank"))
