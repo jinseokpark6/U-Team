@@ -211,6 +211,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		742576CC1C59E66F002438A2 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		742576CE1C59E683002438A2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		7A628A8690789E42A0B4C26B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,6 +327,8 @@
 		C8919AA31B219CE800DC4EED /* Code */ = {
 			isa = PBXGroup;
 			children = (
+				742576CE1C59E683002438A2 /* View */,
+				742576CC1C59E66F002438A2 /* ViewController */,
 				C8919AA41B219CE800DC4EED /* AppDelegate.swift */,
 				C8919AA51B219CE800DC4EED /* Controllers */,
 				C8919AAA1B219CE800DC4EED /* Extensions */,
@@ -328,19 +344,19 @@
 				99E36E111B8E9AEE00E59DC3 /* CVCalendar */,
 				992AE8341B88E4C300843FC7 /* LogInViewController.swift */,
 				C8919AA91B219CE800DC4EED /* ViewController.swift */,
+				99DF57291B8A8D62007DB8A9 /* GroupVC.swift */,
+				99DF57281B8A8D62007DB8A9 /* groupCell.swift */,
+				991EFB171B9123690037A9F2 /* TeamDashboardVC.swift */,
+				997F937D1B98C57300C450F4 /* TeamNotificationVC.swift */,
+				997F937F1B98CC5600C450F4 /* teamNotificationCell.swift */,
 				C8919AA61B219CE800DC4EED /* ConversationListViewController.swift */,
 				99F09E561B8D10BC00A70064 /* ConversationDetailVC.swift */,
 				99F09E581B8D111000A70064 /* conversationCell.swift */,
 				C8919AA71B219CE800DC4EED /* ConversationViewController.swift */,
 				C8919AA81B219CE800DC4EED /* ParticipantTableViewController.swift */,
-				99DF57281B8A8D62007DB8A9 /* groupCell.swift */,
-				99DF57291B8A8D62007DB8A9 /* GroupVC.swift */,
-				991EFB171B9123690037A9F2 /* TeamDashboardVC.swift */,
-				997F937D1B98C57300C450F4 /* TeamNotificationVC.swift */,
-				997F937F1B98CC5600C450F4 /* teamNotificationCell.swift */,
 				99779FBF1B9053B700249CBF /* CalendarPortraitViewController.swift */,
-				99E36E0D1B8E99D600E59DC3 /* calendarCell.swift */,
 				99E36E4A1B8EA55300E59DC3 /* CalendarLandscapeViewController.swift */,
+				99E36E0D1B8E99D600E59DC3 /* calendarCell.swift */,
 				99121F031B8FDB9100DD4C82 /* ExistingEventViewController.swift */,
 				99779FC11B911CA000249CBF /* existingEventCell.swift */,
 				9968D6631B8F3DB400D95FF0 /* NewEventVC.swift */,

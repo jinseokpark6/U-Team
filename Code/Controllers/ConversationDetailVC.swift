@@ -29,7 +29,6 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		print("PART: \(participantArray)")
 		if isEvent {
 			
 			self.title = "Event Participants"
@@ -52,7 +51,6 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 		
 //		self.fetchInfo()
 		
-		print("PART: \(participantArray)")
 		
 		
         // Do any additional setup after loading the view.

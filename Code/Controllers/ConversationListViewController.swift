@@ -11,21 +11,8 @@ class ConversationListViewController: ATLConversationListViewController, ATLConv
         self.dataSource = self
         self.delegate = self
 		
-		let tabBar = self.tabBarController?.tabBar
-		
-		for var i=0; i<tabBar!.items?.count; i++ {
-            if let tabBarItem = tabBar!.items?[i] {
-                tabBarItem.title = nil
-            }
-			//tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
-		}
-
-		
         self.navigationController!.navigationBar.tintColor = ATLBlueColor()
         
-//        let title = NSLocalizedString("Logout", comment: "")
-//        let logoutItem = UIBarButtonItem(title: title, style: UIBarButtonItemStyle.Plain, target: self, action: Selector("logoutButtonTapped:"))
-//        self.navigationItem.setLeftBarButtonItem(logoutItem, animated: false)
 
         let composeItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Compose, target: self, action: Selector("composeButtonTapped:"))
 		composeItem.tintColor = UIColor.whiteColor()
@@ -39,6 +26,8 @@ class ConversationListViewController: ATLConversationListViewController, ATLConv
 	override func viewDidAppear(animated: Bool) {
 		
 		self.showBottomBar()
+        self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0), atScrollPosition: .Top, animated: true)
+//        print(self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: .Top, animated: true))
 		participantArray.removeAll(keepCapacity: false)
 	}
 

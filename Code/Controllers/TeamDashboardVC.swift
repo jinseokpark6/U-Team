@@ -20,21 +20,8 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     override func viewDidLoad() {
 		
 		super.viewDidLoad()
-
-		let tabBar = self.tabBarController?.tabBar
 		
-		for var i=0; i<tabBar!.items?.count; i++ {
-			let tabBarItem = (tabBar!.items?[i])! as UITabBarItem
-
-			tabBarItem.title = nil
-			tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
-		}
-		
-
-
-		//			self.title = "Dashboard"
-
-		
+        self.title = "Dashboard"
 		
 		teamPhoto.layer.cornerRadius = teamPhoto.bounds.height / 2
 		teamPhoto.clipsToBounds = true
@@ -330,29 +317,5 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 			}
 		}
 	}
-
-	override func viewWillLayoutSubviews() {
-//		
-//		var tabFrame = self.tabBar.frame; //self.TabBar is IBOutlet of your TabBar
-//		println("TABFRMAE: \(tabFrame.size.height)")
-//		tabFrame.size.height = 59;
-//		println("TABFRMAE: \(tabFrame.size.height)")
-////		tabFrame.origin.y = self.view.frame.size.height - 80;
-//		self.tabBar.frame = tabFrame;
-
-	}
-
-
-
-	
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

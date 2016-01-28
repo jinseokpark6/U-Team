@@ -183,7 +183,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		NSNotificationCenter.defaultCenter().postNotificationName("getMessage", object: nil)
 		
 		PFPush.handlePush(userInfo)
-		print("userinfo : \(userInfo)")
 		if application.applicationState == UIApplicationState.Inactive {
 			PFAnalytics.trackAppOpenedWithRemoteNotificationPayloadInBackground([NSObject : AnyObject]?(), block: { (Bool, NSError) -> Void in
 				

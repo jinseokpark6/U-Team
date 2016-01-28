@@ -184,7 +184,6 @@ extension CVCalendarDayView {
                 layer.borderColor = UIColor.grayColor().CGColor
                 layer.borderWidth = height
                 layer.frame = CGRectMake(0, 1, CGRectGetWidth(self.frame), height)
-				print("asdfasdf")
 
                 self.topMarker = layer
                 self.layer.addSublayer(self.topMarker!)

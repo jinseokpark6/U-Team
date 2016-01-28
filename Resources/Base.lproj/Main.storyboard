@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -10,7 +11,7 @@
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="U_Team" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -28,7 +29,7 @@
         <!--Log In View Controller-->
         <scene sceneID="7cs-Sb-ou4">
             <objects>
-                <viewController storyboardIdentifier="LoginVC" id="JuB-5P-Zvw" customClass="LogInViewController" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" id="JuB-5P-Zvw" customClass="LogInViewController" customModule="U_Team" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="g9a-73-OOm"/>
                         <viewControllerLayoutGuide type="bottom" id="UVN-iw-7UU"/>
@@ -37,12 +38,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="549" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="jinseok0103" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="LQy-pW-atB">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" placeholderIntrinsicWidth="549" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="jinseok0103" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="LQy-pW-atB">
                                 <rect key="frame" x="26" y="326" width="549" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="549" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ucompleteme6@naver.com" borderStyle="roundedRect" placeholder="Email " minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="vrk-wX-HSR">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" placeholderIntrinsicWidth="549" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ucompleteme6@naver.com" borderStyle="roundedRect" placeholder="Email " minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="vrk-wX-HSR">
                                 <rect key="frame" x="26" y="288" width="549" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="go"/>
@@ -82,12 +83,12 @@
                                     <action selector="loginBtn_click:" destination="JuB-5P-Zvw" eventType="touchUpInside" id="2mr-dA-7QH"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="549" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="jinseok0103" borderStyle="roundedRect" placeholder="Re-enter Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Aql-Jd-ecM">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" placeholderIntrinsicWidth="549" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="jinseok0103" borderStyle="roundedRect" placeholder="Re-enter Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Aql-Jd-ecM">
                                 <rect key="frame" x="26" y="364" width="549" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already a User?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cB1-4W-4yz">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Already a User?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cB1-4W-4yz">
                                 <rect key="frame" x="239" y="506" width="122" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -122,7 +123,7 @@
                                     <action selector="signupBtn2_click:" destination="JuB-5P-Zvw" eventType="touchUpInside" id="wuK-X0-wMM"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2d4-nu-8wQ">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2d4-nu-8wQ">
                                 <rect key="frame" x="180" y="61" width="240" height="148"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="U" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HdR-Xp-73e">
@@ -230,7 +231,7 @@
         <!--Calendar View Controller-->
         <scene sceneID="yp7-3L-b5Z">
             <objects>
-                <viewController storyboardIdentifier="CalendarViewController" id="bgL-xW-02t" customClass="CalendarViewController" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CalendarViewController" id="bgL-xW-02t" customClass="CalendarViewController" customModule="U_Team" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nSV-Rj-5b6"/>
                         <viewControllerLayoutGuide type="bottom" id="Vbc-uq-HBn"/>
@@ -248,7 +249,7 @@
         <!--Team-->
         <scene sceneID="unx-9y-co0">
             <objects>
-                <viewController storyboardIdentifier="GroupVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wFy-vX-PgQ" customClass="GroupVC" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GroupVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wFy-vX-PgQ" customClass="GroupVC" customModule="U_Team" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cQX-4Y-iYV"/>
                         <viewControllerLayoutGuide type="bottom" id="oac-Y3-sTn"/>
@@ -261,19 +262,20 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="140" id="PBI-jH-cPx" customClass="groupCell2" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="140" id="PBI-jH-cPx" customClass="groupCell2" customModule="U_Team" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PBI-jH-cPx" id="gyx-ZG-tD0">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="139.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uce-18-R0u">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uce-18-R0u">
                                                     <rect key="frame" x="180" y="0.0" width="399" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1hc-Ke-px6">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1hc-Ke-px6">
                                                     <rect key="frame" x="14" y="5" width="130" height="130"/>
                                                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
@@ -284,7 +286,7 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rSy-EI-ISc">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rSy-EI-ISc">
                                                     <rect key="frame" x="14" y="5" width="130" height="130"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="rSy-EI-ISc" secondAttribute="height" multiplier="1:1" id="R8t-aW-63j"/>
@@ -320,8 +322,8 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="Oqs-J0-VTC" customClass="groupCell" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="Oqs-J0-VTC" customClass="groupCell" customModule="U_Team" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="64" width="182" height="182"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="182" height="182"/>
@@ -431,7 +433,7 @@
         <!--Team DashboardVC-->
         <scene sceneID="MwS-c5-qyR">
             <objects>
-                <viewController storyboardIdentifier="TeamDashboardVC" id="0o4-wZ-gZb" customClass="TeamDashboardVC" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TeamDashboardVC" id="0o4-wZ-gZb" customClass="TeamDashboardVC" customModule="U_Team" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ovz-YA-THd"/>
                         <viewControllerLayoutGuide type="bottom" id="lCi-5c-s6a"/>
@@ -466,10 +468,11 @@
                                 <rect key="frame" x="0.0" y="310" width="600" height="290"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="50" id="jbz-kv-iuv" customClass="conversationCell" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="50" id="jbz-kv-iuv" customClass="conversationCell" customModule="U_Team" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="22" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jbz-kv-iuv" id="V02-my-rfs">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UNN-zT-YjJ">
@@ -555,7 +558,7 @@
         <!--Conversation DetailVC-->
         <scene sceneID="LkW-DZ-2LH">
             <objects>
-                <viewController storyboardIdentifier="ConversationDetailVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GLx-bU-5yX" customClass="ConversationDetailVC" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ConversationDetailVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GLx-bU-5yX" customClass="ConversationDetailVC" customModule="U_Team" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pq8-hD-JnB"/>
                         <viewControllerLayoutGuide type="bottom" id="SZa-GE-oHA"/>
@@ -568,10 +571,11 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="50" id="gHo-7Z-7ce" customClass="conversationCell" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="50" id="gHo-7Z-7ce" customClass="conversationCell" customModule="U_Team" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="22" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gHo-7Z-7ce" id="p5r-l7-5OO">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile1.png" translatesAutoresizingMaskIntoConstraints="NO" id="cyJ-Ho-VN7">
@@ -653,10 +657,10 @@
             </objects>
             <point key="canvasLocation" x="1800" y="1030"/>
         </scene>
-        <!--Schedule-->
+        <!--Calendar Delegate-->
         <scene sceneID="TO5-JA-wae">
             <objects>
-                <viewController storyboardIdentifier="CalendarVC" title="Schedule" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Kwa-Ue-vGh" customClass="CalendarVC" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CalendarVC" title="Schedule" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Kwa-Ue-vGh" customClass="CalendarVC" customModule="U_Team" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KuM-5t-PXg"/>
                         <viewControllerLayoutGuide type="bottom" id="dkm-PN-5S5"/>
@@ -682,10 +686,11 @@
                                     <constraint firstAttribute="height" constant="179" id="cxl-WT-hmx"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="Klz-Iz-Ex4" userLabel="Cell" customClass="calendarCell" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="Klz-Iz-Ex4" userLabel="Cell" customClass="calendarCell" customModule="U_Team" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="22" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Klz-Iz-Ex4" id="rNs-FH-Huc">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Kc-Xy-hzU">
@@ -741,7 +746,7 @@
                                     <outlet property="delegate" destination="Kwa-Ue-vGh" id="fUp-jp-kKQ"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Zb-4m-TMp" customClass="CVCalendarView" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Zb-4m-TMp" customClass="CVCalendarView" customModule="U_Team" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="117" width="600" height="253"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="253" id="L0z-l7-6qg"/>
@@ -750,7 +755,7 @@
                                     <outlet property="calendarDelegate" destination="Kwa-Ue-vGh" id="lJE-uZ-sYf"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AmT-Hv-vVl" customClass="CVCalendarMenuView" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AmT-Hv-vVl" customClass="CVCalendarMenuView" customModule="U_Team" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="600" height="40"/>
                                 <color key="backgroundColor" red="0.89803921568627454" green="0.35686274509803922" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -797,10 +802,10 @@
             </objects>
             <point key="canvasLocation" x="1724" y="1995"/>
         </scene>
-        <!--Calendar-->
+        <!--Calendar Delegate-->
         <scene sceneID="zCP-m3-0NL">
             <objects>
-                <viewController storyboardIdentifier="CalendarPortraitViewController" title="Calendar" useStoryboardIdentifierAsRestorationIdentifier="YES" id="npv-rE-LhS" customClass="CalendarPortraitViewController" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CalendarPortraitViewController" title="Calendar" useStoryboardIdentifierAsRestorationIdentifier="YES" id="npv-rE-LhS" customClass="CalendarPortraitViewController" customModule="U_Team" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ixx-mA-dDm"/>
                         <viewControllerLayoutGuide type="bottom" id="chS-nj-sKS"/>
@@ -812,7 +817,7 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A44-ww-kmb">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W7l-L9-gUN" customClass="CVCalendarMenuView" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W7l-L9-gUN" customClass="CVCalendarMenuView" customModule="U_Team" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="105" width="600" height="30"/>
                                         <color key="backgroundColor" red="0.56972740349999995" green="1" blue="0.99151811440000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
@@ -832,7 +837,7 @@
                                             </mask>
                                         </variation>
                                     </tableView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BZU-lh-2Xc" customClass="CVCalendarView" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BZU-lh-2Xc" customClass="CVCalendarView" customModule="U_Team" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="136" width="600" height="41"/>
                                         <color key="backgroundColor" red="0.78640956520000005" green="1" blue="0.68397606730000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
@@ -873,14 +878,14 @@
                                         <color key="textColor" red="0.25882352939999997" green="0.55294117649999996" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TdD-JT-EGg" customClass="CVCalendarMenuView" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TdD-JT-EGg" customClass="CVCalendarMenuView" customModule="U_Team" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="96" width="600" height="26"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="menuViewDelegate" destination="npv-rE-LhS" id="l3s-QQ-o0S"/>
                                         </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DCn-CG-QAC" customClass="CVCalendarView" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DCn-CG-QAC" customClass="CVCalendarView" customModule="U_Team" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="121" width="600" height="337"/>
                                         <color key="backgroundColor" white="0.96916118421052633" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -904,10 +909,11 @@
                                             <constraint firstAttribute="height" id="lkG-fY-0La"/>
                                         </constraints>
                                         <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="AhC-w3-IjK" userLabel="Cell" customClass="calendarCell" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="AhC-w3-IjK" userLabel="Cell" customClass="calendarCell" customModule="U_Team" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="22" width="600" height="50"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AhC-w3-IjK" id="OTu-VN-ugc">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1r-cb-fvY">
@@ -1047,10 +1053,10 @@
             </objects>
             <point key="canvasLocation" x="253" y="1945"/>
         </scene>
-        <!--Calendar Landscape View Controller-->
+        <!--Calendar Delegate-->
         <scene sceneID="Llo-6E-6an">
             <objects>
-                <viewController storyboardIdentifier="CalendarLandscapeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="piC-oq-HPk" customClass="CalendarLandscapeViewController" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CalendarLandscapeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="piC-oq-HPk" customClass="CalendarLandscapeViewController" customModule="U_Team" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EiK-uW-Onh"/>
                         <viewControllerLayoutGuide type="bottom" id="0Yf-zN-Qwl"/>
@@ -1059,7 +1065,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0d1-zk-iMq" customClass="CVCalendarMenuView" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0d1-zk-iMq" customClass="CVCalendarMenuView" customModule="U_Team" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="49" width="600" height="30"/>
                                 <color key="backgroundColor" red="0.56972740349999995" green="1" blue="0.99151811440000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -1080,7 +1086,7 @@
                                     <outlet property="delegate" destination="piC-oq-HPk" id="EnR-sf-jb3"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4eP-FH-XCu" customClass="CVCalendarView" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4eP-FH-XCu" customClass="CVCalendarView" customModule="U_Team" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="80" width="600" height="41"/>
                                 <color key="backgroundColor" red="0.78640956520000005" green="1" blue="0.68397606730000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -1090,7 +1096,7 @@
                                     <outlet property="calendarDelegate" destination="piC-oq-HPk" id="hqd-S3-DH8"/>
                                 </connections>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BqK-rL-lpH">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BqK-rL-lpH">
                                 <rect key="frame" x="37" y="20" width="527" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1130,7 +1136,7 @@
         <!--Event List-->
         <scene sceneID="m1o-1r-oHC">
             <objects>
-                <viewController storyboardIdentifier="EventListViewController" id="YX0-HZ-8OI" customClass="EventListViewController" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EventListViewController" id="YX0-HZ-8OI" customClass="EventListViewController" customModule="U_Team" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HU2-cY-dEa"/>
                         <viewControllerLayoutGuide type="bottom" id="Rpi-Kc-V65"/>
@@ -1143,10 +1149,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="udx-Zm-4GG" customClass="eventListCell" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="udx-Zm-4GG" customClass="eventListCell" customModule="U_Team" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="86" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="udx-Zm-4GG" id="UIP-Wb-3Ph">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aLI-No-kyM">
@@ -1167,7 +1174,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egp-tV-c0b">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egp-tV-c0b">
                                                     <rect key="frame" x="16" y="14" width="477" height="21"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1224,7 +1231,7 @@
         <!--Notifications-->
         <scene sceneID="N6r-IV-0bd">
             <objects>
-                <viewController storyboardIdentifier="TeamNotificationVC" id="Kon-7J-imO" customClass="TeamNotificationVC" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TeamNotificationVC" id="Kon-7J-imO" customClass="TeamNotificationVC" customModule="U_Team" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wy1-mx-60d"/>
                         <viewControllerLayoutGuide type="bottom" id="wC8-pl-WgZ"/>
@@ -1237,10 +1244,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="78" id="SQ4-b2-IKI" customClass="teamNotificationCell" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="78" id="SQ4-b2-IKI" customClass="teamNotificationCell" customModule="U_Team" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="86" width="600" height="78"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SQ4-b2-IKI" id="LJV-x1-eob">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="77.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tj0-GX-bwg">
@@ -1313,7 +1321,7 @@
         <!--New Event-->
         <scene sceneID="r3h-tu-am2">
             <objects>
-                <viewController storyboardIdentifier="NewEventVC" id="Kqb-x6-4Nm" customClass="NewEventVC" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewEventVC" id="Kqb-x6-4Nm" customClass="NewEventVC" customModule="U_Team" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jhV-oz-UTY"/>
                         <viewControllerLayoutGuide type="bottom" id="e4v-Ig-wkz"/>
@@ -1322,14 +1330,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bdO-Am-H2f">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bdO-Am-H2f">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="tBA-Ie-FJa" customClass="newEventCell" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="tBA-Ie-FJa" customClass="newEventCell" customModule="U_Team" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="86" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tBA-Ie-FJa" id="SaG-J5-xYx">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ame-mX-Izd">
@@ -1366,16 +1375,16 @@
                                     <outlet property="delegate" destination="Kqb-x6-4Nm" id="EuX-f7-FSX"/>
                                 </connections>
                             </tableView>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vnS-jX-9EZ">
+                            <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vnS-jX-9EZ">
                                 <rect key="frame" x="0.0" y="438" width="600" height="162"/>
                                 <subviews>
-                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JTU-Ty-zFE">
+                                    <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JTU-Ty-zFE">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="162"/>
                                         <date key="date" timeIntervalSinceReferenceDate="462378994.85545599">
                                             <!--2015-08-27 14:36:34 +0000-->
                                         </date>
                                     </datePicker>
-                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mi6-d6-J75">
+                                    <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mi6-d6-J75">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="162"/>
                                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -1456,7 +1465,7 @@
         <!--Edit Notes-->
         <scene sceneID="d7z-kH-IGM">
             <objects>
-                <viewController storyboardIdentifier="NoteVC" id="cio-aq-YFM" customClass="NoteVC" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NoteVC" id="cio-aq-YFM" customClass="NoteVC" customModule="U_Team" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oQj-nd-WKy"/>
                         <viewControllerLayoutGuide type="bottom" id="ZHq-e7-2mE"/>
@@ -1465,7 +1474,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LMd-fE-4w1">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LMd-fE-4w1">
                                 <rect key="frame" x="42" y="104" width="517" height="366"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -1505,7 +1514,7 @@
         <!--Event-->
         <scene sceneID="61A-MS-Vvu">
             <objects>
-                <viewController storyboardIdentifier="ExistingEventViewController" hidesBottomBarWhenPushed="YES" id="jfn-Pg-vuI" customClass="ExistingEventViewController" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ExistingEventViewController" hidesBottomBarWhenPushed="YES" id="jfn-Pg-vuI" customClass="ExistingEventViewController" customModule="U_Team" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cB5-hf-cAa"/>
                         <viewControllerLayoutGuide type="bottom" id="TZT-W2-t04"/>
@@ -1518,10 +1527,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="523"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="125" id="GOE-Rg-JEF" customClass="existingEventCell" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="125" id="GOE-Rg-JEF" customClass="existingEventCell" customModule="U_Team" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="86" width="600" height="125"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GOE-Rg-JEF" id="NyV-NS-NPh">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="124.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6y-NF-1oG">
@@ -1617,7 +1627,7 @@
         <!--User DetailVC-->
         <scene sceneID="Rd5-vN-O4x">
             <objects>
-                <viewController storyboardIdentifier="UserDetailVC" hidesBottomBarWhenPushed="YES" id="GvG-Wb-S3d" customClass="UserDetailVC" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserDetailVC" hidesBottomBarWhenPushed="YES" id="GvG-Wb-S3d" customClass="UserDetailVC" customModule="U_Team" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="w8s-QF-Upe"/>
                         <viewControllerLayoutGuide type="bottom" id="q89-nd-5tV"/>
@@ -1626,10 +1636,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="57Y-ev-Fhu">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="57Y-ev-Fhu">
                                 <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                                 <subviews>
-                                    <collectionView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uwD-eG-d68">
+                                    <collectionView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uwD-eG-d68">
                                         <rect key="frame" x="0.0" y="0.0" width="259" height="259"/>
                                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -1642,8 +1652,8 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="cyg-qB-MK1" customClass="detailCell2" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="cyg-qB-MK1" customClass="detailCell2" customModule="U_Team" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="112" width="99" height="99"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="99" height="99"/>
@@ -1708,7 +1718,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ttE-KF-7KT">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ttE-KF-7KT">
                                 <rect key="frame" x="16" y="310" width="568" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="RyO-yi-EK1"/>
@@ -1717,7 +1727,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="x72-39-tGY">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="x72-39-tGY">
                                 <rect key="frame" x="0.0" y="420" width="600" height="180"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
@@ -1725,10 +1735,11 @@
                                     <constraint firstAttribute="height" constant="180" id="9Yr-Rd-xuE"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="u6y-C0-dg5" customClass="detailCell" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="u6y-C0-dg5" customClass="detailCell" customModule="U_Team" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="22" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u6y-C0-dg5" id="uOz-WA-l0g">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oUg-0d-zgY">
@@ -1771,7 +1782,7 @@
                                     <constraint firstAttribute="width" secondItem="YDh-M9-3gZ" secondAttribute="height" multiplier="1:1" id="Sfm-zs-EJY"/>
                                 </constraints>
                             </imageView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QmD-xA-Q1U">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QmD-xA-Q1U">
                                 <rect key="frame" x="0.0" y="460" width="600" height="140"/>
                                 <color key="backgroundColor" red="1" green="0.93023877139752187" blue="0.49580737629470406" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -1784,8 +1795,8 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="HPo-nM-isA" customClass="detailCell3" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="HPo-nM-isA" customClass="detailCell3" customModule="U_Team" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="67" height="67"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="67" height="67"/>
@@ -1814,7 +1825,7 @@
                                     <outlet property="delegate" destination="GvG-Wb-S3d" id="hWf-ps-oj0"/>
                                 </connections>
                             </collectionView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="15e-sa-4Rc">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="15e-sa-4Rc">
                                 <rect key="frame" x="0.0" y="420" width="600" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="swipe up for more info" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CmZ-xi-vPT">
@@ -1831,7 +1842,7 @@
                                     <constraint firstAttribute="height" constant="40" id="w7G-BQ-AmW"/>
                                 </constraints>
                             </view>
-                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C71-1l-srG">
+                            <view alpha="0.5" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C71-1l-srG">
                                 <rect key="frame" x="553" y="75" width="47" height="45"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yc6-pm-EJI">
@@ -1926,7 +1937,7 @@
         <!--Info-->
         <scene sceneID="HmG-VZ-0Yj">
             <objects>
-                <viewController storyboardIdentifier="ProfileDetailVC" id="0ZP-1C-BNW" customClass="ProfileDetailVC" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileDetailVC" id="0ZP-1C-BNW" customClass="ProfileDetailVC" customModule="U_Team" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uep-yZ-TRN"/>
                         <viewControllerLayoutGuide type="bottom" id="wOg-x0-K1B"/>
@@ -1939,10 +1950,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="vFl-ou-3Aa" customClass="profileCell" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="vFl-ou-3Aa" customClass="profileCell" customModule="U_Team" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="86" width="600" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vFl-ou-3Aa" id="3uR-Rh-SWB">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VCb-H0-l2j">
@@ -1999,7 +2011,7 @@
         <!--Profile-->
         <scene sceneID="Woy-tQ-Hnh">
             <objects>
-                <viewController storyboardIdentifier="SettingsVC" id="m1y-Qq-WLq" customClass="SettingsVC" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsVC" id="m1y-Qq-WLq" customClass="SettingsVC" customModule="U_Team" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Hra-Zt-NtG"/>
                         <viewControllerLayoutGuide type="bottom" id="qDP-CF-ykx"/>
@@ -2018,10 +2030,11 @@
                                 <rect key="frame" x="0.0" y="269" width="600" height="331"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="iDl-Oi-KvV" customClass="settingsCell" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="iDl-Oi-KvV" customClass="settingsCell" customModule="U_Team" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="22" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iDl-Oi-KvV" id="Lr0-Xa-mo9">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -2055,7 +2068,7 @@
                     <navigationItem key="navigationItem" title="Profile" id="LQw-8H-3yo">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="3KB-Kl-rLP">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3H6-8g-oj4">
-                                <rect key="frame" x="276" y="437" width="49" height="30"/>
+                                <rect key="frame" x="531" y="7" width="49" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Logout">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2083,10 +2096,11 @@
                         <constraint firstAttribute="height" constant="180" id="dYa-uc-T1f"/>
                     </constraints>
                     <prototypes>
-                        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="iEv-3K-xen" customClass="detailCell" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="iEv-3K-xen" customClass="detailCell" customModule="U_Team" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="22" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iEv-3K-xen" id="T3x-7A-4hQ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QdP-Mg-n1V">
@@ -2130,10 +2144,11 @@
                         <constraint firstAttribute="height" constant="180" id="MyG-Sr-kFm"/>
                     </constraints>
                     <prototypes>
-                        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="9Jr-DN-uYk" customClass="detailCell" customModule="Layer_Parse_iOS_Swift_Example" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="9Jr-DN-uYk" customClass="detailCell" customModule="U_Team" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="22" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Jr-DN-uYk" id="VnG-1r-wcw">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bDX-hw-rRy">

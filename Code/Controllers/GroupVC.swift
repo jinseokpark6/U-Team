@@ -366,22 +366,12 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 		
 		
 		let tabBarController: UITabBarController = UITabBarController()
-		
-
-
-		
-		
-		let navigationController1: UINavigationController = UINavigationController()
-		let controller1: ConversationListViewController = ConversationListViewController(layerClient: self.layerClient)
-		
-		
+        let navigationController1: UINavigationController = UINavigationController()
+        let controller1 = self.storyboard!.instantiateViewControllerWithIdentifier("TeamDashboardVC") as! TeamDashboardVC
 		let navigationController2: UINavigationController = UINavigationController()
-		let controller2 = self.storyboard!.instantiateViewControllerWithIdentifier("TeamDashboardVC") as! TeamDashboardVC
-		
-		
+		let controller2: ConversationListViewController = ConversationListViewController(layerClient: self.layerClient)
 		let navigationController3: UINavigationController = UINavigationController()
 		let controller3 = self.storyboard!.instantiateViewControllerWithIdentifier("CalendarPortraitViewController") as! CalendarPortraitViewController
-		
 		let navigationController4: UINavigationController = UINavigationController()
 		let controller4 = self.storyboard!.instantiateViewControllerWithIdentifier("SettingsVC") as! SettingsVC
 		controller4.layerClient = self.layerClient
@@ -389,50 +379,36 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 		
 		UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir Next", size: 22) as! AnyObject]
 		
-
-
 		
-		navigationController2.tabBarItem.title = nil
-		navigationController2.tabBarItem.image = UIImage(named:"activity_feed_2.png")
-		//		navigationController2.tabBarItem.imageInsets = UIEdgeInsets(top: 11, left: 0, bottom: -9, right: 0)
-		navigationController2.addChildViewController(controller2)
-
-		
-		tabBarController.addChildViewController(navigationController2)
-
-
-		navigationController1.tabBarItem.title = nil
-		navigationController1.tabBarItem.image = UIImage(named:"chat.png")
-//		navigationController1.tabBarItem.imageInsets = UIEdgeInsets(top: 11, left: 0, bottom: -9, right: 0)
+		navigationController1.tabBarItem.title = "Dashboard"
+		navigationController1.tabBarItem.image = UIImage(named:"activity_feed_2.png")
 		navigationController1.addChildViewController(controller1)
-
 		tabBarController.addChildViewController(navigationController1)
 
+		navigationController2.tabBarItem.title = "Chat"
+		navigationController2.tabBarItem.image = UIImage(named:"chat.png")
+		navigationController2.addChildViewController(controller2)
+		tabBarController.addChildViewController(navigationController2)
 
-		navigationController3.tabBarItem.title = nil
+		navigationController3.tabBarItem.title = "Calendar"
 		navigationController3.tabBarItem.image = UIImage(named:"planner.png")
-//		navigationController3.tabBarItem.imageInsets = UIEdgeInsets(top: 11, left: 0, bottom: -9, right: 0)
 		navigationController3.addChildViewController(controller3)
 		tabBarController.addChildViewController(navigationController3)
 		
-		navigationController4.tabBarItem.title = nil
+		navigationController4.tabBarItem.title = "Profile"
 		navigationController4.tabBarItem.image = UIImage(named:"guest.png")
-//		navigationController4.tabBarItem.imageInsets = UIEdgeInsets(top: 11, left: 0, bottom: -9, right: 0)
 		navigationController4.addChildViewController(controller4)
 		tabBarController.addChildViewController(navigationController4)
 
-		print("interfaces: \(navigationController2.supportedInterfaceOrientations())")
-		print("interfacessssss: \(tabBarController.supportedInterfaceOrientations())")
 
-//		tabBarController.supportedInterfaceOrientations()
 		
-		let tabBar = tabBarController.tabBar
-		
-		for var i=0; i<tabBar.items?.count; i++ {
-			let tabBarItem = (tabBar.items?[i])! as UITabBarItem
-			tabBarItem.title = nil
-			//tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
-		}
+//		let tabBar = tabBarController.tabBar
+//		
+//		for var i=0; i<tabBar.items?.count; i++ {
+//			let tabBarItem = (tabBar.items?[i])! as UITabBarItem
+//			tabBarItem.title = nil
+//			//tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
+//		}
 
 
 		self.navigationController?.presentViewController(tabBarController, animated: true, completion: nil)
@@ -466,16 +442,9 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 					resultsTeamPhoto.append("")
 				}
 			}
-			
 			self.teamView.reloadData()
 		}
-		
-
 	}
-
-	
-		
-
 }
 
 
