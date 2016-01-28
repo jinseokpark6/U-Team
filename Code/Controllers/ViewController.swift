@@ -46,6 +46,7 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
         self.logInViewController.logInView!.signUpButton?.setBackgroundImage(nil, forState: UIControlState.Normal)
         self.logInViewController.logInView!.passwordForgottenButton?.setTitleColor(UIColor.yellowColor(), forState: UIControlState.Normal)
         self.logInViewController.logInView!.logo = logoImageView
+        
 		
         // Create the sign up view controller
         let signUpViewController: PFSignUpViewController = PFSignUpViewController()
