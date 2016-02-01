@@ -26,7 +26,7 @@ The following features **will be implemented**:
 
 ## Video Walkthrough 
 
-<img src='http://i.imgur.com/nwSBJ3c.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/uP1jWsT.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
