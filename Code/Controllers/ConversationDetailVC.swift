@@ -42,18 +42,9 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 			}
 		} else {
 			self.title = "Chat Room"
-			
-			
 		}
 		
 		self.resultsTable.tableFooterView = UIView(frame: CGRectZero)
-
-		
-//		self.fetchInfo()
-		
-		
-		
-        // Do any additional setup after loading the view.
     }
 	
 	override func viewDidAppear(animated: Bool) {
@@ -85,11 +76,9 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 			UserManager.sharedManager.queryForTeamUsersWithCompletion(selectedTeamId, includeCurrUser: true) { (users: NSArray?, error: NSError?) in
 				if error == nil {
 					let participants = NSSet(array: users as! [PFUser]) as! Set<PFUser>
-					print("PARTIDIFOSDINV: \(participants)")
 					for participant in participants {
 						allTeamMemberArray.append(participant)
 					}
-					
 					self.resultsTable.reloadData()
 					print(allTeamMemberArray)
 				} else {
@@ -97,16 +86,7 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 				}
 			}
 			
-			
-			if isAllUsers {
-				
-			}
-				
-			else {
-
-				
-				
-				
+			if !isAllUsers {
 				if let participants = selectedEvent[0].objectForKey("Participants") as? [String] {
 					eventParticipantIdArray = participants
 				} else {
@@ -126,7 +106,6 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 						print(eventParticipantArray)
 					}
 				})
-				
 			}
 		}
 	}
@@ -185,18 +164,10 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 					
 					selectedPlayersUsername.addObject(cell.profileIdLabel.text!)
 					selectedPlayersUsername.addObject(cell.profileIdLabel.text!)
-					print(selectedPlayersUsername)
 					otherProfileName = cell.nameLabel.text!
 					
-					
 					let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-					
 					let controller = storyboard.instantiateViewControllerWithIdentifier("UserDetailVC") as! UserDetailVC
-					
-					//			controller.modalPresentationStyle = UIModalPresentationStyle.Popover
-					
-					
-					
 					self.presentViewController(controller, animated: true, completion: nil)
 					
 				}
@@ -212,28 +183,9 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 				
 				
 				let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-				
 				let controller = storyboard.instantiateViewControllerWithIdentifier("UserDetailVC") as! UserDetailVC
-				
-				//			controller.modalPresentationStyle = UIModalPresentationStyle.Popover
-				
-				
-				
-				self.presentViewController(controller, animated: true, completion: nil)
+                self.presentViewController(controller, animated: true, completion: nil)
 			}
-
-//			UserManager.sharedManager.queryForTeamUsersWithCompletion(selectedTeamId) { (users: NSArray?, error: NSError?) in
-//				if error == nil {
-//					let participants = NSSet(array: users as! [PFUser]) as Set<NSObject>
-//					let controller = ParticipantTableViewController(participants: participants, sortType: ATLParticipantPickerSortType.FirstName)
-//					controller.delegate = self
-//					isModal = false
-//					self.navigationController!.pushViewController(controller, animated: true)
-//				} else {
-//					println("Error querying for All Users: \(error)")
-//				}
-//			}
-		
 		}
 		
 		if indexPath.section == 1 {
@@ -247,12 +199,7 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 		if cell.nameLabel.text == "" {
 			
 			if !isEvent {
-				
-				//		if indexPath.row == 0 {
-				//			cell.textLabel!.text = "+ Add People"
-				//			cell.textLabel?.textColor = UIColor.redColor()
-				//		} else {
-				
+								
 				var currentUser = ""
 				if participantArray[indexPath.row]!.objectId! == PFUser.currentUser()!.objectId {
 					currentUser = "(me)"
@@ -335,13 +282,8 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 	}
 	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//		if isEvent {
-			return 1
-//		}
-//		else {
-//			return 2
-//		}
-	}
+        return 1
+    }
 	
 	func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 		return 30
@@ -381,16 +323,11 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 	
 	func conversationListViewController(conversationListViewController: ATLConversationListViewController, titleForConversation conversation: LYRConversation) -> String {
 		if conversation.metadata["title"] != nil {
-			print("title?")
 			return conversation.metadata["title"] as! String
 		} else {
 			let listOfParticipant = Array(conversation.participants)
-			print("PARTICIPANTS:\(conversation.participants)")
-
 			let unresolvedParticipants: NSArray = UserManager.sharedManager.unCachedUserIDsFromParticipants(listOfParticipant)
-			print("UN-PARTICIPANTS:\(unresolvedParticipants)")
 			let resolvedNames: NSArray = UserManager.sharedManager.resolvedNamesFromParticipants(listOfParticipant)
-			print("Re-PARTICIPANTS:\(resolvedNames)")
 
 			if (unresolvedParticipants.count > 0) {
 				UserManager.sharedManager.queryAndCacheUsersWithIDs(unresolvedParticipants as! [String]) { (participants: NSArray?, error: NSError?) in
@@ -421,20 +358,9 @@ class ConversationDetailVC: UIViewController, UITableViewDataSource, UITableView
 
 
 	func participantTableViewController(participantTableViewController: ATLParticipantTableViewController, didSelectParticipant participant: ATLParticipant) {
-		print("participant: \(participant)")
-		
-		
-//		selectedConversation.addParticipants(NSSet.setByAddingObject(participant as! AnyObject), error: nil)
-		
-		
-//		self.addressBarController.selectParticipant(participant)
-//		println("selectedParticipants: \(self.addressBarController.selectedParticipants)")
-		//        self.navigationController!.dismissViewControllerAnimated(true, completion: nil)
 	}
 	
 	func participantTableViewController(participantTableViewController: ATLParticipantTableViewController!, didDeselectParticipant participant: ATLParticipant!) {
-		
-		//		self.addressBarController.
 	}
 	
 	func participantTableViewController(participantTableViewController: ATLParticipantTableViewController, didSearchWithString searchText: String, completion: ((Set<NSObject>!) -> Void)?) {
