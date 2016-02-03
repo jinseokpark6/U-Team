@@ -225,6 +225,71 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		74F1F5D31C625B2B000BDA04 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				992AE8341B88E4C300843FC7 /* LogInViewController.swift */,
+				99DF57291B8A8D62007DB8A9 /* GroupVC.swift */,
+				991EFB171B9123690037A9F2 /* TeamDashboardVC.swift */,
+				997F937D1B98C57300C450F4 /* TeamNotificationVC.swift */,
+				C8919AA61B219CE800DC4EED /* ConversationListViewController.swift */,
+				99F09E561B8D10BC00A70064 /* ConversationDetailVC.swift */,
+				C8919AA71B219CE800DC4EED /* ConversationViewController.swift */,
+				C8919AA81B219CE800DC4EED /* ParticipantTableViewController.swift */,
+				99779FBF1B9053B700249CBF /* CalendarPortraitViewController.swift */,
+				99E36E4A1B8EA55300E59DC3 /* CalendarLandscapeViewController.swift */,
+				99121F031B8FDB9100DD4C82 /* ExistingEventViewController.swift */,
+				9968D6631B8F3DB400D95FF0 /* NewEventVC.swift */,
+				997F93811B990FDC00C450F4 /* NoteVC.swift */,
+				9968D6671B8F3DF400D95FF0 /* EventListViewController.swift */,
+				99E526481B93CA7100A11DCC /* SettingsVC.swift */,
+				99E526521B93CB8000A11DCC /* UserDetailVC.swift */,
+				99B377211B95EFC7008B3DD5 /* ProfileDetailVC.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		74F1F5D41C625B40000BDA04 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				99DF57281B8A8D62007DB8A9 /* groupCell.swift */,
+				997F937F1B98CC5600C450F4 /* teamNotificationCell.swift */,
+				99F09E581B8D111000A70064 /* conversationCell.swift */,
+				99E36E0D1B8E99D600E59DC3 /* calendarCell.swift */,
+				99779FC11B911CA000249CBF /* existingEventCell.swift */,
+				9968D6641B8F3DB400D95FF0 /* newEventCell.swift */,
+				997F93791B97FD9700C450F4 /* eventListCell.swift */,
+				99E526461B93CA7100A11DCC /* settingsCell.swift */,
+				99E526471B93CA7100A11DCC /* settingsCell2.swift */,
+				99E526541B93CF3900A11DCC /* detailCell.swift */,
+				99E526551B93CF3900A11DCC /* detailCell2.swift */,
+				99E526581B93CF6500A11DCC /* detailCell3.swift */,
+				99B377231B95EFEA008B3DD5 /* profileCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		74F1F5D51C625B8B000BDA04 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				997F938B1B99F2BA00C450F4 /* activity_feed_2.png */,
+				997F938C1B99F2BA00C450F4 /* chat.png */,
+				997F938D1B99F2BA00C450F4 /* guest.png */,
+				997F938E1B99F2BA00C450F4 /* planner.png */,
+				99E5265A1B93D9A400A11DCC /* profile1.png */,
+				99E5264C1B93CB6500A11DCC /* good_decision.png */,
+				99E5264D1B93CB6500A11DCC /* phone.png */,
+				99E5264E1B93CB6500A11DCC /* speech_bubble.png */,
+				99F09E541B8D103700A70064 /* soccer banner.jpg */,
+				992AE8361B88F39200843FC7 /* UTeamLogo.png */,
+				992AE8381B88F76C00843FC7 /* UTeamLogoBlank.png */,
+				C8919A921B219C8500DC4EED /* LayerParseAppIcon@2x.png */,
+				C8919A931B219C8500DC4EED /* LayerParseLogin@2x.png */,
+				C8919A941B219C8500DC4EED /* LayerParseSplash@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		7A628A8690789E42A0B4C26B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,26 +356,13 @@
 		C8919A8B1B219C8500DC4EED /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				74F1F5D51C625B8B000BDA04 /* Images */,
 				74A7E4EF1BE723200067FB5A /* AppIcon.appiconset */,
 				C8919A8C1B219C8500DC4EED /* LaunchScreen.xib */,
 				C8919A8E1B219C8500DC4EED /* Main.storyboard */,
 				C8919A901B219C8500DC4EED /* Images.xcassets */,
 				C8919A911B219C8500DC4EED /* Info.plist */,
-				997F938B1B99F2BA00C450F4 /* activity_feed_2.png */,
-				997F938C1B99F2BA00C450F4 /* chat.png */,
-				997F938D1B99F2BA00C450F4 /* guest.png */,
-				997F938E1B99F2BA00C450F4 /* planner.png */,
 				99B377251B97494D008B3DD5 /* notification_sound.caf */,
-				99E5265A1B93D9A400A11DCC /* profile1.png */,
-				99E5264C1B93CB6500A11DCC /* good_decision.png */,
-				99E5264D1B93CB6500A11DCC /* phone.png */,
-				99E5264E1B93CB6500A11DCC /* speech_bubble.png */,
-				99F09E541B8D103700A70064 /* soccer banner.jpg */,
-				992AE8361B88F39200843FC7 /* UTeamLogo.png */,
-				992AE8381B88F76C00843FC7 /* UTeamLogoBlank.png */,
-				C8919A921B219C8500DC4EED /* LayerParseAppIcon@2x.png */,
-				C8919A931B219C8500DC4EED /* LayerParseLogin@2x.png */,
-				C8919A941B219C8500DC4EED /* LayerParseSplash@2x.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -341,38 +393,10 @@
 		C8919AA51B219CE800DC4EED /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				74F1F5D41C625B40000BDA04 /* Views */,
+				74F1F5D31C625B2B000BDA04 /* View Controllers */,
 				99E36E111B8E9AEE00E59DC3 /* CVCalendar */,
-				992AE8341B88E4C300843FC7 /* LogInViewController.swift */,
 				C8919AA91B219CE800DC4EED /* ViewController.swift */,
-				99DF57291B8A8D62007DB8A9 /* GroupVC.swift */,
-				99DF57281B8A8D62007DB8A9 /* groupCell.swift */,
-				991EFB171B9123690037A9F2 /* TeamDashboardVC.swift */,
-				997F937D1B98C57300C450F4 /* TeamNotificationVC.swift */,
-				997F937F1B98CC5600C450F4 /* teamNotificationCell.swift */,
-				C8919AA61B219CE800DC4EED /* ConversationListViewController.swift */,
-				99F09E561B8D10BC00A70064 /* ConversationDetailVC.swift */,
-				99F09E581B8D111000A70064 /* conversationCell.swift */,
-				C8919AA71B219CE800DC4EED /* ConversationViewController.swift */,
-				C8919AA81B219CE800DC4EED /* ParticipantTableViewController.swift */,
-				99779FBF1B9053B700249CBF /* CalendarPortraitViewController.swift */,
-				99E36E4A1B8EA55300E59DC3 /* CalendarLandscapeViewController.swift */,
-				99E36E0D1B8E99D600E59DC3 /* calendarCell.swift */,
-				99121F031B8FDB9100DD4C82 /* ExistingEventViewController.swift */,
-				99779FC11B911CA000249CBF /* existingEventCell.swift */,
-				9968D6631B8F3DB400D95FF0 /* NewEventVC.swift */,
-				9968D6641B8F3DB400D95FF0 /* newEventCell.swift */,
-				997F93811B990FDC00C450F4 /* NoteVC.swift */,
-				9968D6671B8F3DF400D95FF0 /* EventListViewController.swift */,
-				997F93791B97FD9700C450F4 /* eventListCell.swift */,
-				99E526481B93CA7100A11DCC /* SettingsVC.swift */,
-				99E526461B93CA7100A11DCC /* settingsCell.swift */,
-				99E526471B93CA7100A11DCC /* settingsCell2.swift */,
-				99E526521B93CB8000A11DCC /* UserDetailVC.swift */,
-				99E526541B93CF3900A11DCC /* detailCell.swift */,
-				99E526551B93CF3900A11DCC /* detailCell2.swift */,
-				99E526581B93CF6500A11DCC /* detailCell3.swift */,
-				99B377211B95EFC7008B3DD5 /* ProfileDetailVC.swift */,
-				99B377231B95EFEA008B3DD5 /* profileCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
