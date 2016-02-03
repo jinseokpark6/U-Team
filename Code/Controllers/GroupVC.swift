@@ -45,13 +45,9 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 	
 	override func viewDidAppear(animated: Bool) {
 
+        refresh()
 
-		
-		refresh()
-
-		
-		if isLogout == true {
-
+		if isLogout {
 			self.dismissViewControllerAnimated(true, completion: nil)
 		}
 	}
@@ -73,7 +69,6 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 
         let cell:groupCell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! groupCell
 		
-		
         if resultsTeamName.count == indexPath.row  {
             cell.plusSign.hidden = false
             cell.textLabel.text = "Create Team"
@@ -81,35 +76,24 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 			cell.teamLabel.hidden = true
         } else {
             cell.plusSign.hidden = true
-			
-			
 			cell.textLabel.text = resultsTeamName[indexPath.row] as String
 
 			if let photo = resultsTeamPhoto[indexPath.row] as? UIImage {
-				
 				cell.imageView.image = photo
 				cell.teamLabel.hidden = true
 				cell.imageView.hidden = false
 				
 			} else {
-				
 				cell.imageView.hidden = true
 				cell.teamLabel.hidden = false
 				let name = resultsTeamName[indexPath.row] as String
 				let firstChar = Array(arrayLiteral: name)[0]
 				cell.teamLabel.text = String(firstChar)
 			}
-			
         }
-		
 		
 		cell.layer.cornerRadius = 10
 		cell.clipsToBounds = true
-		
-
-
-		
-//        cell.layer.cornerRadius = cell.frame.size.height/2
         
         return cell
     }
@@ -138,68 +122,46 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 		
 		collectionView.deselectItemAtIndexPath(indexPath, animated: true)
 		
-		
 		selectedTeamId = resultsTeamId[indexPath.row]
 		selectedTeamName = resultsTeamName[indexPath.row]
 		selectedTeamObject.removeAll(keepCapacity: false)
 		selectedTeamObject.append(resultsTeamObject[indexPath.row])
 
-		
 		teamJoin()
 	}
 	
 	func alertPasswordMatchFail() {
-		
 		let infoAlert = UIAlertController(title: "Notification", message: "Password does not match", preferredStyle: UIAlertControllerStyle.Alert)
-		
-		
 		infoAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action:UIAlertAction!) -> Void in
-			
 		}))
-		
 		self.presentViewController(infoAlert, animated: true, completion: nil)
 
 	}
 	
 	func alertTeamPassword(newTeamArray: [String]) {
-		
-		
 		let infoAlert = UIAlertController(title: "Notification", message: "Please Type Password", preferredStyle: UIAlertControllerStyle.Alert)
-		
 		infoAlert.addTextFieldWithConfigurationHandler { (textField:UITextField!) -> Void in
-			
-			textField.placeholder = "Type here"
+            textField.placeholder = "Type here"
 		}
-		
 		infoAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action:UIAlertAction!) -> Void in
 			
 			let tf = (infoAlert.textFields?.first)! as UITextField
 			let text = tf.text
-			
 			if selectedTeamObject[0].objectForKey("password") as? String == text {
-				
-				print("checked")
 				self.alertTeamJoin(newTeamArray)
-				
 			} else {
-				
 //				self.alertPasswordMatchFail()
 			}
 		}))
-		
 		infoAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action:UIAlertAction!) -> Void in
-			
-			
 		}))
-		
+        
 		self.presentViewController(infoAlert, animated: true, completion: nil)
 	}
 	
 	func alertTeamJoin(newTeamArray: [String]){
 		
 		let infoAlert = UIAlertController(title: "Join Team", message: "Do you want to join \(selectedTeamName)?", preferredStyle: UIAlertControllerStyle.Alert)
-		
-		
 		infoAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action:UIAlertAction!) -> Void in
 			
 			let currentUser = PFUser.currentUser()
@@ -230,47 +192,35 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 		if let teamArray = object?.objectForKey("team_id_array") as? [String] {
 			
 			newTeamArray = teamArray
-			
-			print("teamarray \(newTeamArray)")
-
-			
+            
 			// check if the user is already part of the team
 			var isFound = false
 			for var i=0; i<teamArray.count; i++ {
 				if teamArray[i] == selectedTeamId {
 					isFound = true
-					print("asdf \(teamArray[i])")
 					self.checkStatus()
 					break
 				}
 			}
-			
 			if !isFound {
 				
 				newTeamArray.append(selectedTeamId)
 
 				// check for password
 				if let _ = selectedTeamObject[0].objectForKey("password") as? String {
-					
 					alertTeamPassword(newTeamArray)
-					
 				} else {
-					
 					alertTeamJoin(newTeamArray)
 				}
 			}
-			
 		} else {
 			
 			newTeamArray.append(selectedTeamId)
 
 			// check for password
 			if let _ = selectedTeamObject[0].objectForKey("password") as? String {
-				
 				alertTeamPassword(newTeamArray)
-				
 			} else {
-				
 				alertTeamJoin(newTeamArray)
 			}
 		}
@@ -295,21 +245,15 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 				status = "Player"
 			}
 		}
-		
-		
 		self.enterTeam()
 
 	}
 	
 	func createStatus() {
 		
-		
-		
 		let infoAlert = UIAlertController(title: "Check Status", message: "Are you a coach or a player?", preferredStyle: UIAlertControllerStyle.Alert)
 		
-		
 		infoAlert.addAction(UIAlertAction(title: "Coach", style: .Default, handler: { (action:UIAlertAction!) -> Void in
-
 
 			let query = PFQuery(className:"Team")
 			let pfObject = query.getObjectWithId(selectedTeamId)
@@ -352,18 +296,11 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 				}
 			})
 		}))
-		
 		self.presentViewController(infoAlert, animated: true, completion: nil)
-
-		
-		
-		
-
 	}
 	
 	
 	func enterTeam() {
-		
 		
 		let tabBarController: UITabBarController = UITabBarController()
         let navigationController1: UINavigationController = UINavigationController()
@@ -378,7 +315,6 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 
 		
 		UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir Next", size: 22) as! AnyObject]
-		
 		
 		navigationController1.tabBarItem.title = "Dashboard"
 		navigationController1.tabBarItem.image = UIImage(named:"activity_feed_2.png")
@@ -400,17 +336,6 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 		navigationController4.addChildViewController(controller4)
 		tabBarController.addChildViewController(navigationController4)
 
-
-		
-//		let tabBar = tabBarController.tabBar
-//		
-//		for var i=0; i<tabBar.items?.count; i++ {
-//			let tabBarItem = (tabBar.items?[i])! as UITabBarItem
-//			tabBarItem.title = nil
-//			//tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
-//		}
-
-
 		self.navigationController?.presentViewController(tabBarController, animated: true, completion: nil)
 
 	}
@@ -418,7 +343,6 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 	
 	func refresh() {
 		
-
 		resultsTeamObject.removeAll(keepCapacity: false)
 		resultsTeamName.removeAll(keepCapacity: false)
 		resultsTeamId.removeAll(keepCapacity: false)

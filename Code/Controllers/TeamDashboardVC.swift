@@ -36,21 +36,14 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 		tapViewGesture.numberOfTapsRequired = 1
 		self.teamPhoto.addGestureRecognizer(tapViewGesture)
 		
-		
-		
 		self.resultsTable.tableFooterView = UIView(frame: CGRectZero)
+
+        
+        SVProgressHUD.show()
+		fetchAnnouncementInfo()
+        fetchTeamInfo()
+        SVProgressHUD.dismiss()
 		
-		
-		self.fetchInfo()
-		
-		let query = PFQuery(className:"Team")
-		let pfObject = query.getObjectWithId(selectedTeamId)
-		
-		if let file = pfObject?.objectForKey("photo") as? PFFile {
-			let imageData:NSData? = file.getData()
-			teamPhoto.image = (UIImage(data: imageData!)!)
-			
-		}
 
 
         // Do any additional setup after loading the view.
@@ -60,14 +53,8 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-	
-	override func viewDidAppear(animated: Bool) {
-		
-//		self.navigationController?.navigationBarHidden = false
 
-	}
-	
-	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		
 		let cell = tableView.dequeueReusableCellWithIdentifier("Cell")! as UITableViewCell
 		
@@ -299,7 +286,7 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 	}
 	
 	
-	func fetchInfo() {
+	func fetchAnnouncementInfo() {
 		
 		let query = PFQuery(className:"Team_Announcement")
 		query.whereKey("teamId", equalTo:selectedTeamId)
@@ -317,5 +304,16 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 			}
 		}
 	}
+    
+    func fetchTeamInfo() {
+        let query = PFQuery(className:"Team")
+        let pfObject = query.getObjectWithId(selectedTeamId)
+        
+        if let file = pfObject?.objectForKey("photo") as? PFFile {
+            let imageData:NSData? = file.getData()
+            teamPhoto.image = (UIImage(data: imageData!)!)
+            
+        }
+    }
 
 }
