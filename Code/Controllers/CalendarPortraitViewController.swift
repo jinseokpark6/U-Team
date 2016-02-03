@@ -56,34 +56,19 @@ class CalendarPortraitViewController: UIViewController, UITableViewDataSource, U
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		self.navigationController?.title = "Calendar"
-		
-		
-		let tabBar = self.tabBarController?.tabBar
-		
-		for var i=0; i<tabBar!.items?.count; i++ {
-			let tabBarItem = (tabBar!.items?[i])! as UITabBarItem
-			tabBarItem.title = nil
-			//tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
-		}
-
 		
 		updateDate()
-
-		
-		monthLabel.text = CVDate(date: NSDate()).globalDescription
+        
+        monthLabel.text = CVDate(date: NSDate()).globalDescription
 		
 	}
 	
 	override func viewDidAppear(animated: Bool) {
 		
 		isRun = false
-		
 		startHour = hour
 		
 		refreshResults()
-		
-
 	}
 	
 	
@@ -91,7 +76,6 @@ class CalendarPortraitViewController: UIViewController, UITableViewDataSource, U
 		super.viewDidLayoutSubviews()
 		
 		calendarView.commitCalendarViewUpdate()
-		
 		menuView.commitMenuViewUpdate()
 		
 	}
@@ -149,9 +133,7 @@ class CalendarPortraitViewController: UIViewController, UITableViewDataSource, U
 		
 		selectedEvent.removeAll(keepCapacity: false)
 		selectedEvent.append(self.objectsList[indexPath.row])
-		
-		print("selected: \(selectedEvent)")
-		
+				
 		let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
 		
 		let controller = storyboard.instantiateViewControllerWithIdentifier("ExistingEventViewController") as! ExistingEventViewController
@@ -243,38 +225,21 @@ class CalendarPortraitViewController: UIViewController, UITableViewDataSource, U
 	
 	@IBAction func addBtn_click(sender: AnyObject) {
 		
-		
-//		if status == "Coach" {
-
-			isEditing = false
-			
-			selectedEvent.removeAll(keepCapacity: false)
-			eventParticipantArray.removeAll(keepCapacity: false)
-			eventParticipantIdArray.removeAll(keepCapacity: false)
-			
-			let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-			
-			let controller = storyboard.instantiateViewControllerWithIdentifier("NewEventVC") as! NewEventVC
-			let nav: UINavigationController = UINavigationController()
-			nav.addChildViewController(controller)
-			
-			self.presentViewController(nav, animated: true, completion: nil)
-		
-//		} else {
-//			var infoAlert = UIAlertController(title: "Notification", message: "Players cannot add an event", preferredStyle: UIAlertControllerStyle.Alert)
-//			
-//			
-//			infoAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action:UIAlertAction!) -> Void in
-//				
-//			}))
-//			
-//			
-//			self.presentViewController(infoAlert, animated: true, completion: nil)
-//
-//		}
-		
-		//		self.navigationController!.pushViewController(controller, animated: true)
-		
+        
+        isEditing = false
+        
+        selectedEvent.removeAll(keepCapacity: false)
+        eventParticipantArray.removeAll(keepCapacity: false)
+        eventParticipantIdArray.removeAll(keepCapacity: false)
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        
+        let controller = storyboard.instantiateViewControllerWithIdentifier("NewEventVC") as! NewEventVC
+        let nav: UINavigationController = UINavigationController()
+        nav.addChildViewController(controller)
+        
+        self.presentViewController(nav, animated: true, completion: nil)
+				
 	}
 	
 	@IBAction func listBtn_click(sender: AnyObject) {
@@ -347,10 +312,6 @@ extension CalendarPortraitViewController: CVCalendarViewDelegate
 	
 	func didSelectDayView(dayView: CVCalendarDayView) {
 		let date = dayView.date
-		print("\(date.year) is selected!")
-		print("\(date.day) is selected!")
-		print("\(date.month) is selected!")
-		
 		
 		year = date.year
 		month = date.month

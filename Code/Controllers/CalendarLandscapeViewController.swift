@@ -33,9 +33,6 @@ class CalendarLandscapeViewController: UIViewController {
    
     }
     
-    func orientationChangedHoriz(notification: NSNotification){
-        print("turned")
-    }
 }
 
 

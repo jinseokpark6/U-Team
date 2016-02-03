@@ -39,10 +39,7 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 		self.resultsTable.tableFooterView = UIView(frame: CGRectZero)
 
         
-        SVProgressHUD.show()
-		fetchAnnouncementInfo()
-        fetchTeamInfo()
-        SVProgressHUD.dismiss()
+        refresh()
 		
 
 
@@ -279,11 +276,20 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 		pfObject?.saveInBackgroundWithBlock({ (success:Bool, error:NSError?) -> Void in
 			
 			if error == nil {
-				print("success")
 				self.teamPhoto.image = image
 			}
 		})
 	}
+    
+    func refresh() {
+        
+        SVProgressHUD.show()
+
+        fetchAnnouncementInfo()
+        fetchTeamInfo()
+
+        SVProgressHUD.dismiss()
+    }
 	
 	
 	func fetchAnnouncementInfo() {

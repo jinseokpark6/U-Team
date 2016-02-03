@@ -26,8 +26,7 @@ class ConversationListViewController: ATLConversationListViewController, ATLConv
 	override func viewDidAppear(animated: Bool) {
 		
 		self.showBottomBar()
-        self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0), atScrollPosition: .Top, animated: true)
-//        print(self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: .Top, animated: true))
+        self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0), atScrollPosition: .Bottom, animated: false)
 		participantArray.removeAll(keepCapacity: false)
 	}
 
@@ -59,7 +58,6 @@ class ConversationListViewController: ATLConversationListViewController, ATLConv
 			
 			participantArray.removeAll(keepCapacity: false)
 
-			print("selected")
 			
             let controller = ConversationViewController(layerClient: self.layerClient)
             controller.conversation = conversation
@@ -144,14 +142,6 @@ class ConversationListViewController: ATLConversationListViewController, ATLConv
 		
 		isNew = true
     }
-
-	override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-		return UIInterfaceOrientationMask.Portrait
-	}
-	
-	override func shouldAutorotate() -> Bool {
-		return false
-	}
 }
 
 //extension UINavigationController {

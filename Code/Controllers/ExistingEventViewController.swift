@@ -460,13 +460,6 @@ class ExistingEventViewController: UIViewController, UITableViewDelegate, UITabl
 	}
 	
 	
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return UIInterfaceOrientationMask.Portrait
-    }
-	
-	internal override func shouldAutorotate() -> Bool {
-		return false
-	}
 	
 
     /*

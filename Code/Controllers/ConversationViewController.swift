@@ -156,12 +156,9 @@ class ConversationViewController: ATLConversationViewController, ATLConversation
 				let controller = ParticipantTableViewController(participants: participants, sortType: ATLParticipantPickerSortType.FirstName)
 				controller.delegate = self
 				isModal = true
-				print(controller)
 				
 				let nav = UINavigationController(rootViewController: controller)
-
 				self.presentViewController(nav, animated: true, completion: nil)
-				print("HI")
 			} else {
 				print("Error querying for All Users: \(error)")
 			}
@@ -190,15 +187,11 @@ class ConversationViewController: ATLConversationViewController, ATLConversation
     // MARK - ATLParticipantTableViewController Delegate Methods
 
     func participantTableViewController(participantTableViewController: ATLParticipantTableViewController, didSelectParticipant participant: ATLParticipant) {
-        print("participant: \(participant)")
         self.addressBarController.selectParticipant(participant)
-        print("selectedParticipants: \(self.addressBarController.selectedParticipants)")
-//        self.navigationController!.dismissViewControllerAnimated(true, completion: nil)
     }
 	
 	func participantTableViewController(participantTableViewController: ATLParticipantTableViewController!, didDeselectParticipant participant: ATLParticipant!) {
 		
-//		self.addressBarController.
 	}
 
     func participantTableViewController(participantTableViewController: ATLParticipantTableViewController, didSearchWithString searchText: String, completion: ((Set<NSObject>!) -> Void)?) {
@@ -220,7 +213,6 @@ class ConversationViewController: ATLConversationViewController, ATLConversation
 		
 		isEvent = false
 		
-		print("APRSDF ARRAY: \(participantArray)")
 		let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
 		
 		let controller = storyboard.instantiateViewControllerWithIdentifier("ConversationDetailVC") as! ConversationDetailVC

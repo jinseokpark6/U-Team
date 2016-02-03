@@ -314,14 +314,13 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 		controller4.layerClient = self.layerClient
 
 		
-		UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir Next", size: 22) as! AnyObject]
 		
 		navigationController1.tabBarItem.title = "Dashboard"
 		navigationController1.tabBarItem.image = UIImage(named:"activity_feed_2.png")
 		navigationController1.addChildViewController(controller1)
 		tabBarController.addChildViewController(navigationController1)
 
-		navigationController2.tabBarItem.title = "Chat"
+		navigationController2.tabBarItem.title = "Messages"
 		navigationController2.tabBarItem.image = UIImage(named:"chat.png")
 		navigationController2.addChildViewController(controller2)
 		tabBarController.addChildViewController(navigationController2)
@@ -343,6 +342,8 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 	
 	func refresh() {
 		
+        SVProgressHUD.show()
+
 		resultsTeamObject.removeAll(keepCapacity: false)
 		resultsTeamName.removeAll(keepCapacity: false)
 		resultsTeamId.removeAll(keepCapacity: false)
@@ -368,43 +369,10 @@ class GroupVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 			}
 			self.teamView.reloadData()
 		}
+        
+        SVProgressHUD.dismiss()
+
 	}
 }
-
-
-extension ATLAddressBarViewController {
-	
-	public override func shouldAutorotate() -> Bool {
-		return false
-	}
-}
-
-
-extension ATLTypingIndicatorViewController {
-	public override func shouldAutorotate() -> Bool {
-		return false
-	}
-}
-
-extension UITabBarController {
-	
-	public override func shouldAutorotate() -> Bool {
-		return false
-	}
-}
-
-extension UIAlertController {
-	public override func shouldAutorotate() -> Bool {
-		return false
-	}
-}
-
-extension UINavigationController {
-	public override func shouldAutorotate() -> Bool {
-		return false
-	}
-}
-
-
 
 

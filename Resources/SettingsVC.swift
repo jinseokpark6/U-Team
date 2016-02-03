@@ -33,19 +33,6 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		self.title = "Profile"
-		
-		let tabBar = self.tabBarController?.tabBar
-		
-		for var i=0; i<tabBar!.items?.count; i++ {
-            if let tabBarItem = tabBar!.items?[i] {
-                tabBarItem.title = nil
-            }
-			//tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
-		}
-
-		
-		
 		self.profileImageView.layer.cornerRadius = self.profileImageView.bounds.height / 2
 		self.profileImageView.clipsToBounds = true
 		self.profileImageView.userInteractionEnabled = true
@@ -69,9 +56,6 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 			profileImageView.image = (UIImage(data: imageData!)!)
 			
 		}
-		print("2")
-
-
     }
 	
 	override func viewDidAppear(animated: Bool) {
@@ -98,101 +82,11 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 			
 			self.profileNameLabel.text = fullName
 			
-			print("3")
 			
 		}
 	}
     
     
-    
-//    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-//        return 1
-//    }
-//    
-//    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return resultsImages.count
-//    }
-//    
-//    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-//        
-//        
-//        var cell:settingsCell2 = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! settingsCell2
-//        
-//		
-//        if resultsImages.count != indexPath.row {
-//            
-//            cell.imageView.image = resultsImages[indexPath.row]
-//        }
-//        
-//        //        cell.backgroundColor = UIColor.blueColor()
-//        return cell
-//    }
-//    
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-//        
-//        return CGSize(width: self.collectionView.frame.size.height, height: self.collectionView.frame.size.height)
-//    }
-//    
-//    
-//    
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-//        
-//        
-//        return UIEdgeInsetsMake(0,0,0,0)
-//        
-//    }
-//    
-//
-//    
-//	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-//		return 0
-//	}
-//	
-//	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-//		return 0
-//	}
-	
-    
-    
-    
-    
-
-//    @IBAction func changePhoto(sender: AnyObject) {
-//        
-//        var image = UIImagePickerController()
-//        image.delegate = self
-//        image.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-//        image.allowsEditing = true
-//        self.presentViewController(image, animated: true, completion: nil)
-//
-//    }
-//    
-//    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-//        
-//        profileImageView.image = image
-//        self.dismissViewControllerAnimated(true, completion: nil)
-//        
-//        
-//        
-//        let imageData = UIImagePNGRepresentation(self.profileImageView.image)
-//        let imageFile = PFFile(name: "profile.png", data: imageData)
-//        
-//        var currentUser = PFUser.currentUser()
-//
-//        if let user = currentUser {
-//
-//            user["photo"] = imageFile as PFFile
-//        
-//            user.saveInBackgroundWithBlock({ (success:Bool, error:NSError?) -> Void in
-//            
-//                if error == nil {
-//                
-//                } else {
-//                    println(error!.description)
-//                }
-//        })
-//        }
-//    }
 
     
     
@@ -206,7 +100,6 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 				
 				self.dismissViewControllerAnimated(true, completion: { () -> Void in
 					
-					print("HI")
 					self.navigationController?.popToRootViewControllerAnimated(true)
 				})
 				
@@ -231,7 +124,6 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 			
 				let nav = UINavigationController(rootViewController: controller)
 				self.presentViewController(nav, animated: true, completion: nil)
-//				self.navigationController?.pushViewController(controller, animated: true)
 
 			}
             if (indexPath.row == 1) {
@@ -249,67 +141,6 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 				self.dismissViewControllerAnimated(true, completion: nil)
 
 				
-//				var query = PFQuery(className:"Team")
-//				query.whereKey("objectId", equalTo:selectedTeamId)
-//				query.getFirstObjectInBackgroundWithBlock({ (object, error) -> Void in
-//					
-//					if error == nil {
-//						
-//						if let object = object {
-//							if status == "Coach" {
-//								
-//								var coachArray = object.objectForKey("coach") as! [String]
-//								
-//								for var i=0; i<coachArray.count; i++ {
-//									if coachArray[i] == PFUser.currentUser()!.objectId! {
-//										
-//										coachArray.removeAtIndex(i)
-//										break
-//									}
-//								}
-//								
-//								object["coach"] = coachArray
-//								object.saveInBackgroundWithBlock { (success, error) -> Void in
-//
-//									if error == nil {
-//										
-//										self.dismissViewControllerAnimated(true, completion: { () -> Void in
-//											
-//											println("HI")
-//											self.navigationController?.popToRootViewControllerAnimated(true)
-//										})
-//									}
-//								}
-//							}
-//							
-//							if status == "Player" {
-//								
-//								var playerArray = object.objectForKey("players") as! [String]
-//								
-//								for var i=0; i<playerArray.count; i++ {
-//									if playerArray[i] == PFUser.currentUser()!.objectId! {
-//										
-//										playerArray.removeAtIndex(i)
-//										break
-//									}
-//								}
-//								
-//								object["players"] = playerArray
-//								object.saveInBackgroundWithBlock { (success, error) -> Void in
-//									
-//									if error == nil {
-//										
-//										self.dismissViewControllerAnimated(true, completion: { () -> Void in
-//											
-//											println("HI")
-//											self.navigationController?.popToRootViewControllerAnimated(true)
-//										})
-//									}
-//								}
-//							}
-//						}
-//					}
-//				})
 			}
 		}
     }
@@ -468,15 +299,6 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
 	
 	
 
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return UIInterfaceOrientationMask.Portrait
-    }
-	
-	internal override func shouldAutorotate() -> Bool {
-		return false
-	}
-
-	
 
     /*
     // MARK: - Navigation
