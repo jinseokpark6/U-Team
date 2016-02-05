@@ -15,7 +15,11 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 	@IBOutlet weak var resultsTable: UITableView!
 	
 	var announcements: [PFObject] = [PFObject]()
-	
+    
+    let color1 = UIColor(red: 174, green: 187, blue: 199, alpha: 1.0)
+    let color2 = UIColor(red: 155, green: 175, blue: 142, alpha: 1.0)
+    let color3 = UIColor(red: 219, green: 173, blue: 114, alpha: 1.0)
+
 	
     override func viewDidLoad() {
 		
@@ -78,13 +82,13 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 					let title = self.announcements[i].objectForKey("title") as! String
 					
 					if self.announcements[i].objectForKey("type") as! String == "Add Event" {
-						notiString += "\(name) added '\(title)'" + "\n"
+						notiString += "New Event: '\(title)'" + "\n"
 					}
 					if self.announcements[i].objectForKey("type") as! String == "Update Event" {
-						notiString += "\(name) updated '\(title)'" + "\n"
+						notiString += "Event Update: '\(title)'" + "\n"
 					}
 					if self.announcements[i].objectForKey("type") as! String == "Add Note" {
-						notiString += "\(name) added a note to '\(title)'" + "\n"
+						notiString += "New Note: '\(title)'" + "\n"
 					}
 				}
 				notiString += "more..."
@@ -148,9 +152,7 @@ class TeamDashboardVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 			let nav = UINavigationController(rootViewController: controller)
 			
 			self.presentViewController(nav, animated: true, completion: nil)
-			
-//			self.navigationController!.pushViewController(controller, animated: true)
-			
+						
 		}
 	}
 	

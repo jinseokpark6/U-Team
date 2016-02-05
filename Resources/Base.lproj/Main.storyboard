@@ -1569,9 +1569,10 @@
                                                 <constraint firstItem="5jj-pc-9Me" firstAttribute="leading" secondItem="f6y-NF-1oG" secondAttribute="leading" id="PNK-3V-9t0"/>
                                                 <constraint firstItem="5jj-pc-9Me" firstAttribute="top" secondItem="hoI-mr-Qet" secondAttribute="bottom" constant="8" symbolic="YES" id="PXe-jP-WZ7"/>
                                                 <constraint firstItem="jeg-7T-d1k" firstAttribute="trailing" secondItem="NyV-NS-NPh" secondAttribute="trailingMargin" id="QLk-y0-G7y"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="jeg-7T-d1k" secondAttribute="leading" id="TIs-Xg-F60"/>
                                                 <constraint firstItem="hoI-mr-Qet" firstAttribute="centerX" secondItem="NyV-NS-NPh" secondAttribute="centerX" id="cLt-t3-9UH"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="5jj-pc-9Me" secondAttribute="bottom" constant="32" id="fvs-Mg-Awb"/>
-                                                <constraint firstAttribute="centerY" secondItem="jeg-7T-d1k" secondAttribute="centerY" constant="0.5" id="kaU-Zr-k4e"/>
+                                                <constraint firstAttribute="centerY" secondItem="jeg-7T-d1k" secondAttribute="centerY" id="kaU-Zr-k4e"/>
                                                 <constraint firstItem="jeg-7T-d1k" firstAttribute="leading" secondItem="NyV-NS-NPh" secondAttribute="leadingMargin" id="nF1-fG-HTk"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="f6y-NF-1oG" secondAttribute="bottom" constant="13" id="pkv-SP-Reg"/>
                                                 <constraint firstItem="hoI-mr-Qet" firstAttribute="top" secondItem="NyV-NS-NPh" secondAttribute="topMargin" id="rI1-Kx-TNd"/>

@@ -146,7 +146,7 @@ class ExistingEventViewController: UIViewController, UITableViewDelegate, UITabl
 				cell.textLabel!.text = "Location"
 				cell.locationLabel.text = "\(location)"
 			} else {
-				cell.textLabel!.text = "Location"
+				cell.locationLabel.text = "Location"
 			}
 			
 			cell.selectionStyle = UITableViewCellSelectionStyle.None;

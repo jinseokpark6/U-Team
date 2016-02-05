@@ -38,40 +38,34 @@ class TeamNotificationVC: UIViewController, UITableViewDelegate, UITableViewData
 		let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! teamNotificationCell
 		
 		let name = self.announcements[indexPath.row].objectForKey("name") as! String
-		
 		let title = self.announcements[indexPath.row].objectForKey("title") as! String
-		
 		let date = self.announcements[indexPath.row].objectForKey("date") as! NSDate
 		
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "EEE, MMM d, h:mm a"
 		let selectedDate = dateFormatter.stringFromDate(date)
 
+        let color1 = UIColor(red: 174/256.0, green: 187/256.0, blue: 199/256.0, alpha: 0.5)
+        let color2 = UIColor(red: 155/256.0, green: 175/256.0, blue: 142/256.0, alpha: 0.5)
+        let color3 = UIColor(red: 219/256.0, green: 173/256.0, blue: 114/256.0, alpha: 0.5)
+        
+
 		
 		if self.announcements[indexPath.row].objectForKey("type") as! String == "Add Event" {
-			
-			
-			cell.descriptionLabel.text = "\(name) ADDED an event '\(title)'" + "\n" + "for \(selectedDate)"
-
-
+			cell.descriptionLabel.text = "New Event: '\(title)'" + "\n" + "by \(name)"
+            cell.backgroundColor = color1
+            print(color1)
 		}
-		if self.announcements[indexPath.row].objectForKey("type") as! String == "Update Event" {
-			
-			cell.descriptionLabel.text = "\(name) UPDATED an event '\(title)'" + "\n" + "for \(selectedDate)"
-
-			
+		else if self.announcements[indexPath.row].objectForKey("type") as! String == "Update Event" {
+			cell.descriptionLabel.text = "Update: '\(title)'" + "\n" + "by \(name)"
+            cell.backgroundColor = color2
 		}
-		if self.announcements[indexPath.row].objectForKey("type") as! String == "Add Note" {
-			
-			cell.descriptionLabel.text = "\(name) added a NOTE to event '\(title)'" + "\n" + "for \(selectedDate)"
-			
+		else if self.announcements[indexPath.row].objectForKey("type") as! String == "Add Note" {
+			cell.descriptionLabel.text = "New Note: '\(title)'" + "\n" + "by \(name)"
+            cell.backgroundColor = color3
 		}
 
-		
-		
-		
-		
-		let dateFormatter1 = NSDateFormatter()
+        let dateFormatter1 = NSDateFormatter()
 		dateFormatter1.dateStyle = NSDateFormatterStyle.ShortStyle
 		dateFormatter1.timeStyle = NSDateFormatterStyle.ShortStyle
 		let date1 = dateFormatter1.stringFromDate(self.announcements[indexPath.row].createdAt!)
